@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# ROS 2 / colcon
+build/
+install/
+log/
+
+# ESP32 (PlatformIO / ESP-IDF)
+.pio/
+sdkconfig.old
+managed_components/
+
+# C/C++
+*.o
+*.so
+*.a
+
+# Logs and data
+*.log
+*.bag
+*.db3
+
+# Editors / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
