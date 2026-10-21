@@ -1,0 +1,4 @@
+{
+    "HF_TOKEN": "ADD YOUR HUGGINGFACE TOKEN HERE",
+    "HF_LLAMA_FT_MODEL": "AIRLab-POLIMI/llama-3.2-1b-it-ft-lora-bt"
+}
