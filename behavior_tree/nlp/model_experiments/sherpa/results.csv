@@ -1,0 +1,7 @@
+model,params_m,disk_mb,wer_pct,rtf,avg_latency_s
+moonshine-tiny,27,124,4.94,0.0115,0.085
+moonshine-base,61,287,3.61,0.0189,0.14
+whisper-tiny,39,104,6.48,0.0346,0.256
+whisper-base,74,161,4.66,0.0587,0.435
+distil-whisper-small,166,299,4.02,0.0926,0.686
+whisper-small,244,376,3.58,0.1527,1.13
