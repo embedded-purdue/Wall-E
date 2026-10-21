@@ -6,6 +6,7 @@ One interface for every speech-to-text model, so we can swap models without rewr
 |---|---|
 | `stt.py` | Model registry + `load(name)` / `transcribe(rec, samples)`. Also a CLI for mic or `.wav` (mic/VAD loop from Adwaiy's `moonshine_demo1.py`) |
 | `benchmark.py` | WER, speed and size for each model on the same clips, writes `results.csv` |
+| `plot.py` | Charts `results.csv` into `results.png` |
 
 ```python
 from stt import load, transcribe
@@ -44,11 +45,14 @@ python benchmark.py                                # all models, 200 LibriSpeech
 python benchmark.py --models moonshine-base whisper-small -n 50
 python benchmark.py --data walle.tsv               # your own set: path<TAB>transcript per line
 python benchmark.py --selftest
+python plot.py                                     # results.csv -> results.png
 ```
 
 ## Results: accuracy vs model size
 
 LibriSpeech test-clean, 199 clips (24.6 min, spread across all 40 speakers; one clip over 28 s dropped because Whisper caps input at 30 s). int8, 2 threads, MacBook M4 Max CPU. **Latency here is not Jetson latency.** Rerun on the Orin Nano.
+
+![results](results.png)
 
 | model | params | disk | WER ↓ | RTF ↓ | avg latency / clip (7.4 s avg) |
 |---|---|---|---|---|---|
