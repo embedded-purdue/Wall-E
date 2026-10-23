@@ -28,6 +28,7 @@ Build and run with the mock backend (no hardware needed):
 colcon build --packages-select hardware_api
 source install/setup.bash
 ros2 launch hardware_api drive.launch.py
+# options: params_file:=/path/to/params.yaml  backend:=mock  publish_tf:=false
 ```
 
 Try it:
