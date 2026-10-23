@@ -17,3 +17,10 @@
     odom_frame: odom
     base_frame: base_link
     publish_tf: true         # broadcast odom -> base_link; disable if another node owns it
+
+    # RoboClaw backend. PLACEHOLDERS: the backend is a stub and drive_node
+    # does not read these yet. TODO(electrical): confirm the port once the
+    # Jetson/ESP32 link is decided.
+    roboclaw_port: ""
+    roboclaw_address: 128    # 0x80, packet serial
+    roboclaw_baud: 38400
