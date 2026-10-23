@@ -2,16 +2,17 @@
 
   drive(v, omega)  -> subscribe /cmd_vel (geometry_msgs/Twist; linear.x, angular.z)
   stop()           -> service /hardware/stop (std_srvs/Trigger)
-  get_odometry()   -> publish /odom (nav_msgs/Odometry)
+  get_odometry()   -> publish /odom (nav_msgs/Odometry) and TF odom -> base_link
 """
 
 import math
 
 import rclpy
-from geometry_msgs.msg import Quaternion, Twist
+from geometry_msgs.msg import Quaternion, TransformStamped, Twist
 from nav_msgs.msg import Odometry
 from rclpy.node import Node
 from std_srvs.srv import Trigger
+from tf2_ros import TransformBroadcaster
 
 from .controller import DriveController
 from .kinematics import DriveParams
@@ -43,6 +44,7 @@ class DriveNode(Node):
     watchdog_timeout = self.declare_parameter('watchdog_timeout', 0.5).value
     self._odom_frame = self.declare_parameter('odom_frame', 'odom').value
     self._base_frame = self.declare_parameter('base_frame', 'base_link').value
+    publish_tf = self.declare_parameter('publish_tf', True).value
 
     self._controller = DriveController(
       self._make_backend(backend_name),
@@ -54,6 +56,7 @@ class DriveNode(Node):
     )
 
     self._odom_pub = self.create_publisher(Odometry, 'odom', 10)
+    self._tf_broadcaster = TransformBroadcaster(self) if publish_tf else None
     self.create_subscription(Twist, 'cmd_vel', self._on_cmd_vel, 10)
     self.create_service(Trigger, 'hardware/stop', self._on_stop)
     self.create_timer(1.0 / rate_hz, self._on_timer)
@@ -91,6 +94,15 @@ class DriveNode(Node):
     msg.twist.twist.linear.x = v
     msg.twist.twist.angular.z = omega
     self._odom_pub.publish(msg)
+
+    if self._tf_broadcaster is not None:
+      tf = TransformStamped()
+      tf.header = msg.header
+      tf.child_frame_id = self._base_frame
+      tf.transform.translation.x = pose.x
+      tf.transform.translation.y = pose.y
+      tf.transform.rotation = msg.pose.pose.orientation
+      self._tf_broadcaster.sendTransform(tf)
 
   def shutdown(self) -> None:
     self._controller.stop()

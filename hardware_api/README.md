@@ -14,7 +14,7 @@ Driving commands (`drive_node`):
 | --- | --- |
 | `drive(v, ω)` | publish `/cmd_vel` (`geometry_msgs/Twist`; only `linear.x` m/s and `angular.z` rad/s are used) |
 | `stop()` | call `/hardware/stop` (`std_srvs/Trigger`) |
-| `get_odometry()` | subscribe `/odom` (`nav_msgs/Odometry`, `odom` → `base_link`) |
+| `get_odometry()` | subscribe `/odom` (`nav_msgs/Odometry`, `odom` → `base_link`); the same pose is broadcast on TF (`publish_tf`, default on) |
 
 Safety behavior:
 

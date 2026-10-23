@@ -16,3 +16,4 @@
     control_rate_hz: 50.0    # backend command + /odom publish rate
     odom_frame: odom
     base_frame: base_link
+    publish_tf: true         # broadcast odom -> base_link; disable if another node owns it
