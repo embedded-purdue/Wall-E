@@ -16,6 +16,12 @@ Driving commands (`drive_node`):
 | `stop()` | call `/hardware/stop` (`std_srvs/Trigger`) |
 | `get_odometry()` | subscribe `/odom` (`nav_msgs/Odometry`, `odom` → `base_link`) |
 
+Safety behavior:
+
+- `/cmd_vel` must be published continuously (10 Hz or faster). If none arrives within `watchdog_timeout` (default 0.5 s), the robot stops.
+- Commands are capped at `speed_cap_fraction` (default 60%) of `max_wheel_speed`. When the cap kicks in, both wheels scale together so the turning curve is kept.
+- `/hardware/stop` stops the motors immediately. It does not latch: the next `/cmd_vel` drives again.
+
 Build and run with the mock backend (no hardware needed):
 
 ```bash

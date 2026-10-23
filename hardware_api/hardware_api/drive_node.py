@@ -39,11 +39,19 @@ class DriveNode(Node):
         raise ValueError(f'parameter {name} must be > 0 (set it in config/drive.yaml)')
     backend_name = self.declare_parameter('backend', 'mock').value
     rate_hz = self.declare_parameter('control_rate_hz', 50.0).value
+    cap_fraction = self.declare_parameter('speed_cap_fraction', 0.6).value
+    watchdog_timeout = self.declare_parameter('watchdog_timeout', 0.5).value
     self._odom_frame = self.declare_parameter('odom_frame', 'odom').value
     self._base_frame = self.declare_parameter('base_frame', 'base_link').value
 
     self._controller = DriveController(
-      self._make_backend(backend_name), self._params, clock=self._now)
+      self._make_backend(backend_name),
+      self._params,
+      cap_fraction=cap_fraction,
+      watchdog_timeout=watchdog_timeout,
+      clock=self._now,
+      on_timeout=self._on_watchdog_timeout,
+    )
 
     self._odom_pub = self.create_publisher(Odometry, 'odom', 10)
     self.create_subscription(Twist, 'cmd_vel', self._on_cmd_vel, 10)
@@ -61,6 +69,9 @@ class DriveNode(Node):
 
   def _on_cmd_vel(self, msg: Twist) -> None:
     self._controller.command(msg.linear.x, msg.angular.z)
+
+  def _on_watchdog_timeout(self) -> None:
+    self.get_logger().warn('no /cmd_vel within watchdog_timeout; stopping')
 
   def _on_stop(self, request, response):
     self._controller.stop()
