@@ -1,0 +1,9 @@
+# drive_node parameters.
+/**:
+  ros__parameters:
+    # TODO(electrical): PLACEHOLDER values. Replace with measured numbers
+    # for the real drivetrain before running on hardware.
+    wheel_radius: 0.05       # m
+    track_width: 0.40        # m
+    ticks_per_rev: 2000      # encoder ticks per wheel revolution
+    max_wheel_speed: 1.0     # m/s, hardware maximum at the wheel rim
