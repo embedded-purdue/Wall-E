@@ -1,0 +1,62 @@
+# Wall-E vocabulary in BTGenBot-2's allowed_primitives.yaml format.
+# Control and decorator nodes are copied from BTGenBot-2; actions/conditions are Wall-E's 11 skills.
+# Draft: names and parameters should match the BT team's shared YAML.
+
+control_nodes:
+  Sequence: {}
+  Fallback: {}
+  Parallel:
+    required: [success_count, failure_count]
+  ReactiveSequence: {}
+  ReactiveFallback: {}
+  RoundRobin: {}
+  PipelineSequence: {}
+  SequenceStar: {}
+  RecoveryNode:
+    required: [number_of_retries]
+
+decorator_nodes:
+  Inverter: {}
+  ForceSuccess: {}
+  ForceFailure: {}
+  Repeat:
+    required: [num_cycles]
+  RetryUntilSuccessful:
+    required: [num_attempts]
+  KeepRunningUntilFailure: {}
+  Delay:
+    required: [delay_msec]
+  Timeout:
+    required: [msec]
+  RateController:
+    required: [hz]
+  DistanceController:
+    required: [distance]
+
+actions:
+  SearchFor:
+    required: [object]
+    optional: [hint]
+  NavigateTo:
+    required: [target]
+  Say:
+    required: [text]
+    optional: [emotion]
+  Express:
+    required: [emotion]
+  LookAt:
+    required: [target]
+  Grab:
+    required: [object]
+  MoveArm:
+    required: [pose]
+  Release:
+    optional: [target]
+  Crush:
+    required: [object]
+
+conditions:
+  IsVisible:
+    required: [object]
+  IsAt:
+    required: [target]
