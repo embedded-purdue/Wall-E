@@ -1,0 +1,28 @@
+<root BTCPP_format="4">
+    <BehaviorTree id="main">
+        <Sequence name="human_safety">
+            <Fallback>
+                <near object="human">
+                <stop>
+            </Fallback>
+        </Sequence>
+
+        <Fallback name="execute_prompt">
+            <is_quiet>
+            <BTGenBot-2>
+        </Fallback>
+
+        <Sequence name="self_safety">
+            <Fallback>
+                <Fallback>
+                    <battery_sufficient>
+                    <snoozed>
+                </Fallback>
+                <Sequence>
+                    <say text="I'm getting sleepy" emotion="tired">
+                    <snooze>
+                </Sequence>
+            </Fallback>
+        </Sequence>
+    </BehaviorTree>
+</root>
