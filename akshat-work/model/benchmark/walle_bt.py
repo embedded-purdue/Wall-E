@@ -133,6 +133,7 @@ _STOP = set(
 )
 
 
+# split text into list of individual words
 def _tokens(text: str) -> list[str]:
     return [t for t in re.findall(r"[a-z']+", text.lower()) if t not in _STOP]
 
@@ -165,17 +166,30 @@ class ExampleLibrary:
             except ImportError:
                 if retriever == "embed":
                     raise
+
+        # this is the scoring algo acc used in the code,
+        # fallback from sentence transformers
         self.retriever = "tfidf"
+
+        # list of requests + descriptions in item library
         docs = [_tokens(i["request"] + " " + i["description"]) for i in self.items]
+
+        # document frequency
         df = Counter(t for d in docs for t in set(d))
         n = len(docs)
+
+        # log freq. of appearance of a given char
         self.idf = {t: math.log((1 + n) / (1 + c)) + 1 for t, c in df.items()}
+
+        # vectors for each example in library
         self.vecs = [self._vec(d) for d in docs]
 
     def _vec(self, toks: list[str]) -> dict[str, float]:
         tf = Counter(toks)
         v = {t: c * self.idf.get(t, 0.0) for t, c in tf.items()}
         norm = math.sqrt(sum(x * x for x in v.values())) or 1.0
+
+        # vector where t is char & x is normalized version of tf-idf score
         return {t: x / norm for t, x in v.items()}
 
     def retrieve(self, request: str) -> tuple[dict, float]:
@@ -185,6 +199,9 @@ class ExampleLibrary:
             best = max(range(len(scores)), key=scores.__getitem__)
             return self.items[best], scores[best]
         q = self._vec(_tokens(request))
+
+        # taking tf-idf score of request & comparing that to the example_library
+        # to see which request to retrieve
         scores = [sum(q.get(t, 0) * w for t, w in v.items()) for v in self.vecs]
         best = max(range(len(scores)), key=scores.__getitem__)
         return self.items[best], scores[best]
@@ -265,6 +282,9 @@ def load_chat_model(model_id: str, device: str = "auto"):
             )
             + "Assistant:"
         )
+
+        # join messages into text and then set up the autocomplete w/ assistant
+        # convert this to tokens
         return tok(text, return_tensors="pt").to(device)
 
     def generate(messages, max_new_tokens=1024, sample=False, stop=None):
@@ -275,6 +295,8 @@ def load_chat_model(model_id: str, device: str = "auto"):
                 tok.pad_token_id if tok.pad_token_id is not None else tok.eos_token_id
             ),
         )
+
+        # choose whether or not to be greedy based on parameter sample
         kwargs.update(
             dict(do_sample=True, temperature=0.7, top_p=0.95)
             if sample
@@ -284,11 +306,13 @@ def load_chat_model(model_id: str, device: str = "auto"):
             kwargs.update(stop_strings=stop, tokenizer=tok)
         with torch.no_grad():
             try:
+                # generate outputs based on keyword args above & inputs
                 out = model.generate(**inputs, **kwargs)
             except (TypeError, ValueError):  # transformers too old for stop_strings
                 kwargs.pop("stop_strings", None), kwargs.pop("tokenizer", None)
                 out = model.generate(**inputs, **kwargs)
         new = out[0][inputs["input_ids"].shape[1] :]
+
         return tok.decode(new, skip_special_tokens=True), int(new.shape[0])
 
     def unload():

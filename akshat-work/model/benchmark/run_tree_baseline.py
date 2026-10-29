@@ -115,15 +115,19 @@ def main():
     ap.add_argument("--mock", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args()
     load_env()
-
+    # get models, validator, and possible action from yaml file
     models = [ALIASES.get(m.strip(), m.strip()) for m in args.models.split(",")]
     validator = BehaviorTreeValidator.from_yaml(args.yaml)
     actions = action_list(args.yaml)
     library = ExampleLibrary(args.library, args.retriever)
+    # tfidf: used for attention
+    # read more here:
+    # https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/
     print(f"Example retrieval: {library.retriever}")
     for ex in library.items:  # every example must itself be valid
         validator.validate(ex["tree_xml"])
 
+    # cut off test set at certain point
     rows = [
         r
         for r in csv.DictReader(open(args.test_set, newline=""))
@@ -142,6 +146,7 @@ def main():
     if args.dry_run:
         for r in rows:
             for cond in conditions:
+                # retrieve example & append that to the prompt
                 ex = (
                     library.retrieve(r["request"])[0] if cond == "one_example" else None
                 )
