@@ -32,3 +32,9 @@ managed_components/
 .idea/
 *.swp
 .DS_Store
+
+# NLP
+**/venv/
+**/sherpa-onnx-moonshine-*/
+**/*.tar.bz2
+**/silero_vad.onnx

@@ -1,4 +1,4 @@
-Trying out a few different models 
+experiments on a few different models
 - Whisper (small)
 - Moonshine
 
