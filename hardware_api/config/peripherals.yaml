@@ -54,3 +54,15 @@ arm_node:
     arm_home: [0.0, 0.0, 0.0, 0.0]      # "rest" pose; joints start here
     mock_object_present: false          # simulate an object between the fingers
     mock_gripper_close_time: 1.0        # s from open to fully closed
+
+crusher_node:
+  ros__parameters:
+    backend: mock
+    cycle_time: 5.0          # s per crush cycle (placeholder)
+    check_rate_hz: 20.0      # safety re-check rate while a cycle runs
+    # TODO(electrical): the real safety signals (door/lock sensors) are undefined.
+    # The mock starts unsafe, so run_crusher refuses until all three are true:
+    #   ros2 param set /crusher_node mock_chamber_closed true   (and the other two)
+    mock_chamber_closed: false
+    mock_lock_engaged: false
+    mock_contents_ok: false
