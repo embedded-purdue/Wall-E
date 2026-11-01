@@ -27,6 +27,7 @@ setup(
       'head_eyes_node = hardware_api.head_eyes_node:main',
       'audio_node = hardware_api.audio_node:main',
       'camera_node = hardware_api.camera_node:main',
+      'arm_node = hardware_api.arm_node:main',
     ],
   },
 )

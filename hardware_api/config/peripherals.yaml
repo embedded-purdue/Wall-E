@@ -39,3 +39,18 @@ camera_node:
     frame_id: camera_link
     mock_depth_m: 2.0        # wall distance in the mock scene
     mock_object_depth_m: 0.0 # > 0 puts a box in the center third at this depth
+
+arm_node:
+  ros__parameters:
+    backend: mock
+    control_rate_hz: 50.0
+    # TODO(mechanical/electrical): joint count, limits, speeds and the real
+    # actuators (shoulder DC/stepper, fingers maybe hydraulic) are unconfirmed.
+    # These four joints are placeholders; the lists must have equal length.
+    arm_joint_names: [shoulder_pan, shoulder_lift, elbow, wrist]
+    arm_min: [-1.5, -0.5, 0.0, -1.5]    # rad
+    arm_max: [1.5, 1.5, 2.5, 1.5]
+    arm_max_speed: [1.0, 1.0, 1.5, 2.0] # rad/s, software slew limit
+    arm_home: [0.0, 0.0, 0.0, 0.0]      # "rest" pose; joints start here
+    mock_object_present: false          # simulate an object between the fingers
+    mock_gripper_close_time: 1.0        # s from open to fully closed
