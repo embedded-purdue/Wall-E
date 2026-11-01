@@ -15,6 +15,8 @@ from std_srvs.srv import Trigger
 from tf2_ros import TransformBroadcaster
 
 from .controller import DriveController
+from .esp32_backend import Esp32DriveBackend, Esp32Link
+from .esp32_protocol import ProtocolError
 from .kinematics import DriveParams
 from .mock_backend import MockDriveBackend
 
@@ -45,6 +47,8 @@ class DriveNode(Node):
     self._odom_frame = self.declare_parameter('odom_frame', 'odom').value
     self._base_frame = self.declare_parameter('base_frame', 'base_link').value
     publish_tf = self.declare_parameter('publish_tf', True).value
+    self._esp32_port = self.declare_parameter('esp32_port', '').value
+    self._esp32_baud = self.declare_parameter('esp32_baud', 115200).value
 
     self._controller = DriveController(
       self._make_backend(backend_name),
@@ -65,6 +69,10 @@ class DriveNode(Node):
   def _make_backend(self, name: str):
     if name == 'mock':
       return MockDriveBackend(self._params)
+    if name == 'esp32':
+      if not self._esp32_port:
+        raise ValueError('backend esp32 needs esp32_port (e.g. /dev/ttyTHS1 or /dev/ttyUSB0)')
+      return Esp32DriveBackend(self._params, Esp32Link.open(self._esp32_port, self._esp32_baud))
     raise ValueError(f"unknown backend '{name}'")
 
   def _now(self) -> float:
@@ -83,7 +91,12 @@ class DriveNode(Node):
     return response
 
   def _on_timer(self) -> None:
-    pose, v, omega = self._controller.step()
+    try:
+      pose, v, omega = self._controller.step()
+    except ProtocolError as exc:
+      # Skip this tick; if the link stays down the ESP32's own timeout stops the motors.
+      self.get_logger().error(f'ESP32 link error: {exc}', throttle_duration_sec=1.0)
+      return
     msg = Odometry()
     msg.header.stamp = self.get_clock().now().to_msg()
     msg.header.frame_id = self._odom_frame
@@ -105,7 +118,10 @@ class DriveNode(Node):
       self._tf_broadcaster.sendTransform(tf)
 
   def shutdown(self) -> None:
-    self._controller.stop()
+    try:
+      self._controller.stop()
+    except ProtocolError as exc:
+      self.get_logger().error(f'could not send stop on shutdown: {exc}')
 
 
 def main(args=None):

@@ -11,7 +11,7 @@ def generate_launch_description():
   config = PathJoinSubstitution([FindPackageShare('hardware_api'), 'config', 'drive.yaml'])
   return LaunchDescription([
     DeclareLaunchArgument('params_file', default_value=config, description='drive_node parameter file'),
-    DeclareLaunchArgument('backend', default_value='mock', description='Drive backend (mock)'),
+    DeclareLaunchArgument('backend', default_value='mock', description='Drive backend (mock or esp32)'),
     DeclareLaunchArgument('publish_tf', default_value='true', description='Broadcast odom -> base_link TF'),
     Node(
       package='hardware_api',

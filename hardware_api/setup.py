@@ -29,6 +29,7 @@ setup(
       'camera_node = hardware_api.camera_node:main',
       'arm_node = hardware_api.arm_node:main',
       'crusher_node = hardware_api.crusher_node:main',
+      'bench_drive = hardware_api.bench_drive:main',
     ],
   },
 )

@@ -40,6 +40,18 @@ Software limits on these (enforced in code, not by the hardware):
 - The mock crusher starts unsafe and refuses until its `mock_*` parameters are set true.
 - The global `/hardware/stop` only stops driving. Whether it should also stop the arm and crusher is open (see `docs/peripherals-open-questions.md`).
 
+Backends (`backend` parameter):
+
+- `mock`: pretend wheels, no hardware.
+- `esp32`: real treads through the ESP32-S3 over UART, using the draft message format in `docs/esp32-protocol.md`. Set `esp32_port` in the params file.
+
+Bench test the treads without ROS (spins each tread slowly and prints encoder counts):
+
+```bash
+python3 -m hardware_api.bench_drive --fake                 # dry run
+python3 -m hardware_api.bench_drive --port /dev/ttyUSB0    # real ESP32
+```
+
 Build and run with the mock backend (no hardware needed):
 
 ```bash

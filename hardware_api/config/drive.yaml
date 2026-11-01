@@ -5,22 +5,22 @@
     # for the real drivetrain before running on hardware.
     wheel_radius: 0.05       # m
     track_width: 0.40        # m
-    ticks_per_rev: 2000      # encoder ticks per wheel revolution
+    ticks_per_rev: 2000      # encoder ticks per wheel revolution (electrical quoted 8192 per
+                             # shaft turn for one motor option; measure with bench_drive)
     max_wheel_speed: 1.0     # m/s, hardware maximum at the wheel rim
 
     # Safety (software-enforced; do not rely on hardware limits).
     speed_cap_fraction: 0.6  # fraction of max_wheel_speed allowed
     watchdog_timeout: 0.5    # s; stop if no /cmd_vel arrives within this
 
-    backend: mock            # mock (no hardware)
+    backend: mock            # mock (no hardware) | esp32 (real treads via the ESP32-S3)
     control_rate_hz: 50.0    # backend command + /odom publish rate
     odom_frame: odom
     base_frame: base_link
     # publish_tf: set via the launch argument publish_tf:=true|false
 
-    # RoboClaw backend. PLACEHOLDERS: the backend is a stub and drive_node
-    # does not read these yet. TODO(electrical): confirm the port once the
-    # Jetson/ESP32 link is decided.
-    roboclaw_port: ""
-    roboclaw_address: 128    # 0x80, packet serial
-    roboclaw_baud: 38400
+    # ESP32 backend (draft v0 message format, docs/esp32-protocol.md).
+    # TODO(electrical): confirm the device. Jetson UART header is usually /dev/ttyTHS1;
+    # a laptop with a USB-to-UART cable shows up as /dev/ttyUSB0 (Linux) or COMx (Windows).
+    esp32_port: ""
+    esp32_baud: 115200
