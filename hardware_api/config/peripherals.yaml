@@ -1,0 +1,68 @@
+# Parameters for the head/eyes, audio, camera, arm, gripper and crusher nodes.
+# Everything here is a PLACEHOLDER until electrical and mechanical confirm the
+# real hardware. All nodes default to the mock backend (no hardware needed).
+
+head_eyes_node:
+  ros__parameters:
+    backend: mock
+    control_rate_hz: 50.0
+    # Joint limits in radians. TODO(electrical): measure on the real neck/eyes.
+    head_pan_min: -1.2
+    head_pan_max: 1.2
+    head_tilt_min: -0.5
+    head_tilt_max: 0.5
+    eye_min: -0.5
+    eye_max: 0.5
+    head_max_speed: 2.0      # rad/s, software slew limit
+    eye_max_speed: 6.0
+    default_expression: neutral
+
+audio_node:
+  ros__parameters:
+    backend: mock
+    # /audio/mic format: raw PCM, signed 16-bit little-endian, mono.
+    # TODO(electrical): confirm the mic/speaker hardware and the real sample rate.
+    sample_rate: 16000
+    chunk_ms: 20             # one /audio/mic message per chunk
+    mic_enabled: true
+    mock_clip_duration: 1.0  # s; how long the mock pretends a clip plays
+
+camera_node:
+  ros__parameters:
+    backend: mock
+    # TODO(electrical): camera model is unconfirmed. The notes mention a CSI
+    # camera (color only, no depth). A color-only camera should publish NaN depth.
+    width: 320
+    height: 240
+    frame_rate_hz: 15.0
+    hfov: 1.2                # rad, horizontal field of view (placeholder)
+    frame_id: camera_link
+    mock_depth_m: 2.0        # wall distance in the mock scene
+    mock_object_depth_m: 0.0 # > 0 puts a box in the center third at this depth
+
+arm_node:
+  ros__parameters:
+    backend: mock
+    control_rate_hz: 50.0
+    # TODO(mechanical/electrical): joint count, limits, speeds and the real
+    # actuators (shoulder DC/stepper, fingers maybe hydraulic) are unconfirmed.
+    # These four joints are placeholders; the lists must have equal length.
+    arm_joint_names: [shoulder_pan, shoulder_lift, elbow, wrist]
+    arm_min: [-1.5, -0.5, 0.0, -1.5]    # rad
+    arm_max: [1.5, 1.5, 2.5, 1.5]
+    arm_max_speed: [1.0, 1.0, 1.5, 2.0] # rad/s, software slew limit
+    arm_home: [0.0, 0.0, 0.0, 0.0]      # "rest" pose; joints start here
+    mock_object_present: false          # simulate an object between the fingers
+    mock_gripper_close_time: 1.0        # s from open to fully closed
+
+crusher_node:
+  ros__parameters:
+    backend: mock
+    cycle_time: 5.0          # s per crush cycle (placeholder)
+    check_rate_hz: 20.0      # safety re-check rate while a cycle runs
+    # TODO(electrical): the real safety signals (door/lock sensors) are undefined.
+    # The mock starts unsafe, so run_crusher refuses until all three are true:
+    #   ros2 param set /crusher_node mock_chamber_closed true   (and the other two)
+    mock_chamber_closed: false
+    mock_lock_engaged: false
+    mock_contents_ok: false
