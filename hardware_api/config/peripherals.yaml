@@ -1,0 +1,18 @@
+# Parameters for the head/eyes, audio, camera, arm, gripper and crusher nodes.
+# Everything here is a PLACEHOLDER until electrical and mechanical confirm the
+# real hardware. All nodes default to the mock backend (no hardware needed).
+
+head_eyes_node:
+  ros__parameters:
+    backend: mock
+    control_rate_hz: 50.0
+    # Joint limits in radians. TODO(electrical): measure on the real neck/eyes.
+    head_pan_min: -1.2
+    head_pan_max: 1.2
+    head_tilt_min: -0.5
+    head_tilt_max: 0.5
+    eye_min: -0.5
+    eye_max: 0.5
+    head_max_speed: 2.0      # rad/s, software slew limit
+    eye_max_speed: 6.0
+    default_expression: neutral
