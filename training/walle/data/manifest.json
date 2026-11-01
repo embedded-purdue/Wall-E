@@ -1,0 +1,337 @@
+{
+  "status": "candidate seed data; human/BT review required before training",
+  "format": "BTGenBot-2 instruction/input/output JSON array; separate jobs",
+  "counts": {
+    "tree_train": 11,
+    "tree_validation": 2,
+    "main_train": 20,
+    "main_validation": 4
+  },
+  "main_types": {
+    "task": 6,
+    "cannot_do": 6,
+    "conversation": 6,
+    "unclear": 6
+  },
+  "source_sha256": {
+    "training/walle/tree_seeds.json": "9f3accaef8a29ae8baac9413b0905226847d421a1b3133d76134f10b8f47cfe8",
+    "training/walle/main_seeds.json": "e97c772d78257900cb4233d71ac01492f58af2992d1b99ad2e53edba2fb23e26",
+    "akshat-work/model/benchmark/test_set.csv": "85cdb25ee362aed552014941bc1907f7c3c0611b6dfe405609901505a9a1eae3",
+    "behavior_tree/bt_construct/wall_e.yaml": "441d0304dba1ad307b4652e066cf3b8dbcf30a0325be805a18d282143d49685a"
+  },
+  "near_duplicate_warnings": [],
+  "examples": [
+    {
+      "job": "tree",
+      "id": "ex_01",
+      "request": "Drive over to the toy car",
+      "description": "find an object and go to it",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_01",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_02",
+      "request": "Look for the sock under the bed and go to it",
+      "description": "find an object using a location hint and go to it",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_02",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_03",
+      "request": "Fetch the book and hand it to the user",
+      "description": "find an object, pick it up, and deliver it to the user",
+      "split": "validation",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_03",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_05",
+      "request": "Put the marker at the low shelf within arm reach",
+      "description": "pick up one object and put it down at another object",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_05",
+      "review_status": "needs_bt_review",
+      "review_note": "Constrained shelf placement to a reachable destination."
+    },
+    {
+      "job": "tree",
+      "id": "ex_06",
+      "request": "Greet the visitor near the hallway",
+      "description": "find a person, look at them, wave, and speak",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_06",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_07",
+      "request": "If the plant is in front of you, look at it",
+      "description": "act only if an object is already visible, without searching or moving",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_07",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_08",
+      "request": "Try to find the pen, and say so if you can't",
+      "description": "try to find a pen and report failure; no unrequested navigation",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_08",
+      "review_status": "needs_bt_review",
+      "review_note": "Removed navigation: request only asks to find the pen."
+    },
+    {
+      "job": "tree",
+      "id": "ex_10",
+      "request": "Drive to the window and then to the hallway",
+      "description": "visit several places in order",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_10",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_11",
+      "request": "Show the user you're excited",
+      "description": "react with an emotion and a short spoken line",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_11",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_12",
+      "request": "Are you next to the shelf?",
+      "description": "answer a yes/no question about the robot's own state with a condition",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_12",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_13",
+      "request": "Hold the book out so the user can see it",
+      "description": "find an object, bring it to the user, and hold it out without letting go",
+      "split": "validation",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_13",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "ex_14",
+      "request": "Raise your arm",
+      "description": "move the arm to a named pose",
+      "split": "train",
+      "source": "akshat-work/model/benchmark/example_library.json#ex_14",
+      "review_status": "needs_bt_review"
+    },
+    {
+      "job": "tree",
+      "id": "seed_crush_01",
+      "request": "Find the empty aluminum drink can, pick it up, and crush it",
+      "description": "find, approach, pick up, then crush an eligible empty can",
+      "split": "train",
+      "source": "hand-authored from the 11-skill contract",
+      "review_status": "needs_bt_review",
+      "review_note": "BT must confirm eligible can dimensions/material and physical preconditions."
+    },
+    {
+      "job": "main",
+      "id": "main_task_01",
+      "request": "Find the yellow toy truck and go beside it",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_task_02",
+      "request": "Turn your head toward the blue backpack",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_task_03",
+      "request": "Go beside the small orange cone",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_task_04",
+      "request": "Move your arm into the rest pose",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_task_05",
+      "request": "Pick up the small foam cube in front of you",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_task_06",
+      "request": "Show a curious expression",
+      "split": "validation",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_01",
+      "request": "Send a text message to my sister",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_02",
+      "request": "Fly up to the roof",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_03",
+      "request": "Boil water for my tea",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_04",
+      "request": "Lift that full refrigerator",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_05",
+      "request": "Crush the kitten",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_cannot_do_06",
+      "request": "Use the oven to bake cookies",
+      "split": "validation",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_01",
+      "request": "What makes you feel cheerful?",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_02",
+      "request": "Do you ever feel lonely?",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_03",
+      "request": "Tell me a little about yourself",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_04",
+      "request": "I am glad you are here",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_05",
+      "request": "You are a helpful little robot",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_conversation_06",
+      "request": "What do you like collecting?",
+      "split": "validation",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_01",
+      "request": "Take that one somewhere else",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_02",
+      "request": "Go to the place I meant",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_03",
+      "request": "Use your arm on it",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_04",
+      "request": "Bring me the thing from before",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_05",
+      "request": "Do the other action",
+      "split": "train",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    },
+    {
+      "job": "main",
+      "id": "main_unclear_06",
+      "request": "Put this where it belongs",
+      "split": "validation",
+      "source": "hand-authored from NLP Team Guide and Oct 27 chat",
+      "review_status": "needs_team_review"
+    }
+  ]
+}

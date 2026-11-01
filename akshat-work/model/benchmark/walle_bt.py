@@ -11,7 +11,11 @@ from xml.etree import ElementTree as ET
 
 import yaml
 
-HERE = Path(__file__).parent
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[2]
+SCHEMA = REPO / "behavior_tree" / "bt_construct" / "wall_e.yaml"
+TYPES = ["task", "cannot_do", "conversation", "unclear"]
+EMOTIONS = ["happy", "curious", "sad", "surprised", "confused"]
 
 # BTGenBot-2's system prompt, copied exactly from their dataset (bt_dataset.json "instruction").
 SYSTEM_PROMPT = """
@@ -236,13 +240,14 @@ def load_env():
         pass
 
 
-def load_chat_model(model_id: str, device: str = "auto"):
+def load_chat_model(model_id: str, device: str = "auto", revision: str = "main", base_revision: str | None = None):
     """Load a model with transformers. Returns generate(messages, max_new_tokens, sample, stop) -> (text, n_tokens).
 
     Instruct/chat models use their chat template. A base model (no template) gets a plain
     "System/User/Assistant" transcript instead, and `stop` strings keep it from rambling.
     """
     import torch
+    from huggingface_hub import model_info, hf_hub_download
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     if device == "auto":
@@ -256,11 +261,22 @@ def load_chat_model(model_id: str, device: str = "auto"):
     else:
         dtype = torch.float16 if device == "mps" else torch.float32
 
-    tok = AutoTokenizer.from_pretrained(model_id)
-    try:
-        model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype)
-    except TypeError:  # older transformers
-        model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=dtype)
+    # Resolve both an adapter and its base; an adapter commit alone does not pin its base.
+    info = model_info(model_id, revision=revision)
+    revision = info.sha
+    files = {entry.rfilename for entry in info.siblings}
+    base_id, resolved_base = model_id, revision
+    adapter = "adapter_config.json" in files
+    if adapter:
+        config = json.loads(Path(hf_hub_download(model_id, "adapter_config.json", revision=revision)).read_text())
+        base_id = config["base_model_name_or_path"]
+        resolved_base = model_info(base_id, revision=base_revision or config.get("revision") or "main").sha
+    tokenizer_id = model_id if "tokenizer_config.json" in files else base_id
+    tok = AutoTokenizer.from_pretrained(tokenizer_id, revision=revision if tokenizer_id == model_id else resolved_base)
+    model = AutoModelForCausalLM.from_pretrained(base_id, torch_dtype=dtype, revision=resolved_base)
+    if adapter:
+        from peft import PeftModel
+        model = PeftModel.from_pretrained(model, model_id, revision=revision)
     model.to(device).eval()
     has_template = bool(getattr(tok, "chat_template", None))
     print(
@@ -323,5 +339,7 @@ def load_chat_model(model_id: str, device: str = "auto"):
         elif device == "mps":
             torch.mps.empty_cache()
 
+    generate.metadata = {"revision": revision, "base_model": base_id, "base_revision": resolved_base,
+                         "device": device, "dtype": str(dtype)}
     generate.unload = unload
     return generate

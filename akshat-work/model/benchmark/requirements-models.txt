@@ -1,0 +1,7 @@
+-r requirements.txt
+# Python 3.11 recommended for the model environment (CPU/MPS/CUDA as available).
+torch==2.9.0
+transformers==4.57.1
+peft==0.17.1
+python-dotenv==1.1.1
+# Optional embedding experiments use sentence-transformers; TF-IDF is the baseline.

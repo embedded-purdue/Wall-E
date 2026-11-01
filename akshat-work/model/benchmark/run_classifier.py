@@ -23,10 +23,10 @@ import yaml
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
-from walle_bt import DEFAULT_MAIN_LLM, load_chat_model, load_env  # noqa: E402
+from run_metadata import config_for, prepare_run
+from walle_bt import SCHEMA, TYPES, EMOTIONS, DEFAULT_MAIN_LLM, load_chat_model, load_env  # noqa: E402
 
-TYPES = ["task", "cannot_do", "conversation", "unclear"]
-DEFAULT_EMOTIONS = "happy,curious,sad,surprised,confused"
+DEFAULT_EMOTIONS = ",".join(EMOTIONS)
 
 # Facts about the body that aren't in the skill YAML. Keep in sync with Embedded/Integration.
 BODY = (
@@ -139,15 +139,18 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     ap.add_argument("--test-set", default=HERE / "test_set.csv")
-    ap.add_argument("--yaml", default=HERE / "wall_e.yaml")
+    ap.add_argument("--yaml", default=SCHEMA)
     ap.add_argument("--model", default=DEFAULT_MAIN_LLM)
+    ap.add_argument("--revision", default="main")
+    ap.add_argument("--base-revision", help="base model commit when loading an adapter")
+    ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     ap.add_argument("--emotions", default=DEFAULT_EMOTIONS)
     ap.add_argument(
         "--no-examples", action="store_true", help="leave out the worked examples"
     )
     ap.add_argument("--max-new-tokens", type=int, default=96)
-    ap.add_argument("--out", default=HERE / "results" / "classifier_results.csv")
+    ap.add_argument("--out", default=HERE / "results" / "runs" / "classifier_results.csv")
     ap.add_argument("--print-prompt", action="store_true")
     ap.add_argument("--mock", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args()
@@ -159,11 +162,16 @@ def main():
         return
     load_env()
 
-    rows = list(csv.DictReader(open(args.test_set, newline="")))
+    with open(args.test_set, newline="") as stream:
+        rows = list(csv.DictReader(stream))
     test_requests = {r["request"].strip().lower() for r in rows}
     leaked = [q for q, _ in FEW_SHOT if q.strip().lower() in test_requests]
     if leaked:
         sys.exit(f"Worked examples overlap the test set: {leaked}")
+
+    out = Path(args.out)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    meta_path, metadata = prepare_run(out, config_for(args, [args.test_set, args.yaml]))
 
     if args.mock:  # smoke test: always answers with the gold label
         gold = {r["request"]: r["type"] for r in rows}
@@ -182,11 +190,13 @@ def main():
 
         model_name = "mock"
     else:
-        generate = load_chat_model(args.model, args.device)
+        from transformers import set_seed
+        set_seed(args.seed)
+        generate = load_chat_model(args.model, args.device, args.revision, args.base_revision)
         model_name = args.model
 
-    out = Path(args.out)
-    out.parent.mkdir(parents=True, exist_ok=True)
+    metadata["models"][model_name] = getattr(generate, "metadata", {"mock": True})
+    meta_path.write_text(json.dumps(metadata, indent=2) + "\n")
     fields = [
         "model",
         "few_shot",
@@ -213,7 +223,10 @@ def main():
         latency = time.perf_counter() - t0
 
         obj = parse_json(raw)
-        json_ok = isinstance(obj, dict) and obj.get("type") in TYPES
+        json_ok = (isinstance(obj, dict) and set(obj) == {"type", "reply", "emotion"}
+                   and obj["type"] in TYPES
+                   and (obj["reply"] is None or isinstance(obj["reply"], str))
+                   and (obj["emotion"] is None or obj["emotion"] in emotions))
         pred_type = obj["type"] if json_ok else ""
         pred_emotion = str(obj.get("emotion") or "") if json_ok else ""
         pred_reply = str(obj.get("reply") or "") if json_ok else ""

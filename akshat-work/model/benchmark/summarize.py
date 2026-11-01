@@ -19,50 +19,33 @@ def pct(a, b):
 
 
 def tree_section(path: Path) -> list[str]:
-    rows = list(csv.DictReader(open(path, newline="")))
-    by_cond = defaultdict(list)
-    for r in rows:
-        by_cond[r["condition"]].append(r)
-
-    lines = ["## Tree generation (BTGenBot-2, released model)", "",
-             "Tree success = passes the validator **and** graded as doing what was asked.", "",
-             "| Condition | Tasks | Valid XML | Matches reference | Tree success | Ungraded | Median latency |",
-             "|---|---|---|---|---|---|---|"]
-    ungraded_total = 0
-    for cond, rs in by_cond.items():
+    with open(path, newline="") as stream:
+        rows = list(csv.DictReader(stream))
+    groups = defaultdict(list)
+    for row in rows:
+        groups[row["model"], row["condition"]].append(row)
+    lines = ["## Tree generation", "",
+             "Validity checks XML structure and vocabulary, not task correctness.",
+             "Tree success requires human grading. Pending means valid trees remain ungraded.", "",
+             "| Model | Condition | Tasks | Valid XML | Matches reference | Tree success | Ungraded | Median latency |",
+             "|---|---|---|---|---|---|---|---|"]
+    for (model, condition), rs in groups.items():
         n = len(rs)
         valid = sum(r["valid"] == "y" for r in rs)
         match = sum(r["matches_reference"] == "y" for r in rs)
-        ok = sum(r["valid"] == "y" and r["does_what_was_asked"].strip().lower().startswith("y") for r in rs)
+        ok = sum(r["valid"] == "y" and r["does_what_was_asked"].strip().lower() == "y" for r in rs)
         ungraded = sum(r["valid"] == "y" and not r["does_what_was_asked"].strip() for r in rs)
-        ungraded_total += ungraded
-        lat = statistics.median(float(r["latency_s"]) for r in rs)
-        lines.append(f"| {cond} | {n} | {pct(valid, n)} | {pct(match, n)} | {pct(ok, n)} | {ungraded} | {lat:.1f}s |")
-
-    lines += ["", "Tree success by difficulty:", "",
-              "| Condition | " + " | ".join(DIFFS) + " |", "|---" * (len(DIFFS) + 1) + "|"]
-    for cond, rs in by_cond.items():
-        cells = []
-        for d in DIFFS:
-            sub = [r for r in rs if r["difficulty"] == d]
-            ok = sum(r["valid"] == "y" and r["does_what_was_asked"].strip().lower().startswith("y") for r in sub)
-            cells.append(pct(ok, len(sub)))
-        lines.append(f"| {cond} | " + " | ".join(cells) + " |")
-
-    errors = defaultdict(int)
-    for r in rows:
-        if r["valid"] != "y":
-            errors[r["validator_error"].split(":")[0][:60]] += 1
-    if errors:
-        lines += ["", "Most common validator errors:", ""]
-        lines += [f"- {e} ({c})" for e, c in sorted(errors.items(), key=lambda x: -x[1])[:8]]
-    if ungraded_total:
-        lines += ["", f"**{ungraded_total} valid trees still need grading**, so tree success is a lower bound."]
+        success = f"Pending ({ok} confirmed)" if ungraded else pct(ok, n)
+        latency = statistics.median(float(r["latency_s"]) for r in rs)
+        lines.append(f"| {model} | {condition} | {n} | {pct(valid, n)} | {pct(match, n)} | {success} | {ungraded} | {latency:.2f}s |")
+    if any(r["model"].startswith("mock") for r in rows):
+        lines += ["", "**Mock run: wiring check only; these are not model accuracy results.**"]
     return lines
 
 
 def classifier_section(path: Path) -> list[str]:
-    rows = list(csv.DictReader(open(path, newline="")))
+    with open(path, newline="") as stream:
+        rows = list(csv.DictReader(stream))
     n = len(rows)
     lines = ["## Request type (main LLM)", "",
              f"- Correct type: {pct(sum(r['type_correct'] == 'y' for r in rows), n)}",
@@ -96,9 +79,12 @@ def main():
     lines = ["# Wall-E NLP baseline (week 3)", ""]
     for path, fn in [(Path(args.trees), tree_section), (Path(args.classifier), classifier_section)]:
         if path.exists():
+            if not Path(str(path) + ".meta.json").exists():
+                lines += [f"_{path.name}: historical CSV without a provenance sidecar; runtime and exact model revisions are not recorded._", ""]
             lines += fn(path) + [""]
         else:
             lines += [f"_{path.name} not found, skipped._", ""]
+    Path(args.out).parent.mkdir(parents=True, exist_ok=True)
     Path(args.out).write_text("\n".join(lines))
     print("\n".join(lines))
 
