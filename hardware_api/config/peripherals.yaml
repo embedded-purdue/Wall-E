@@ -26,3 +26,16 @@ audio_node:
     chunk_ms: 20             # one /audio/mic message per chunk
     mic_enabled: true
     mock_clip_duration: 1.0  # s; how long the mock pretends a clip plays
+
+camera_node:
+  ros__parameters:
+    backend: mock
+    # TODO(electrical): camera model is unconfirmed. The notes mention a CSI
+    # camera (color only, no depth). A color-only camera should publish NaN depth.
+    width: 320
+    height: 240
+    frame_rate_hz: 15.0
+    hfov: 1.2                # rad, horizontal field of view (placeholder)
+    frame_id: camera_link
+    mock_depth_m: 2.0        # wall distance in the mock scene
+    mock_object_depth_m: 0.0 # > 0 puts a box in the center third at this depth
