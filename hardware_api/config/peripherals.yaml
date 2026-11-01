@@ -16,3 +16,13 @@ head_eyes_node:
     head_max_speed: 2.0      # rad/s, software slew limit
     eye_max_speed: 6.0
     default_expression: neutral
+
+audio_node:
+  ros__parameters:
+    backend: mock
+    # /audio/mic format: raw PCM, signed 16-bit little-endian, mono.
+    # TODO(electrical): confirm the mic/speaker hardware and the real sample rate.
+    sample_rate: 16000
+    chunk_ms: 20             # one /audio/mic message per chunk
+    mic_enabled: true
+    mock_clip_duration: 1.0  # s; how long the mock pretends a clip plays

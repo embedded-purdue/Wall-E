@@ -25,6 +25,7 @@ setup(
     'console_scripts': [
       'drive_node = hardware_api.drive_node:main',
       'head_eyes_node = hardware_api.head_eyes_node:main',
+      'audio_node = hardware_api.audio_node:main',
     ],
   },
 )
