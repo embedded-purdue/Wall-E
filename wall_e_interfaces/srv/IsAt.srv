@@ -1,0 +1,7 @@
+# is_at(target): has Wall-E reached the target?
+string target
+geometry_msgs/PointStamped location    # BT passes <target>.location
+float32 threshold                      # m; 0 = default (0.5)
+---
+bool at
+float32 distance                       # m; NaN if unknown

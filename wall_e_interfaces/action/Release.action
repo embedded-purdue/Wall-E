@@ -1,0 +1,8 @@
+# release(target?): let go of the held item, optionally at a target.
+string target                          # "" = release where the hand is
+geometry_msgs/PointStamped location    # optional <target>.location
+float32 timeout_s
+---
+bool success
+string reason
+---

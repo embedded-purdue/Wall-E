@@ -1,0 +1,7 @@
+# express(emotion): react without words (eyes, head tilt, sound).
+string emotion                         # one of the emotion labels
+float32 timeout_s
+---
+bool success
+string reason
+---

@@ -1,0 +1,10 @@
+# navigate_to(target): go to a found object, the user, or a known spot.
+string target                          # name, e.g. "can", "user", "kitchen"
+geometry_msgs/PointStamped location    # BT passes <target>.location; empty frame_id = look up a known spot by name
+float32 stop_distance                  # m; 0 = default (0.5)
+float32 timeout_s                      # 0 = default from config
+---
+bool success
+string reason
+---
+float32 distance_remaining             # m

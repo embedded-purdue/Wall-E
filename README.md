@@ -9,6 +9,7 @@ A signature feature is an onboard can crusher inspired directly by WALL-E's tras
 ```
 Wall-E/
 ├── hardware_api/        # ROS 2 + ESP32 interface to motors, sensors, can crusher
+├── wall_e_interfaces/   # ROS 2 action/service definitions for the BT skills
 ├── skills/              # Reusable robot capabilities built on hardware_api
 ├── behavior_tree/
 │   ├── nlp/             # Voice/text command interpretation

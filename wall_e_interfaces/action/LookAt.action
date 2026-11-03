@@ -1,0 +1,8 @@
+# look_at(target): point the head at something.
+string target                          # name, e.g. "can", "user"
+geometry_msgs/PointStamped location    # optional <target>.location; empty frame_id = find it in the current frame
+float32 timeout_s
+---
+bool success
+string reason
+---
