@@ -1,0 +1,12 @@
+# Parameters for mock_skills_node. All can be changed live with `ros2 param set`.
+
+mock_skills_node:
+  ros__parameters:
+    mock_delay_s: 1.0                  # how long every action takes
+    mock_missing_objects: ['']         # search_for never finds these, e.g. ['ball']
+    mock_failing_skills: ['']          # these always fail with reason mock_failure, e.g. ['grab']
+    mock_visible_objects: ['']         # in view at startup (is_visible true before any search)
+    mock_known_spots: [user, home]     # navigate_to targets that need no location
+    mock_object_location: [1.5, 0.0, 0.0]  # where every found object is (m, location_frame)
+    mock_crusher_safe: true            # false = crush fails with crusher_unsafe
+    location_frame: odom
