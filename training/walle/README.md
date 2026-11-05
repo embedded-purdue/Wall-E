@@ -8,7 +8,7 @@ Llama-3.2-1B base and use different adapters. No model is trained here.
 
 | Candidate dataset | Train | Validation |
 |---|---:|---:|
-| Tree generator | 11 | 2 |
+| Tree generator | 104 | 2 |
 | Main classifier/replies | 20 | 4 |
 
 These are small **candidate seeds**, not a sufficient fine-tuning corpus or a
@@ -50,6 +50,11 @@ independence. Both splits must be present for each task.
   preconditions still need BT approval.
 - The pen example drops navigation the request did not ask for. Shelf placement
   explicitly assumes a low shelf within reach. All 11 skills are represented.
+- 93 tree seeds (`gen_*`) are Claude-generated variants of the train-split seed
+  families, checked against the validator, BT's Nov 3 skills contract (arm poses
+  rest/wave/grab_front/crush_drop; NavigateTo/LookAt only to searched objects or
+  user/home) and test-set overlap. All are `needs_human_review`; none vary the
+  held-out book family.
 - Main seeds are hand-authored, balanced across all four types (six each), with
   one validation example per type. They are not extracted from the test set or
   the classifier's few-shot prompt examples.

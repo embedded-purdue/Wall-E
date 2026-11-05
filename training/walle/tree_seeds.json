@@ -118,5 +118,842 @@
     "source": "hand-authored from the 11-skill contract",
     "review_status": "needs_bt_review",
     "review_note": "BT must confirm eligible can dimensions/material and physical preconditions."
+  },
+  {
+    "id": "gen_A_ex01_01",
+    "request": "Please head over to the shoe",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"shoe\" />\n                <SearchFor object=\"shoe\" />\n            </Fallback>\n            <NavigateTo target=\"shoe\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_02",
+    "request": "Can you roll over to the teddy bear?",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"teddy bear\" />\n                <SearchFor object=\"teddy bear\" />\n            </Fallback>\n            <NavigateTo target=\"teddy bear\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_03",
+    "request": "go find the remote and go to it",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"remote\" />\n                <SearchFor object=\"remote\" />\n            </Fallback>\n            <NavigateTo target=\"remote\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_04",
+    "request": "Move toward the water bottle",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"water bottle\" />\n                <SearchFor object=\"water bottle\" />\n            </Fallback>\n            <NavigateTo target=\"water bottle\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_05",
+    "request": "Could you track down my keys and head to them",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"keys\" />\n                <SearchFor object=\"keys\" />\n            </Fallback>\n            <NavigateTo target=\"keys\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_06",
+    "request": "Wall-E, go to the stapler",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"stapler\" />\n                <SearchFor object=\"stapler\" />\n            </Fallback>\n            <NavigateTo target=\"stapler\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_07",
+    "request": "Make your way to the red mug",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"red mug\" />\n                <SearchFor object=\"red mug\" />\n            </Fallback>\n            <NavigateTo target=\"red mug\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_08",
+    "request": "Find the crayon and drive to it",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"crayon\" />\n                <SearchFor object=\"crayon\" />\n            </Fallback>\n            <NavigateTo target=\"crayon\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex01_09",
+    "request": "hey go over to the lunchbox",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"lunchbox\" />\n                <SearchFor object=\"lunchbox\" />\n            </Fallback>\n            <NavigateTo target=\"lunchbox\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_01",
+    "request": "Look for the remote behind the couch and go to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"remote\" />\n                <SearchFor object=\"remote\" hint=\"behind the couch\" />\n            </Fallback>\n            <NavigateTo target=\"remote\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_02",
+    "request": "Can you find my keys on the kitchen counter and head to them?",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"keys\" />\n                <SearchFor object=\"keys\" hint=\"on the kitchen counter\" />\n            </Fallback>\n            <NavigateTo target=\"keys\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_03",
+    "request": "Search the closet for my slipper and go to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"slipper\" />\n                <SearchFor object=\"slipper\" hint=\"in the closet\" />\n            </Fallback>\n            <NavigateTo target=\"slipper\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_04",
+    "request": "Please find the pen on the desk and drive to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"pen\" />\n                <SearchFor object=\"pen\" hint=\"on the desk\" />\n            </Fallback>\n            <NavigateTo target=\"pen\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_05",
+    "request": "go to the ball, I think it rolled under the sofa",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"ball\" />\n                <SearchFor object=\"ball\" hint=\"under the sofa\" />\n            </Fallback>\n            <NavigateTo target=\"ball\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_06",
+    "request": "Could you locate the charger next to the lamp and go over to it?",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"charger\" />\n                <SearchFor object=\"charger\" hint=\"next to the lamp\" />\n            </Fallback>\n            <NavigateTo target=\"charger\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_07",
+    "request": "Find the hat by the front door and roll to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"hat\" />\n                <SearchFor object=\"hat\" hint=\"by the front door\" />\n            </Fallback>\n            <NavigateTo target=\"hat\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_08",
+    "request": "check the bookshelf for the tape measure and go to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"tape measure\" />\n                <SearchFor object=\"tape measure\" hint=\"on the bookshelf\" />\n            </Fallback>\n            <NavigateTo target=\"tape measure\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex02_09",
+    "request": "Track down the spoon in the sink, then go to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"spoon\" />\n                <SearchFor object=\"spoon\" hint=\"in the sink\" />\n            </Fallback>\n            <NavigateTo target=\"spoon\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_02",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_01",
+    "request": "If you can see the lamp, look at it",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"lamp\" />\n                <LookAt target=\"lamp\" />\n            </Sequence>\n            <Say text=\"I don't see a lamp.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_02",
+    "request": "Look at the cup only if it's in view",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"cup\" />\n                <LookAt target=\"cup\" />\n            </Sequence>\n            <Say text=\"The cup isn't in view.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_03",
+    "request": "Is the dog toy right there? If so, look at it",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"dog toy\" />\n                <LookAt target=\"dog toy\" />\n            </Sequence>\n            <Say text=\"I can't see a dog toy.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_04",
+    "request": "If the book is in front of you, say you see it",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"book\" />\n                <Say text=\"I see the book!\" emotion=\"happy\" />\n            </Sequence>\n            <Say text=\"No book in sight.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_05",
+    "request": "Can you look at the vase, but only if you can already see it?",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"vase\" />\n                <LookAt target=\"vase\" />\n            </Sequence>\n            <Say text=\"I don't see a vase.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_06",
+    "request": "when the clock is visible, look at it",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"clock\" />\n                <LookAt target=\"clock\" />\n            </Sequence>\n            <Say text=\"I don't see a clock.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_07",
+    "request": "If the cat is in view, show that you're surprised",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"cat\" />\n                <Express emotion=\"surprised\" />\n            </Sequence>\n            <Say text=\"I don't see a cat.\" emotion=\"curious\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex07_08",
+    "request": "Turn toward the mug if you see it right now",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"mug\" />\n                <LookAt target=\"mug\" />\n            </Sequence>\n            <Say text=\"I don't see a mug.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex12_01",
+    "request": "Are you at home?",
+    "description": "answer a yes/no question about the robot's own state with a condition",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsAt target=\"home\" />\n                <Say text=\"Yes, I'm home!\" emotion=\"happy\" />\n            </Sequence>\n            <Say text=\"No, I'm not home.\" emotion=\"curious\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_12",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_A_ex12_03",
+    "request": "Is the robot near me?",
+    "description": "answer a yes/no question about the robot's own state with a condition",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsAt target=\"user\" />\n                <Say text=\"Yes, I'm right here!\" emotion=\"happy\" />\n            </Sequence>\n            <Say text=\"No, I'm not near you.\" emotion=\"curious\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_12",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_01",
+    "request": "Take the screwdriver to the toolbox",
+    "description": "Pick up the screwdriver and release it at the toolbox",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"screwdriver\" />\n                <SearchFor object=\"screwdriver\" />\n            </Fallback>\n            <NavigateTo target=\"screwdriver\" />\n            <Grab object=\"screwdriver\" />\n            <Fallback>\n                <IsVisible object=\"toolbox\" />\n                <SearchFor object=\"toolbox\" />\n            </Fallback>\n            <NavigateTo target=\"toolbox\" />\n            <Release target=\"toolbox\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_02",
+    "request": "Could you put the remote on the coffee table?",
+    "description": "Pick up the remote and release it at the coffee table",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"remote\" />\n                <SearchFor object=\"remote\" />\n            </Fallback>\n            <NavigateTo target=\"remote\" />\n            <Grab object=\"remote\" />\n            <Fallback>\n                <IsVisible object=\"coffee table\" />\n                <SearchFor object=\"coffee table\" />\n            </Fallback>\n            <NavigateTo target=\"coffee table\" />\n            <Release target=\"coffee table\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_03",
+    "request": "grab my keys and drop them in the bowl",
+    "description": "Pick up the keys and release it at the bowl",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"keys\" />\n                <SearchFor object=\"keys\" />\n            </Fallback>\n            <NavigateTo target=\"keys\" />\n            <Grab object=\"keys\" />\n            <Fallback>\n                <IsVisible object=\"bowl\" />\n                <SearchFor object=\"bowl\" />\n            </Fallback>\n            <NavigateTo target=\"bowl\" />\n            <Release target=\"bowl\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_04",
+    "request": "Please move the sponge to the sink",
+    "description": "Pick up the sponge and release it at the sink",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"sponge\" />\n                <SearchFor object=\"sponge\" />\n            </Fallback>\n            <NavigateTo target=\"sponge\" />\n            <Grab object=\"sponge\" />\n            <Fallback>\n                <IsVisible object=\"sink\" />\n                <SearchFor object=\"sink\" />\n            </Fallback>\n            <NavigateTo target=\"sink\" />\n            <Release target=\"sink\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_05",
+    "request": "Bring the stapler over to the desk and set it down there",
+    "description": "Pick up the stapler and release it at the desk",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"stapler\" />\n                <SearchFor object=\"stapler\" />\n            </Fallback>\n            <NavigateTo target=\"stapler\" />\n            <Grab object=\"stapler\" />\n            <Fallback>\n                <IsVisible object=\"desk\" />\n                <SearchFor object=\"desk\" />\n            </Fallback>\n            <NavigateTo target=\"desk\" />\n            <Release target=\"desk\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_06",
+    "request": "Can you place the mug on the counter?",
+    "description": "Pick up the mug and release it at the counter",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"mug\" />\n                <SearchFor object=\"mug\" />\n            </Fallback>\n            <NavigateTo target=\"mug\" />\n            <Grab object=\"mug\" />\n            <Fallback>\n                <IsVisible object=\"counter\" />\n                <SearchFor object=\"counter\" />\n            </Fallback>\n            <NavigateTo target=\"counter\" />\n            <Release target=\"counter\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_07",
+    "request": "pick up the tennis ball and put it in the basket",
+    "description": "Pick up the tennis ball and release it at the basket",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"tennis ball\" />\n                <SearchFor object=\"tennis ball\" />\n            </Fallback>\n            <NavigateTo target=\"tennis ball\" />\n            <Grab object=\"tennis ball\" />\n            <Fallback>\n                <IsVisible object=\"basket\" />\n                <SearchFor object=\"basket\" />\n            </Fallback>\n            <NavigateTo target=\"basket\" />\n            <Release target=\"basket\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_08",
+    "request": "Carry the highlighter to the notebook and leave it there",
+    "description": "Pick up the highlighter and release it at the notebook",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"highlighter\" />\n                <SearchFor object=\"highlighter\" />\n            </Fallback>\n            <NavigateTo target=\"highlighter\" />\n            <Grab object=\"highlighter\" />\n            <Fallback>\n                <IsVisible object=\"notebook\" />\n                <SearchFor object=\"notebook\" />\n            </Fallback>\n            <NavigateTo target=\"notebook\" />\n            <Release target=\"notebook\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex05_09",
+    "request": "Set the charger on the nightstand for me",
+    "description": "Pick up the charger and release it at the nightstand",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"charger\" />\n                <SearchFor object=\"charger\" />\n            </Fallback>\n            <NavigateTo target=\"charger\" />\n            <Grab object=\"charger\" />\n            <Fallback>\n                <IsVisible object=\"nightstand\" />\n                <SearchFor object=\"nightstand\" />\n            </Fallback>\n            <NavigateTo target=\"nightstand\" />\n            <Release target=\"nightstand\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_05",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_01",
+    "request": "See if you can find the scissors, and tell me if not",
+    "description": "Try to find the scissors; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"scissors\" />\n                    <SearchFor object=\"scissors\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the scissors.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_02",
+    "request": "Look for my glasses and let me know if you can't find them",
+    "description": "Try to find the glasses; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"glasses\" />\n                    <SearchFor object=\"glasses\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the glasses.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_03",
+    "request": "Try to locate the tape; say so if it's missing",
+    "description": "Try to find the tape; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"tape\" />\n                    <SearchFor object=\"tape\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the tape.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_04",
+    "request": "Can you check whether there's a flashlight around? Tell me if you can't see one",
+    "description": "Try to find the flashlight; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"flashlight\" />\n                    <SearchFor object=\"flashlight\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the flashlight.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_05",
+    "request": "hey, try finding the water bottle and say something if it's not there",
+    "description": "Try to find the water bottle; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"water bottle\" />\n                    <SearchFor object=\"water bottle\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the water bottle.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_06",
+    "request": "Please look for the calculator and report back if you don't find it",
+    "description": "Try to find the calculator; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"calculator\" />\n                    <SearchFor object=\"calculator\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the calculator.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_07",
+    "request": "Try and spot the red mug, and tell me if it isn't anywhere",
+    "description": "Try to find the red mug; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"red mug\" />\n                    <SearchFor object=\"red mug\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the red mug.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_ex08_08",
+    "request": "Search for the headphones, but just say so if they're nowhere to be found",
+    "description": "Try to find the headphones; say so sadly if not found",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"headphones\" />\n                    <SearchFor object=\"headphones\" />\n                </Fallback>\n            </Sequence>\n            <Say text=\"I couldn't find the headphones.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_08",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_crush_01",
+    "request": "Find an empty soda can and crush it",
+    "description": "Find the empty soda can, pick it up, and crush it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\"><BehaviorTree ID=\"MainTree\"><Sequence><Fallback><IsVisible object=\"empty soda can\"/><SearchFor object=\"empty soda can\"/></Fallback><NavigateTo target=\"empty soda can\"/><Grab object=\"empty soda can\"/><Crush object=\"empty soda can\"/></Sequence></BehaviorTree></root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#seed_crush_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_crush_04",
+    "request": "find that empty energy drink can, grab it, and crush it",
+    "description": "Find the empty energy drink can, pick it up, and crush it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\"><BehaviorTree ID=\"MainTree\"><Sequence><Fallback><IsVisible object=\"empty energy drink can\"/><SearchFor object=\"empty energy drink can\"/></Fallback><NavigateTo target=\"empty energy drink can\"/><Grab object=\"empty energy drink can\"/><Crush object=\"empty energy drink can\"/></Sequence></BehaviorTree></root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#seed_crush_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_crush_06",
+    "request": "Go get the empty tuna can and crush it",
+    "description": "Find the empty aluminum tuna can, pick it up, and crush it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\"><BehaviorTree ID=\"MainTree\"><Sequence><Fallback><IsVisible object=\"empty aluminum tuna can\"/><SearchFor object=\"empty aluminum tuna can\"/></Fallback><NavigateTo target=\"empty aluminum tuna can\"/><Grab object=\"empty aluminum tuna can\"/><Crush object=\"empty aluminum tuna can\"/></Sequence></BehaviorTree></root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#seed_crush_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_crush_08",
+    "request": "Locate the empty seltzer can, pick it up, then crush it flat",
+    "description": "Find the empty seltzer can, pick it up, and crush it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\"><BehaviorTree ID=\"MainTree\"><Sequence><Fallback><IsVisible object=\"empty seltzer can\"/><SearchFor object=\"empty seltzer can\"/></Fallback><NavigateTo target=\"empty seltzer can\"/><Grab object=\"empty seltzer can\"/><Crush object=\"empty seltzer can\"/></Sequence></BehaviorTree></root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#seed_crush_01",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_01",
+    "request": "Go to the trash bin, then come back to me",
+    "description": "Visit the trash bin, then return to the user",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"trash bin\" />\n                <SearchFor object=\"trash bin\" />\n            </Fallback>\n            <NavigateTo target=\"trash bin\" />\n            <NavigateTo target=\"user\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_02",
+    "request": "Head over to the sofa and then go home",
+    "description": "Visit the sofa, then go home",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"sofa\" />\n                <SearchFor object=\"sofa\" />\n            </Fallback>\n            <NavigateTo target=\"sofa\" />\n            <NavigateTo target=\"home\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_03",
+    "request": "Drive to the kitchen table, then to the bookshelf",
+    "description": "Visit the kitchen table, then the bookshelf",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"kitchen table\" />\n                <SearchFor object=\"kitchen table\" />\n            </Fallback>\n            <NavigateTo target=\"kitchen table\" />\n            <Fallback>\n                <IsVisible object=\"bookshelf\" />\n                <SearchFor object=\"bookshelf\" />\n            </Fallback>\n            <NavigateTo target=\"bookshelf\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_04",
+    "request": "First come to me, then go back home",
+    "description": "Go to the user, then home",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <NavigateTo target=\"user\" />\n            <NavigateTo target=\"home\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_05",
+    "request": "Go check the fridge, then the oven, then come back here",
+    "description": "Visit the fridge, then the oven, then the user",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"fridge\" />\n                <SearchFor object=\"fridge\" />\n            </Fallback>\n            <NavigateTo target=\"fridge\" />\n            <Fallback>\n                <IsVisible object=\"oven\" />\n                <SearchFor object=\"oven\" />\n            </Fallback>\n            <NavigateTo target=\"oven\" />\n            <NavigateTo target=\"user\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_06",
+    "request": "Roll over to the plant and then over to the door",
+    "description": "Visit the plant, then the door",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"plant\" />\n                <SearchFor object=\"plant\" />\n            </Fallback>\n            <NavigateTo target=\"plant\" />\n            <Fallback>\n                <IsVisible object=\"door\" />\n                <SearchFor object=\"door\" />\n            </Fallback>\n            <NavigateTo target=\"door\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_07",
+    "request": "Please go to the printer and then to the whiteboard",
+    "description": "Visit the printer, then the whiteboard",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"printer\" />\n                <SearchFor object=\"printer\" />\n            </Fallback>\n            <NavigateTo target=\"printer\" />\n            <Fallback>\n                <IsVisible object=\"whiteboard\" />\n                <SearchFor object=\"whiteboard\" />\n            </Fallback>\n            <NavigateTo target=\"whiteboard\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_08",
+    "request": "go to the laundry basket then return home",
+    "description": "Visit the laundry basket, then go home",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"laundry basket\" />\n                <SearchFor object=\"laundry basket\" />\n            </Fallback>\n            <NavigateTo target=\"laundry basket\" />\n            <NavigateTo target=\"home\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_B_multistop_09",
+    "request": "Swing by the couch, then the lamp, and then come to me",
+    "description": "Visit the couch, then the lamp, then the user",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"couch\" />\n                <SearchFor object=\"couch\" />\n            </Fallback>\n            <NavigateTo target=\"couch\" />\n            <Fallback>\n                <IsVisible object=\"lamp\" />\n                <SearchFor object=\"lamp\" />\n            </Fallback>\n            <NavigateTo target=\"lamp\" />\n            <NavigateTo target=\"user\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_10",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_01",
+    "request": "Say hi to whoever is by the front door",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"by the front door\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hi there!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_02",
+    "request": "Could you please greet the person in the kitchen?",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"in the kitchen\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello! I'm Wall-E!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_03",
+    "request": "go welcome the guest near the couch",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"near the couch\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Welcome!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_04",
+    "request": "Find somebody and give them a friendly hello",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello, friend!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_05",
+    "request": "Please say hello to the person standing by the window",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"by the window\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_06",
+    "request": "Greet the new arrival in the lobby",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"in the lobby\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello! Welcome!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_07",
+    "request": "Hey, say hi to the person at the desk",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"at the desk\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hi! I'm Wall-E.\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_08",
+    "request": "Look for someone in the garage and greet them",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"in the garage\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello! Hi!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex06_09",
+    "request": "Would you mind welcoming the person by the stairs?",
+    "description": "Find a person, look at them, wave, and greet.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"by the stairs\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Welcome! Hello!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_06",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_01",
+    "request": "Act really thrilled right now",
+    "description": "Express happy and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"happy\" />\n            <Say text=\"Yay! So happy!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_02",
+    "request": "Look curious about something",
+    "description": "Express curious and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"curious\" />\n            <Say text=\"Hmm? What is it?\" emotion=\"curious\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_03",
+    "request": "Can you act sad for a second?",
+    "description": "Express sad and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"sad\" />\n            <Say text=\"Oh no... I'm sad.\" emotion=\"sad\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_04",
+    "request": "Pretend you just got a big surprise",
+    "description": "Express surprised and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"surprised\" />\n            <Say text=\"Whoa! Really?\" emotion=\"surprised\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_05",
+    "request": "Show me that you're puzzled",
+    "description": "Express confused and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"confused\" />\n            <Say text=\"Huh? I don't get it.\" emotion=\"confused\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_06",
+    "request": "Be joyful!",
+    "description": "Express happy and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"happy\" />\n            <Say text=\"Hooray!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_07",
+    "request": "Look sad and tell me about it",
+    "description": "Express sad and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"sad\" />\n            <Say text=\"Wall-E is sad.\" emotion=\"sad\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_08",
+    "request": "React like you're totally shocked",
+    "description": "Express surprised and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"surprised\" />\n            <Say text=\"Oh! Wow!\" emotion=\"surprised\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_09",
+    "request": "Please look confused and say so",
+    "description": "Express confused and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"confused\" />\n            <Say text=\"Um... confused.\" emotion=\"confused\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_ex11_10",
+    "request": "Seem interested, like you want to learn more",
+    "description": "Express curious and say a short line.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"curious\" />\n            <Say text=\"Ooh, tell me more!\" emotion=\"curious\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_11",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_01",
+    "request": "Lower your arm back to rest",
+    "description": "Move the arm to the rest pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"rest\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_02",
+    "request": "Get your hand ready in front of you",
+    "description": "Move the arm to the grab_front pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"grab_front\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_03",
+    "request": "Give a little wave with your arm",
+    "description": "Move the arm to the wave pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"wave\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_04",
+    "request": "Hold your arm out in front, ready to grab",
+    "description": "Move the arm to the grab_front pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"grab_front\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_05",
+    "request": "Please relax your arm",
+    "description": "Move the arm to the rest pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"rest\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_06",
+    "request": "Move your arm to the crush position",
+    "description": "Move the arm to the crush_drop pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"crush_drop\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_07",
+    "request": "Go ahead and wave that arm",
+    "description": "Move the arm to the wave pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"wave\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_pose_08",
+    "request": "Set your arm to the drop-and-crush pose",
+    "description": "Move the arm to the crush_drop pose.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"crush_drop\" />\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_14",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_01",
+    "request": "Turn your head toward the plant",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"plant\" />\n                <SearchFor object=\"plant\" />\n            </Fallback>\n            <LookAt target=\"plant\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_02",
+    "request": "Glance over at the lamp",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"lamp\" />\n                <SearchFor object=\"lamp\" />\n            </Fallback>\n            <LookAt target=\"lamp\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_03",
+    "request": "Face the red ball with your head, no driving",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"red ball\" />\n                <SearchFor object=\"red ball\" />\n            </Fallback>\n            <LookAt target=\"red ball\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_04",
+    "request": "Look at the cup on the table",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"cup\" />\n                <SearchFor object=\"cup\" hint=\"on the table\" />\n            </Fallback>\n            <LookAt target=\"cup\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_06",
+    "request": "If you can see the clock, look at it",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"clock\" />\n                <LookAt target=\"clock\" />\n            </Sequence>\n            <Say text=\"I don't see a clock.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_07",
+    "request": "Peek at the backpack by the door",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"backpack\" />\n                <SearchFor object=\"backpack\" hint=\"by the door\" />\n            </Fallback>\n            <LookAt target=\"backpack\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_08",
+    "request": "Check out the teddy bear, just with your eyes",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"teddy bear\" />\n                <SearchFor object=\"teddy bear\" />\n            </Fallback>\n            <LookAt target=\"teddy bear\" />\n        </Sequence>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
+  },
+  {
+    "id": "gen_C_look_09",
+    "request": "Turn toward the box if it's in view",
+    "description": "Look at the target without moving the base.",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"box\" />\n                <LookAt target=\"box\" />\n            </Sequence>\n            <Say text=\"I don't see a box.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>",
+    "split": "train",
+    "source": "claude-generated variant of training/walle/tree_seeds.json#ex_07",
+    "review_status": "needs_human_review"
   }
 ]
