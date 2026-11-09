@@ -8,7 +8,10 @@
 # Check your queue name and limits with `slist` before submitting.
 
 #SBATCH --job-name=walle-clf-sweep
-#SBATCH --account=YOUR_QUEUE            # your lab's Gilbreth queue, from `slist`
+#SBATCH --account=csso                # from `slist`; csso has the free A10s
+#SBATCH --partition=a10               # Gilbreth requires an explicit partition.
+                                      # A10 = 24GB, plenty for <=4B in fp16, and no queue.
+                                      # For A100s instead: --account=dkihara --partition=a100-80gb
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
