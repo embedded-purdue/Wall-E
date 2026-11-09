@@ -23,7 +23,11 @@ export HF_HUB_OFFLINE=1               # weights were pre-fetched; fail loudly in
 export TOKENIZERS_PARALLELISM=false
 
 module purge
-module load anaconda
+# Same module probing as gilbreth_setup.sh: the venv's interpreter is a symlink into
+# whichever python module was loaded, so it has to be on PATH here too.
+for m in anaconda conda python/3.11 python/3.10 python; do
+  module load "$m" 2>/dev/null && { echo "loaded module: $m"; break; }
+done
 # shellcheck disable=SC1091
 source "$RCAC_SCRATCH/btbench-venv/bin/activate"
 

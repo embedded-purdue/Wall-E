@@ -22,10 +22,21 @@ MODELS=(
 )
 
 module purge
-module load anaconda          # if this errors, `module avail anaconda` and use what's there
+
+# Module names differ per cluster and change between maintenances, so try the usual
+# candidates rather than hard-coding one. `module spider python` lists what's really here.
+for m in anaconda conda python/3.11 python/3.10 python; do
+  if module load "$m" 2>/dev/null; then
+    echo "loaded module: $m"
+    break
+  fi
+done
+command -v python3 >/dev/null || { echo "No python3 after module load; run 'module spider python'"; exit 1; }
+PY_BIN="$(command -v python3)"
+echo "python: $PY_BIN ($($PY_BIN --version 2>&1))"
 
 if [ ! -d "$VENV" ]; then
-  python -m venv "$VENV"
+  "$PY_BIN" -m venv "$VENV"
 fi
 # shellcheck disable=SC1091
 source "$VENV/bin/activate"
