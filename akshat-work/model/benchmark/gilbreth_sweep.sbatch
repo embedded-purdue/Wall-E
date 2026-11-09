@@ -8,7 +8,7 @@
 # Check your queue name and limits with `slist` before submitting.
 
 #SBATCH --job-name=walle-clf-sweep
-#SBATCH --account=CHANGEME            # your lab's Gilbreth queue, from `slist`
+#SBATCH --account=YOUR_QUEUE            # your lab's Gilbreth queue, from `slist`
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64G
