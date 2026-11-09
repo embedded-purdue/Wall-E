@@ -139,7 +139,7 @@ def main():
         description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     ap.add_argument("--test-set", default=HERE / "test_set.csv")
-    ap.add_argument("--yaml", default=HERE / "wall_e.yaml")
+    ap.add_argument("--yaml", default=HERE.parent / "wall_e.yaml")
     ap.add_argument("--model", default=DEFAULT_MAIN_LLM)
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     ap.add_argument("--emotions", default=DEFAULT_EMOTIONS)

@@ -25,6 +25,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE.parent))  # bt_validator.py lives in model/
 from bt_validator import BehaviorTreeValidator, BTValidationError  # noqa: E402
 from walle_bt import (
     BTGENBOT2,
@@ -86,7 +87,7 @@ def main():
     )
     ap.add_argument("--test-set", default=HERE / "test_set.csv")
     ap.add_argument(
-        "--yaml", default=HERE / "wall_e.yaml", help="BT team's shared skill YAML"
+        "--yaml", default=HERE.parent / "wall_e.yaml", help="BT team's shared skill YAML"
     )
     ap.add_argument("--library", default=HERE / "example_library.json")
     ap.add_argument("--retriever", default="auto", choices=["auto", "embed", "tfidf"])

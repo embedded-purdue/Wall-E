@@ -236,6 +236,18 @@ def load_env():
         pass
 
 
+THINK_BLOCK = re.compile(r"<(think|reasoning)>.*?</\1>", re.S)
+
+
+def strip_thinking(text: str) -> str:
+    """Remove reasoning traces a hybrid model emitted anyway, including an unclosed one."""
+    text = THINK_BLOCK.sub("", text)
+    open_tag = re.search(r"<(think|reasoning)>", text)
+    if open_tag:  # truncated mid-trace: nothing after it is usable
+        text = text[: open_tag.start()]
+    return text.strip()
+
+
 def load_chat_model(model_id: str, device: str = "auto"):
     """Load a model with transformers. Returns generate(messages, max_new_tokens, sample, stop) -> (text, n_tokens).
 
@@ -267,14 +279,35 @@ def load_chat_model(model_id: str, device: str = "auto"):
         f"Loaded {model_id} on {device} ({dtype}){'' if has_template else ' [no chat template: plain-text prompt]'}"
     )
 
+    # Hybrid-reasoning models emit <think>...</think> before the answer. That breaks us two
+    # ways: stop=["}"] can truncate inside the trace, and parse_json takes the FIRST {...} it
+    # sees. Qwen3 takes enable_thinking=False in its template; SmolLM3 wants /no_think in the
+    # system prompt instead. Qwen3-*-Instruct-2507 is already non-thinking.
+    no_think_prompt = "smollm3" in model_id.lower()
+
     def encode(messages):
+        if no_think_prompt:
+            messages = [dict(m) for m in messages]
+            if messages and messages[0]["role"] == "system":
+                messages[0]["content"] += "\n/no_think"
+            else:
+                messages.insert(0, {"role": "system", "content": "/no_think"})
         if has_template:
-            return tok.apply_chat_template(
-                messages,
-                add_generation_prompt=True,
-                return_tensors="pt",
-                return_dict=True,
-            ).to(device)
+            try:
+                return tok.apply_chat_template(
+                    messages,
+                    add_generation_prompt=True,
+                    return_tensors="pt",
+                    return_dict=True,
+                    enable_thinking=False,
+                ).to(device)
+            except TypeError:  # template doesn't take the flag; most don't
+                return tok.apply_chat_template(
+                    messages,
+                    add_generation_prompt=True,
+                    return_tensors="pt",
+                    return_dict=True,
+                ).to(device)
         text = (
             "".join(
                 f"{m['role'].capitalize()}: {m['content'].strip()}\n\n"
@@ -312,8 +345,10 @@ def load_chat_model(model_id: str, device: str = "auto"):
                 kwargs.pop("stop_strings", None), kwargs.pop("tokenizer", None)
                 out = model.generate(**inputs, **kwargs)
         new = out[0][inputs["input_ids"].shape[1] :]
+        text = tok.decode(new, skip_special_tokens=True)
+        text = strip_thinking(text)
 
-        return tok.decode(new, skip_special_tokens=True), int(new.shape[0])
+        return text, int(new.shape[0])
 
     def unload():
         nonlocal model
