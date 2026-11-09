@@ -25,7 +25,9 @@ module purge
 
 # Module names differ per cluster and change between maintenances, so try the usual
 # candidates rather than hard-coding one. `module spider python` lists what's really here.
-for m in anaconda conda python/3.11 python/3.10 python; do
+# Gilbreth (Nov 2026) has only versioned anaconda/conda modules; the bare name fails.
+# py312 first: torch wheels for 3.13 are patchier than for 3.12.
+for m in anaconda/2024.10-py312 anaconda/2025.06-py313 conda/2025.09 conda/2026.03 anaconda conda; do
   if module load "$m" 2>/dev/null; then
     echo "loaded module: $m"
     break

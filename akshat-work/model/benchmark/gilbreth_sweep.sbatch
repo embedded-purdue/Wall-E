@@ -25,7 +25,7 @@ export TOKENIZERS_PARALLELISM=false
 module purge
 # Same module probing as gilbreth_setup.sh: the venv's interpreter is a symlink into
 # whichever python module was loaded, so it has to be on PATH here too.
-for m in anaconda conda python/3.11 python/3.10 python; do
+for m in anaconda/2024.10-py312 anaconda/2025.06-py313 conda/2025.09 conda/2026.03 anaconda conda; do
   module load "$m" 2>/dev/null && { echo "loaded module: $m"; break; }
 done
 # shellcheck disable=SC1091
