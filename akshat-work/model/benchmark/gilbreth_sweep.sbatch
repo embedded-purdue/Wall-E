@@ -68,4 +68,4 @@ for m in "${MODELS[@]}"; do
 done
 
 echo
-python report_classifier.py "results/sweep/*.csv" --csv results/sweep/summary.csv
+python report_classifier.py "results/sweep/clf_*.csv" --csv results/sweep/summary.csv
