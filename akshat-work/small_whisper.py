@@ -1,15 +1,14 @@
+print("program starting")
 from clearvoice import ClearVoice
 import torch
-import numpy as np
-from scipy.io.wavfile import write
 import soundfile as sf
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
-from openai_whisper import record_from_mic
+
+print("packages loading")
 
 device = "mps" if torch.backends.mps.is_available() else "cpu"
 torch_dtype = torch.float32
 model_id = "distil-whisper/distil-small.en"
-
 myClearVoice = ClearVoice(task="speech_enhancement", model_names=["MossFormer2_SE_48K"])
 print("ClearVoice loaded")
 
@@ -39,7 +38,7 @@ write("instructions.wav", 16000, source)
 
 
 # change to instructions.wav for microphone
-enhanced = myClearVoice(input_path="noise.MP3", online_write=False)
+enhanced = myClearVoice(input_path="test.MP3", online_write=False)
 myClearVoice.write(enhanced, output_path="clear.wav")
 
 audio, sr = sf.read("noise.MP3", dtype="float32")  # float in [-1, 1]
