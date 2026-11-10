@@ -1,8 +1,10 @@
+import csv
+import io
 import math
 
 import pytest
 
-from hardware_api.bench_drive import run_step
+from hardware_api.bench_drive import SpeedLog, main, run_step
 from hardware_api.controller import DriveController
 from hardware_api.esp32_backend import Esp32DriveBackend, Esp32Link
 from hardware_api.esp32_protocol import ProtocolError
@@ -100,3 +102,41 @@ def test_bench_step_reports_count_change(esp, clock):
   assert left == pytest.approx(0.5 * 8192, rel=0.15)
   assert right == 0
   assert esp.log[-2] == 'S'
+
+
+def test_speed_log_records_asked_and_measured_rpm(esp, clock):
+  link = Esp32Link(esp)
+
+  def sleep(dt):
+    clock.t += dt
+
+  out = io.StringIO()
+  log = SpeedLog(out, counts_per_rev=8192, clock=clock)
+  run_step(link, 'left', 30.0, 0.0, 1.0, sleep=sleep, clock=clock, log=log)
+  rows = list(csv.DictReader(io.StringIO(out.getvalue())))
+  assert rows[0]['left_rpm'] == ''  # no speed before the second sample
+  driving = [r for r in rows[1:] if r['step'] == 'left']
+  assert driving and all(float(r['cmd_left_rpm']) == 30.0 for r in driving)
+  assert all(float(r['left_rpm']) == pytest.approx(30.0, rel=0.05) for r in driving)
+  assert all(float(r['right_rpm']) == 0.0 for r in driving)
+  assert rows[-1]['step'] == 'left (stopped)'
+
+
+def test_speed_log_without_counts_per_rev_keeps_raw_counts(esp, clock):
+  link = Esp32Link(esp)
+
+  def sleep(dt):
+    clock.t += dt
+
+  out = io.StringIO()
+  run_step(link, 'both', 10.0, 10.0, 0.5, sleep=sleep, clock=clock, log=SpeedLog(out, clock=clock))
+  rows = list(csv.DictReader(io.StringIO(out.getvalue())))
+  assert all(r['left_rpm'] == '' for r in rows)
+  assert int(rows[-1]['left_counts']) > 0
+
+
+def test_bench_main_fake_writes_log(tmp_path):
+  path = tmp_path / 'run.csv'
+  assert main(['--fake', '--rpm', '10', '--seconds', '0.3', '--log', str(path), '--counts-per-rev', '8192']) == 0
+  rows = list(csv.DictReader(path.open()))
+  assert {r['step'] for r in rows} >= {'left tread only', 'right tread only', 'both forward'}
