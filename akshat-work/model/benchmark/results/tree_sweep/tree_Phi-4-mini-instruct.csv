@@ -1,0 +1,3079 @@
+model,id,request,difficulty,condition,retriever,example_id,example_request,retrieval_score,valid,validator_error,matches_reference,does_what_was_asked,grader_comment,generated_steps,expected_steps,notes,generated_xml,expected_tree_xml,raw_output,had_extra_text,attempts_used,latency_s,new_tokens
+microsoft/Phi-4-mini-instruct,req_001,Go to the ball,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> express(happy),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Express emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```",n,1,14.11,77
+microsoft/Phi-4-mini-instruct,req_001,Go to the ball,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,is_visible(ball) -> navigate_to(ball),[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> express(happy),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""ball"" />
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Express emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""ball"" />
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.70,59
+microsoft/Phi-4-mini-instruct,req_002,Go to the ball and grab it,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(ball) | search_for(ball, ""behind the table"")] -> navigate_to(ball)",Hint must be passed to SearchFor,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""behind the table"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+</BehaviorTree>
+```",n,1,2.75,64
+microsoft/Phi-4-mini-instruct,req_002,Go to the ball and grab it,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,"search_for(ball, ""go to the ball"") -> navigate_to(ball) -> grab(ball)","[is_visible(ball) | search_for(ball, ""behind the table"")] -> navigate_to(ball)",Hint must be passed to SearchFor,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""go to the ball"" />
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""behind the table"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""go to the ball"" />
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.93,74
+microsoft/Phi-4-mini-instruct,req_003,Look at me,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,look_at(user),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""user, me"" />
+  <Action name=""NavigateTo"" parameters=""user"" />
+  <Action name=""LookAt"" parameters=""user"" />
+  <Action name=""Express"" parameters=""curious"" />
+  <Action name=""Grab"" parameters=""user"" />
+  <Action name=""MoveArm"" parameters=""holding"" />
+  <Action name=""Crush"" parameters=""user"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""user"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""user, me"" />
+  <Action name=""NavigateTo"" parameters=""user"" />
+  <Action name=""LookAt"" parameters=""user"" />
+  <Action name=""Express"" parameters=""curious"" />
+  <Action name=""Grab"" parameters=""user"" />
+  <Action name=""MoveArm"" parameters=""holding"" />
+  <Action name=""Crush"" parameters=""user"" />
+</BehaviorTree>
+```",n,1,3.73,105
+microsoft/Phi-4-mini-instruct,req_003,Look at me,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,is_visible(person) -> look_at(person),look_at(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""person"" />
+            <LookAt target=""person"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""user"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""person"" />
+            <LookAt target=""person"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.81,59
+microsoft/Phi-4-mini-instruct,req_004,Wave hello,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"move_arm(wave) -> say(""Hi there!"", happy)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, Hello"" />
+  <Action name=""NavigateTo"" parameters=""Wall-E"" />
+  <Action name=""Say"" parameters=""Hello, Neutral"" />
+  <Action name=""Express"" parameters=""Neutral"" />
+  <Action name=""LookAt"" parameters=""Wall-E"" />
+  <Action name=""Grab"" parameters=""Wall-E"" />
+  <Action name=""MoveArm"" parameters=""WavePose"" />
+  <Action name=""Release"" parameters=""Wall-E"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Hi there!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, Hello"" />
+  <Action name=""NavigateTo"" parameters=""Wall-E"" />
+  <Action name=""Say"" parameters=""Hello, Neutral"" />
+  <Action name=""Express"" parameters=""Neutral"" />
+  <Action name=""LookAt"" parameters=""Wall-E"" />
+  <Action name=""Grab"" parameters=""Wall-E"" />
+  <Action name=""MoveArm"" parameters=""WavePose"" />
+  <Action name=""Release"" parameters=""Wall-E"" />
+</BehaviorTree>
+```",n,1,4.28,123
+microsoft/Phi-4-mini-instruct,req_004,Wave hello,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.35,y,,n,,,"is_visible(person) -> look_at(person) -> move_arm(wave) -> say(""Hello!"", happy)","move_arm(wave) -> say(""Hi there!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""person"" />
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Hi there!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""person"" />
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.09,80
+microsoft/Phi-4-mini-instruct,req_005,Come here,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,navigate_to(user),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, user"" />
+  <Action name=""NavigateTo"" parameters=""Wall-E, user"" />
+  <Action name=""LookAt"" parameters=""Wall-E, user"" />
+  <Action name=""Grab"" parameters=""user"" />
+  <Action name=""MoveArm"" parameters=""Wall-E, arm"" />
+  <Action name=""Crush"" parameters=""user"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""user"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, user"" />
+  <Action name=""NavigateTo"" parameters=""Wall-E, user"" />
+  <Action name=""LookAt"" parameters=""Wall-E, user"" />
+  <Action name=""Grab"" parameters=""user"" />
+  <Action name=""MoveArm"" parameters=""Wall-E, arm"" />
+  <Action name=""Crush"" parameters=""user"" />
+</BehaviorTree>
+```",n,1,3.68,102
+microsoft/Phi-4-mini-instruct,req_005,Come here,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,"[is_visible(user) | search_for(user, ""Come here"")] -> navigate_to(user)",navigate_to(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""Come here"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""user"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""Come here"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.21,81
+microsoft/Phi-4-mini-instruct,req_006,Go to the kitchen,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,navigate_to(kitchen),kitchen' must be a known spot,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""kitchen"" />
+  <Action name=""NavigateTo"" parameters=""kitchen"" />
+  <Action name=""LookAt"" parameters=""kitchen"" />
+  <Action name=""Grab"" parameters=""kitchen"" />
+  <Action name=""Crush"" parameters=""kitchen"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""kitchen"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""kitchen"" />
+  <Action name=""NavigateTo"" parameters=""kitchen"" />
+  <Action name=""LookAt"" parameters=""kitchen"" />
+  <Action name=""Grab"" parameters=""kitchen"" />
+  <Action name=""Crush"" parameters=""kitchen"" />
+</BehaviorTree>
+```",n,1,3.20,82
+microsoft/Phi-4-mini-instruct,req_006,Go to the kitchen,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,y,y,,navigate_to(kitchen),navigate_to(kitchen),kitchen' must be a known spot,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""kitchen"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.38,51
+microsoft/Phi-4-mini-instruct,req_007,Go back to your charging spot,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"Say(Bye, sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Known-spot name must match the blackboard/YAML,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""charging spot"" />
+  <Action name=""NavigateTo"" parameters=""charging spot"" />
+  <Action name=""IsAt"" parameters=""charging spot"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""LookAt"" parameters=""charging spot"" />
+  <Action name=""Grab"" parameters=""charging spot"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""Release"" parameters=""charging spot"" />
+  <Action name=""Crush"" parameters=""charging spot"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+         <Sequence>
+            <Say text=""Bye"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger""/>
+            </Fallback>
+            <NavigateTo target=""charger"" />
+         </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""charging spot"" />
+  <Action name=""NavigateTo"" parameters=""charging spot"" />
+  <Action name=""IsAt"" parameters=""charging spot"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""LookAt"" parameters=""charging spot"" />
+  <Action name=""Grab"" parameters=""charging spot"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""Release"" parameters=""charging spot"" />
+  <Action name=""Crush"" parameters=""charging spot"" />
+</BehaviorTree>
+```",n,1,4.59,136
+microsoft/Phi-4-mini-instruct,req_007,Go back to your charging spot,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,is_at(charging spot) -> navigate_to(charging spot),"Say(Bye, sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Known-spot name must match the blackboard/YAML,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsAt target=""charging spot"" />
+            <NavigateTo target=""charging spot"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+         <Sequence>
+            <Say text=""Bye"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger""/>
+            </Fallback>
+            <NavigateTo target=""charger"" />
+         </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsAt target=""charging spot"" />
+            <NavigateTo target=""charging spot"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.62,61
+microsoft/Phi-4-mini-instruct,req_008,Put your arm down,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,move_arm(rest),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""arm"" hint=""Wall-E's arm""/>
+  <Action name=""Grab"" parameters=""arm""/>
+  <Action name=""MoveArm"" parameters=""down""/>
+  <Action name=""Release"" parameters=""arm""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""rest"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""arm"" hint=""Wall-E's arm""/>
+  <Action name=""Grab"" parameters=""arm""/>
+  <Action name=""MoveArm"" parameters=""down""/>
+  <Action name=""Release"" parameters=""arm""/>
+</BehaviorTree>
+```",n,1,2.70,66
+microsoft/Phi-4-mini-instruct,req_008,Put your arm down,easy,one_example,tfidf,ex_14,Raise your arm,0.41,y,,n,,,move_arm(down),move_arm(rest),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""down"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""rest"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""down"" />
+    </BehaviorTree>
+</root>",n,1,2.10,42
+microsoft/Phi-4-mini-instruct,req_009,Drop it,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,release(),Assumes Wall-E is holding something; no search,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""object, hint"" />
+  <Action name=""IsVisible"" parameters=""object"" />
+  <Action name=""NavigateTo"" parameters=""target"" />
+  <Action name=""Grab"" parameters=""object"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""object"" />
+  <Action name=""Release"" parameters=""target"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Release />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""object, hint"" />
+  <Action name=""IsVisible"" parameters=""object"" />
+  <Action name=""NavigateTo"" parameters=""target"" />
+  <Action name=""Grab"" parameters=""object"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""object"" />
+  <Action name=""Release"" parameters=""target"" />
+</BehaviorTree>
+```",n,1,3.77,104
+microsoft/Phi-4-mini-instruct,req_009,Drop it,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,is_visible(toy car) -> search_for(toy car) -> navigate_to(toy car) -> grab(toy car) -> release(toy car),release(),Assumes Wall-E is holding something; no search,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""toy car"" />
+            <SearchFor object=""toy car"" />
+            <NavigateTo target=""toy car"" />
+            <Grab object=""toy car"" />
+            <Release target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Release />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""toy car"" />
+            <SearchFor object=""toy car"" />
+            <NavigateTo target=""toy car"" />
+            <Grab object=""toy car"" />
+            <Release target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.39,89
+microsoft/Phi-4-mini-instruct,req_010,Show me you're happy,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,express(happy),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, happy""/>
+  <Action name=""Express"" parameters=""happy""/>
+  <Action name=""LookAt"" parameters=""Wall-E""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""Release"" parameters=""can""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""I'm happy!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, happy""/>
+  <Action name=""Express"" parameters=""happy""/>
+  <Action name=""LookAt"" parameters=""Wall-E""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""Release"" parameters=""can""/>
+</BehaviorTree>
+```",n,1,3.30,86
+microsoft/Phi-4-mini-instruct,req_010,Show me you're happy,easy,one_example,tfidf,ex_11,Show the user you're excited,0.46,y,,n,,,"express(happy) -> say(""Yay!"", happy)",express(happy),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""Yay!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""I'm happy!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""Yay!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.70,62
+microsoft/Phi-4-mini-instruct,req_011,Say hi to everyone,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"say(""Hi everyone!"", happy)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""everyone"" />
+  <Action name=""NavigateTo"" parameters=""everyone"" />
+  <Action name=""Say"" parameters=""hi, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""LookAt"" parameters=""everyone"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""MoveArm"" parameters=""grabbing"" />
+  <Action name=""Release"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Say text=""Hi everyone!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""everyone"" />
+  <Action name=""NavigateTo"" parameters=""everyone"" />
+  <Action name=""Say"" parameters=""hi, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""LookAt"" parameters=""everyone"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""MoveArm"" parameters=""grabbing"" />
+  <Action name=""Release"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+</BehaviorTree>
+```",n,1,4.39,129
+microsoft/Phi-4-mini-instruct,req_011,Say hi to everyone,easy,one_example,tfidf,ex_08,"Try to find the pen, and say so if you can't",0.27,y,,n,,,"[(is_visible(everyone) -> say(""Hi!"", neutral))]","say(""Hi everyone!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""everyone"" />
+                <Say text=""Hi!"" emotion=""neutral"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Say text=""Hi everyone!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""everyone"" />
+                <Say text=""Hi!"" emotion=""neutral"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,2.91,70
+microsoft/Phi-4-mini-instruct,req_012,Look at the door,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(door) | search_for(door)] -> look_at(door),No need to drive to the door,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""door"" hint=""door""/>
+  <Action name=""NavigateTo"" parameters=""door""/>
+  <Action name=""LookAt"" parameters=""door""/>
+  <Action name=""Grab"" parameters=""door""/>
+  <Action name=""MoveArm"" parameters=""grabbing""/>
+  <Action name=""Crush"" parameters=""door""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""door"" hint=""door""/>
+  <Action name=""NavigateTo"" parameters=""door""/>
+  <Action name=""LookAt"" parameters=""door""/>
+  <Action name=""Grab"" parameters=""door""/>
+  <Action name=""MoveArm"" parameters=""grabbing""/>
+  <Action name=""Crush"" parameters=""door""/>
+</BehaviorTree>
+```",n,1,3.62,89
+microsoft/Phi-4-mini-instruct,req_012,Look at the door,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,is_visible(door) -> navigate_to(door) -> look_at(door),[is_visible(door) | search_for(door)] -> look_at(door),No need to drive to the door,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""door"" />
+            <NavigateTo target=""door"" />
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""door"" />
+            <NavigateTo target=""door"" />
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.87,68
+microsoft/Phi-4-mini-instruct,req_013,Find my backpack,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(backpack) | search_for(backpack)] -> navigate_to(backpack) -> say(""Found it!"")",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""backpack, backpack"" />
+  <Action name=""IsVisible"" parameters=""backpack"" />
+  <Action name=""NavigateTo"" parameters=""backpack"" />
+  <Action name=""Grab"" parameters=""backpack"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""IsAt"" parameters=""backpack"" />
+  <Action name=""Crush"" parameters=""backpack"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""backpack, backpack"" />
+  <Action name=""IsVisible"" parameters=""backpack"" />
+  <Action name=""NavigateTo"" parameters=""backpack"" />
+  <Action name=""Grab"" parameters=""backpack"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""IsAt"" parameters=""backpack"" />
+  <Action name=""Crush"" parameters=""backpack"" />
+</BehaviorTree>
+```",n,1,3.99,113
+microsoft/Phi-4-mini-instruct,req_013,Find my backpack,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,"[is_visible(backpack) | search_for(backpack, ""backpack"")] -> navigate_to(backpack)","[is_visible(backpack) | search_for(backpack)] -> navigate_to(backpack) -> say(""Found it!"")",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" hint=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" hint=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.26,84
+microsoft/Phi-4-mini-instruct,req_014,Look around for my keys,easy,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(keys) | search_for(keys)] -> navigate_to(keys),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""keys, keys"" />
+  <Action name=""IsVisible"" parameters=""keys"" />
+  <Action name=""NavigateTo"" parameters=""keys"" />
+  <Action name=""Grab"" parameters=""keys"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" />
+            </Fallback>
+            <NavigateTo target=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""keys, keys"" />
+  <Action name=""IsVisible"" parameters=""keys"" />
+  <Action name=""NavigateTo"" parameters=""keys"" />
+  <Action name=""Grab"" parameters=""keys"" />
+</BehaviorTree>
+```",n,1,2.78,66
+microsoft/Phi-4-mini-instruct,req_014,Look around for my keys,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"search_for(keys, ""around the room"") -> look_at(keys) -> grab(keys)",[is_visible(keys) | search_for(keys)] -> navigate_to(keys),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""keys"" hint=""around the room"" />
+            <LookAt target=""keys"" />
+            <Grab object=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" />
+            </Fallback>
+            <NavigateTo target=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""keys"" hint=""around the room"" />
+            <LookAt target=""keys"" />
+            <Grab object=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.00,73
+microsoft/Phi-4-mini-instruct,req_015,Pick up the can,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""MoveArm"" parameters=""pose""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""MoveArm"" parameters=""pose""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```",n,1,2.97,74
+microsoft/Phi-4-mini-instruct,req_015,Pick up the can,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.56,y,,n,,,"is_visible(can) -> search_for(can, ""empty"") -> navigate_to(can) -> grab(can)",[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""empty"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""empty"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.18,80
+microsoft/Phi-4-mini-instruct,req_016,Bring me the remote,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(remote) | search_for(remote, ""start_position"")] -> navigate_to(user) -> release(user)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, remote"" />
+  <Action name=""NavigateTo"" parameters=""remote"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""IsVisible"" parameters=""remote"" />
+  <Action name=""IsAt"" parameters=""remote"" />
+  <Action name=""Release"" parameters=""remote"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""start_position"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, remote"" />
+  <Action name=""NavigateTo"" parameters=""remote"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""IsVisible"" parameters=""remote"" />
+  <Action name=""IsAt"" parameters=""remote"" />
+  <Action name=""Release"" parameters=""remote"" />
+</BehaviorTree>
+```",n,1,3.76,104
+microsoft/Phi-4-mini-instruct,req_016,Bring me the remote,medium,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.24,y,,n,,,"search_for(remote, ""remote"") -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user) -> release(remote)","[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(remote) | search_for(remote, ""start_position"")] -> navigate_to(user) -> release(user)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""remote"" />
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+            <Release target=""remote"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""start_position"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""remote"" />
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+            <Release target=""remote"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.60,97
+microsoft/Phi-4-mini-instruct,req_017,Bring me my phone,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(phone) | search_for(phone)] -> navigate_to(phone) -> grab(phone) -> navigate_to(user) -> release(user),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""phone"" />
+  <Action name=""NavigateTo"" parameters=""phone"" />
+  <Action name=""Grab"" parameters=""phone"" />
+  <Action name=""MoveArm"" parameters=""grabbing"" />
+  <Action name=""IsVisible"" parameters=""phone"" />
+  <Action name=""Release"" parameters=""phone"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""phone"" />
+  <Action name=""NavigateTo"" parameters=""phone"" />
+  <Action name=""Grab"" parameters=""phone"" />
+  <Action name=""MoveArm"" parameters=""grabbing"" />
+  <Action name=""IsVisible"" parameters=""phone"" />
+  <Action name=""Release"" parameters=""phone"" />
+</BehaviorTree>
+```",n,1,3.38,90
+microsoft/Phi-4-mini-instruct,req_017,Bring me my phone,medium,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.24,y,,n,,,"search_for(phone, ""user's phone"") -> navigate_to(phone) -> look_at(phone) -> grab(phone) -> navigate_to(user) -> move_arm(user) -> release(phone)",[is_visible(phone) | search_for(phone)] -> navigate_to(phone) -> grab(phone) -> navigate_to(user) -> release(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""phone"" hint=""user's phone"" />
+            <NavigateTo target=""phone"" />
+            <LookAt target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+            <Release target=""phone"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""phone"" hint=""user's phone"" />
+            <NavigateTo target=""phone"" />
+            <LookAt target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+            <Release target=""phone"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.03,108
+microsoft/Phi-4-mini-instruct,req_018,Pick up the can and crush it,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```",n,1,2.78,62
+microsoft/Phi-4-mini-instruct,req_018,Pick up the can and crush it,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.78,y,,n,,,"[is_visible(can) | search_for(can, ""empty"")] -> navigate_to(can) -> grab(can) -> crush(can)",[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""empty"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""empty"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.70,97
+microsoft/Phi-4-mini-instruct,req_019,Crush the can I'm holding,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,navigate_to(user) -> grab(can) -> crush(can),"Can is in the user's hand, so no search","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Crush object=""can"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, hint""/>
+  <Action name=""NavigateTo"" parameters=""can""/>
+  <Action name=""Grab"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```",n,1,2.66,62
+microsoft/Phi-4-mini-instruct,req_019,Crush the can I'm holding,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.57,y,,n,,,"is_visible(can) -> search_for(can, ""user's can"") -> navigate_to(can) -> grab(can) -> crush(can)",navigate_to(user) -> grab(can) -> crush(can),"Can is in the user's hand, so no search","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""user's can"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Crush object=""can"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""user's can"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.43,91
+microsoft/Phi-4-mini-instruct,req_020,Can you find the red ball under the chair?,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)",Phrased as a question but is a request,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""red ball, under the chair"" />
+  <Action name=""NavigateTo"" parameters=""red ball"" />
+  <Action name=""LookAt"" parameters=""red ball"" />
+  <Action name=""Grab"" parameters=""red ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""IsVisible"" parameters=""red ball"" />
+  <Action name=""Crush"" parameters=""red ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""red ball, under the chair"" />
+  <Action name=""NavigateTo"" parameters=""red ball"" />
+  <Action name=""LookAt"" parameters=""red ball"" />
+  <Action name=""Grab"" parameters=""red ball"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""IsVisible"" parameters=""red ball"" />
+  <Action name=""Crush"" parameters=""red ball"" />
+</BehaviorTree>
+```",n,1,3.97,113
+microsoft/Phi-4-mini-instruct,req_020,Can you find the red ball under the chair?,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.29,y,,y,y,,"[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)","[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)",Phrased as a question but is a request,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.32,85
+microsoft/Phi-4-mini-instruct,req_021,Find the can on the left side of the desk,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(can) | search_for(can, ""left side of the desk"")] -> navigate_to(can)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, left side of the desk"" />
+  <Action name=""NavigateTo"" parameters=""left side of the desk"" />
+  <Action name=""LookAt"" parameters=""can"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""left side of the desk"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, left side of the desk"" />
+  <Action name=""NavigateTo"" parameters=""left side of the desk"" />
+  <Action name=""LookAt"" parameters=""can"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+</BehaviorTree>
+```",n,1,3.31,87
+microsoft/Phi-4-mini-instruct,req_021,Find the can on the left side of the desk,medium,one_example,tfidf,ex_09,Keep collecting bottle caps until there are none left,0.36,y,,n,,,"search_for(can, ""left side of the desk"") -> navigate_to(left side of the desk) -> look_at(can) -> grab(can)","[is_visible(can) | search_for(can, ""left side of the desk"")] -> navigate_to(can)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""can"" hint=""left side of the desk"" />
+            <NavigateTo target=""left side of the desk"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""left side of the desk"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""can"" hint=""left side of the desk"" />
+            <NavigateTo target=""left side of the desk"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.41,88
+microsoft/Phi-4-mini-instruct,req_022,Go find the ball in the other room,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(ball) | search_for(ball, ""in the other room"")] -> navigate_to(ball)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, room"">
+    <Action name=""NavigateTo"" parameters=""other room"">
+      <Action name=""LookAt"" parameters=""ball""/>
+      <Action name=""Grab"" parameters=""ball""/>
+    </Action>
+  </Action>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, room"">
+    <Action name=""NavigateTo"" parameters=""other room"">
+      <Action name=""LookAt"" parameters=""ball""/>
+      <Action name=""Grab"" parameters=""ball""/>
+    </Action>
+  </Action>
+</BehaviorTree>
+```",n,1,2.90,71
+microsoft/Phi-4-mini-instruct,req_022,Go find the ball in the other room,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.51,y,,n,,,"search_for(ball, ""in the other room"") -> navigate_to(other room)","[is_visible(ball) | search_for(ball, ""in the other room"")] -> navigate_to(ball)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""in the other room"" />
+            <NavigateTo target=""other room"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""in the other room"" />
+            <NavigateTo target=""other room"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.75,67
+microsoft/Phi-4-mini-instruct,req_023,Find the can and look surprised,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> express(surprised),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, surprised"" />
+  <Action name=""IsVisible"" parameters=""can"" />
+  <Action name=""NavigateTo"" parameters=""can"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+  <Action name=""Say"" parameters=""surprised, surprised"" />
+  <Action name=""Express"" parameters=""surprised"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, surprised"" />
+  <Action name=""IsVisible"" parameters=""can"" />
+  <Action name=""NavigateTo"" parameters=""can"" />
+  <Action name=""Grab"" parameters=""can"" />
+  <Action name=""Crush"" parameters=""can"" />
+  <Action name=""Say"" parameters=""surprised, surprised"" />
+  <Action name=""Express"" parameters=""surprised"" />
+</BehaviorTree>
+```",n,1,3.92,109
+microsoft/Phi-4-mini-instruct,req_023,Find the can and look surprised,medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.23,y,,n,,,"search_for(can, ""near the hallway"") -> is_visible(can) -> look_at(can) -> express(surprised)",[is_visible(can) | search_for(can)] -> navigate_to(can) -> express(surprised),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""can"" hint=""near the hallway"" />
+            <IsVisible object=""can"" />
+            <LookAt target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""can"" hint=""near the hallway"" />
+            <IsVisible object=""can"" />
+            <LookAt target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.26,84
+microsoft/Phi-4-mini-instruct,req_024,"Grab the bottle, then come back to me",medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> navigate_to(user),No Release: user didn't ask for it,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+    <Action name=""Grab"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+    <Action name=""Grab"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+  </Sequence>
+</BehaviorTree>
+```",n,1,2.97,74
+microsoft/Phi-4-mini-instruct,req_024,"Grab the bottle, then come back to me",medium,one_example,tfidf,ex_09,Keep collecting bottle caps until there are none left,0.23,y,,n,,,"search_for(bottle, ""bottle"") -> navigate_to(bottle) -> grab(bottle) -> navigate_to(me) -> say(""I'm back with the bottle!"", happy)",[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> navigate_to(user),No Release: user didn't ask for it,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" hint=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""me"" />
+            <Say text=""I'm back with the bottle!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" hint=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""me"" />
+            <Say text=""I'm back with the bottle!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.68,100
+microsoft/Phi-4-mini-instruct,req_025,Wave goodbye and go to your charger,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"move_arm(wave) -> say(""Bye!"", sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Say is optional,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, goodbye wave"" />
+  <Action name=""NavigateTo"" parameters=""charger"" />
+  <Action name=""Say"" parameters=""goodbye wave, happy"" />
+  <Action name=""Express"" parameters=""happy"" />
+  <Action name=""LookAt"" parameters=""charger"" />
+  <Action name=""Grab"" parameters=""charger"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""Release"" parameters=""charger"" />
+  <Action name=""Crush"" parameters=""charger"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Bye!"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger"" />
+            </Fallback>
+            <NavigateTo target=""charger"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, goodbye wave"" />
+  <Action name=""NavigateTo"" parameters=""charger"" />
+  <Action name=""Say"" parameters=""goodbye wave, happy"" />
+  <Action name=""Express"" parameters=""happy"" />
+  <Action name=""LookAt"" parameters=""charger"" />
+  <Action name=""Grab"" parameters=""charger"" />
+  <Action name=""MoveArm"" parameters=""grabbing pose"" />
+  <Action name=""Release"" parameters=""charger"" />
+  <Action name=""Crush"" parameters=""charger"" />
+</BehaviorTree>
+```",n,1,4.50,136
+microsoft/Phi-4-mini-instruct,req_025,Wave goodbye and go to your charger,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.30,y,,n,,,"[is_visible(charger) | navigate_to(charger)] -> say(""goodbye"", neutral) -> express(neutral)","move_arm(wave) -> say(""Bye!"", sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Say is optional,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <NavigateTo target=""charger"" />
+            </Fallback>
+            <Say text=""goodbye"" emotion=""neutral"" />
+            <Express emotion=""neutral"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Bye!"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger"" />
+            </Fallback>
+            <NavigateTo target=""charger"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <NavigateTo target=""charger"" />
+            </Fallback>
+            <Say text=""goodbye"" emotion=""neutral"" />
+            <Express emotion=""neutral"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.33,88
+microsoft/Phi-4-mini-instruct,req_026,Wave at the person by the window,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(person) | search_for(person, ""by the window"")] -> look_at(person) -> move_arm(wave)",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""person, window"">
+    <Action name=""IsVisible"" parameters=""person"" />
+    <Action name=""IsAt"" parameters=""person"" />
+  </Action>
+  <Action name=""NavigateTo"" parameters=""person"" />
+  <Action name=""LookAt"" parameters=""person"" />
+  <Action name=""Express"" parameters=""wave"" />
+  <Action name=""Say"" parameters=""wave, neutral"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""person, window"">
+    <Action name=""IsVisible"" parameters=""person"" />
+    <Action name=""IsAt"" parameters=""person"" />
+  </Action>
+  <Action name=""NavigateTo"" parameters=""person"" />
+  <Action name=""LookAt"" parameters=""person"" />
+  <Action name=""Express"" parameters=""wave"" />
+  <Action name=""Say"" parameters=""wave, neutral"" />
+</BehaviorTree>
+```",n,1,3.87,109
+microsoft/Phi-4-mini-instruct,req_026,Wave at the person by the window,medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.40,y,,n,,,"search_for(person, ""by the window"") -> is_visible(person) -> navigate_to(person) -> look_at(person) -> move_arm(wave)","[is_visible(person) | search_for(person, ""by the window"")] -> look_at(person) -> move_arm(wave)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""person"" hint=""by the window"" />
+            <IsVisible object=""person"" />
+            <NavigateTo target=""person"" />
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""person"" hint=""by the window"" />
+            <IsVisible object=""person"" />
+            <NavigateTo target=""person"" />
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.47,92
+microsoft/Phi-4-mini-instruct,req_027,"Look at the ball, then look at me",medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(ball) | search_for(ball)] -> look_at(ball) -> look_at(user),,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""ball, hint""/>
+    <Action name=""LookAt"" parameters=""me""/>
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <LookAt target=""ball"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""ball, hint""/>
+    <Action name=""LookAt"" parameters=""me""/>
+  </Sequence>
+</BehaviorTree>
+```",n,1,2.27,47
+microsoft/Phi-4-mini-instruct,req_027,"Look at the ball, then look at me",medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"search_for(ball, ""look at the ball"") -> look_at(ball) -> search_for(user, ""look at me"") -> look_at(user)",[is_visible(ball) | search_for(ball)] -> look_at(ball) -> look_at(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""look at the ball"" />
+            <LookAt target=""ball"" />
+            <SearchFor object=""user"" hint=""look at me"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <LookAt target=""ball"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""look at the ball"" />
+            <LookAt target=""ball"" />
+            <SearchFor object=""user"" hint=""look at me"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.43,90
+microsoft/Phi-4-mini-instruct,req_028,Point at the lamp,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(lamp) | search_for(lamp)] -> look_at(lamp) -> move_arm(lamp),MoveArm with an object target,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""lamp"" />
+  <Action name=""NavigateTo"" parameters=""lamp"" />
+  <Action name=""LookAt"" parameters=""lamp"" />
+  <Action name=""Grab"" parameters=""lamp"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Express"" parameters=""emotion"" />
+  <Action name=""Say"" parameters=""text, emotion"" />
+  <Action name=""Release"" parameters=""lamp"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+            <MoveArm pose=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""lamp"" />
+  <Action name=""NavigateTo"" parameters=""lamp"" />
+  <Action name=""LookAt"" parameters=""lamp"" />
+  <Action name=""Grab"" parameters=""lamp"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Express"" parameters=""emotion"" />
+  <Action name=""Say"" parameters=""text, emotion"" />
+  <Action name=""Release"" parameters=""lamp"" />
+</BehaviorTree>
+```",n,1,4.07,115
+microsoft/Phi-4-mini-instruct,req_028,Point at the lamp,medium,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,is_visible(lamp) -> look_at(lamp),[is_visible(lamp) | search_for(lamp)] -> look_at(lamp) -> move_arm(lamp),MoveArm with an object target,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""lamp"" />
+            <LookAt target=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+            <MoveArm pose=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""lamp"" />
+            <LookAt target=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.67,59
+microsoft/Phi-4-mini-instruct,req_029,Pick up the trash on the floor and crush it,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(trash) | search_for(trash, ""on the floor"")] -> navigate_to(trash) -> grab(trash) -> crush(trash)",trash' is vague but acceptable as a search term,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""trash, floor"" />
+  <Action name=""NavigateTo"" parameters=""trash"" />
+  <Action name=""Grab"" parameters=""trash"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""trash"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""on the floor"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""trash, floor"" />
+  <Action name=""NavigateTo"" parameters=""trash"" />
+  <Action name=""Grab"" parameters=""trash"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""trash"" />
+</BehaviorTree>
+```",n,1,3.10,79
+microsoft/Phi-4-mini-instruct,req_029,Pick up the trash on the floor and crush it,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.77,y,,n,,,"[is_visible(trash) | search_for(trash, ""trash"")] -> navigate_to(trash) -> grab(trash) -> crush(trash)","[is_visible(trash) | search_for(trash, ""on the floor"")] -> navigate_to(trash) -> grab(trash) -> crush(trash)",trash' is vague but acceptable as a search term,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""trash"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""on the floor"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""trash"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.58,97
+microsoft/Phi-4-mini-instruct,req_030,Put the cup on the table,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> [is_visible(table) | search_for(table)] -> navigate_to(table) -> release(table),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""cup, table""/>
+  <Action name=""NavigateTo"" parameters=""table""/>
+  <Action name=""Grab"" parameters=""cup""/>
+  <Action name=""MoveArm"" parameters=""grabbing""/>
+  <Action name=""IsVisible"" parameters=""cup""/>
+  <Action name=""IsAt"" parameters=""table""/>
+  <Action name=""Release"" parameters=""cup""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""cup, table""/>
+  <Action name=""NavigateTo"" parameters=""table""/>
+  <Action name=""Grab"" parameters=""cup""/>
+  <Action name=""MoveArm"" parameters=""grabbing""/>
+  <Action name=""IsVisible"" parameters=""cup""/>
+  <Action name=""IsAt"" parameters=""table""/>
+  <Action name=""Release"" parameters=""cup""/>
+</BehaviorTree>
+```",n,1,3.57,98
+microsoft/Phi-4-mini-instruct,req_030,Put the cup on the table,hard,one_example,tfidf,ex_05,Move the marker onto the shelf,0.32,y,,n,,,"[is_visible(cup) | search_for(cup, ""table"")] -> navigate_to(table) -> grab(cup) -> release(table)",[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> [is_visible(table) | search_for(table)] -> navigate_to(table) -> release(table),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" hint=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Grab object=""cup"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" hint=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Grab object=""cup"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.65,96
+microsoft/Phi-4-mini-instruct,req_031,Bring the ball to the box,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> grab(ball) -> [is_visible(box) | search_for(box)] -> navigate_to(box) -> release(box),,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint""/>
+  <Action name=""NavigateTo"" parameters=""box""/>
+  <Action name=""Grab"" parameters=""ball""/>
+  <Action name=""MoveArm"" parameters=""pose""/>
+  <Action name=""NavigateTo"" parameters=""box""/>
+  <Action name=""Release"" parameters=""ball""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+            <Fallback>
+                <IsVisible object=""box"" />
+                <SearchFor object=""box"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <Release target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint""/>
+  <Action name=""NavigateTo"" parameters=""box""/>
+  <Action name=""Grab"" parameters=""ball""/>
+  <Action name=""MoveArm"" parameters=""pose""/>
+  <Action name=""NavigateTo"" parameters=""box""/>
+  <Action name=""Release"" parameters=""ball""/>
+</BehaviorTree>
+```",n,1,3.25,85
+microsoft/Phi-4-mini-instruct,req_031,Bring the ball to the box,hard,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.19,y,,n,,,"search_for(ball, ""ball"") -> navigate_to(box) -> grab(ball) -> is_at(box)",[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> grab(ball) -> [is_visible(box) | search_for(box)] -> navigate_to(box) -> release(box),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""box"" />
+            <Grab object=""ball"" />
+            <IsAt target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+            <Fallback>
+                <IsVisible object=""box"" />
+                <SearchFor object=""box"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <Release target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""box"" />
+            <Grab object=""ball"" />
+            <IsAt target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.14,80
+microsoft/Phi-4-mini-instruct,req_032,Find the cup and take it to the kitchen,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> navigate_to(kitchen) -> release(kitchen),,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""cup, kitchen"" />
+    <Action name=""NavigateTo"" parameters=""kitchen"" />
+    <Action name=""LookAt"" parameters=""cup"" />
+    <Action name=""Grab"" parameters=""cup"" />
+    <Action name=""MoveArm"" parameters=""grabbing"" />
+    <Action name=""NavigateTo"" parameters=""kitchen"" />
+    <Action name=""Release"" parameters=""cup"" />
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""cup, kitchen"" />
+    <Action name=""NavigateTo"" parameters=""kitchen"" />
+    <Action name=""LookAt"" parameters=""cup"" />
+    <Action name=""Grab"" parameters=""cup"" />
+    <Action name=""MoveArm"" parameters=""grabbing"" />
+    <Action name=""NavigateTo"" parameters=""kitchen"" />
+    <Action name=""Release"" parameters=""cup"" />
+  </Sequence>
+</BehaviorTree>
+```",n,1,4.02,115
+microsoft/Phi-4-mini-instruct,req_032,Find the cup and take it to the kitchen,hard,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,"search_for(cup, ""kitchen"") -> navigate_to(kitchen) -> grab(cup) -> is_at(kitchen)",[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> navigate_to(kitchen) -> release(kitchen),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""cup"" hint=""kitchen"" />
+            <NavigateTo target=""kitchen"" />
+            <Grab object=""cup"" />
+            <IsAt target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""cup"" hint=""kitchen"" />
+            <NavigateTo target=""kitchen"" />
+            <Grab object=""cup"" />
+            <IsAt target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.24,83
+microsoft/Phi-4-mini-instruct,req_033,Find the shoe next to the couch and bring it to the door,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(shoe) | search_for(shoe, ""next to the couch"")] -> navigate_to(shoe) -> grab(shoe) -> [is_visible(door) | search_for(door)] -> navigate_to(door) -> release(door)",,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""shoe, couch"" />
+    <Action name=""NavigateTo"" parameters=""couch"" />
+    <Action name=""LookAt"" parameters=""shoe"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""Grab"" parameters=""shoe"" />
+    <Action name=""MoveArm"" parameters=""pose"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""Release"" parameters=""shoe"" />
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" hint=""next to the couch"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""shoe, couch"" />
+    <Action name=""NavigateTo"" parameters=""couch"" />
+    <Action name=""LookAt"" parameters=""shoe"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""Grab"" parameters=""shoe"" />
+    <Action name=""MoveArm"" parameters=""pose"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""Release"" parameters=""shoe"" />
+  </Sequence>
+</BehaviorTree>
+```",n,1,4.54,130
+microsoft/Phi-4-mini-instruct,req_033,Find the shoe next to the couch and bring it to the door,hard,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.20,y,,n,,,"search_for(shoe, ""next to the couch"") -> navigate_to(couch) -> look_at(shoe) -> grab(shoe) -> navigate_to(door) -> move_arm(door) -> release(door)","[is_visible(shoe) | search_for(shoe, ""next to the couch"")] -> navigate_to(shoe) -> grab(shoe) -> [is_visible(door) | search_for(door)] -> navigate_to(door) -> release(door)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""shoe"" hint=""next to the couch"" />
+            <NavigateTo target=""couch"" />
+            <LookAt target=""shoe"" />
+            <Grab object=""shoe"" />
+            <NavigateTo target=""door"" />
+            <MoveArm pose=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" hint=""next to the couch"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""shoe"" hint=""next to the couch"" />
+            <NavigateTo target=""couch"" />
+            <LookAt target=""shoe"" />
+            <Grab object=""shoe"" />
+            <NavigateTo target=""door"" />
+            <MoveArm pose=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.01,113
+microsoft/Phi-4-mini-instruct,req_034,"Find the bottle, crush it, and tell me when you're done",hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> crush(bottle) -> say(""All done!"", happy)",,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""bottle"" />
+    <Action name=""Grab"" parameters=""bottle"" />
+    <Action name=""Crush"" parameters=""bottle"" />
+    <Action name=""Say"" parameters=""text, done"" />
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""All done!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""bottle"" />
+    <Action name=""NavigateTo"" parameters=""bottle"" />
+    <Action name=""Grab"" parameters=""bottle"" />
+    <Action name=""Crush"" parameters=""bottle"" />
+    <Action name=""Say"" parameters=""text, done"" />
+  </Sequence>
+</BehaviorTree>
+```",n,1,3.38,90
+microsoft/Phi-4-mini-instruct,req_034,"Find the bottle, crush it, and tell me when you're done",hard,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.34,y,,n,,,"search_for(bottle, ""bottle"") -> navigate_to(bottle) -> look_at(bottle) -> grab(bottle) -> crush(bottle) -> say(""I'm done crushing the bottle."", neutral)","[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> crush(bottle) -> say(""All done!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" hint=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <LookAt target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""I'm done crushing the bottle."" emotion=""neutral"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""All done!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" hint=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <LookAt target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""I'm done crushing the bottle."" emotion=""neutral"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.96,111
+microsoft/Phi-4-mini-instruct,req_035,"Go to the table, then the door, then come back to me",hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,navigate_to(table) -> navigate_to(door) -> navigate_to(user),table/door may need SearchFor first if they aren't known spots,"```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""table"" />
+    <Action name=""NavigateTo"" parameters=""table"" />
+    <Action name=""SearchFor"" parameters=""door"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""SearchFor"" parameters=""user"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+  </Sequence>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Sequence>
+    <Action name=""SearchFor"" parameters=""table"" />
+    <Action name=""NavigateTo"" parameters=""table"" />
+    <Action name=""SearchFor"" parameters=""door"" />
+    <Action name=""NavigateTo"" parameters=""door"" />
+    <Action name=""SearchFor"" parameters=""user"" />
+    <Action name=""NavigateTo"" parameters=""user"" />
+  </Sequence>
+</BehaviorTree>
+```",n,1,3.62,99
+microsoft/Phi-4-mini-instruct,req_035,"Go to the table, then the door, then come back to me",hard,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,navigate_to(table) -> navigate_to(door) -> navigate_to(me),navigate_to(table) -> navigate_to(door) -> navigate_to(user),table/door may need SearchFor first if they aren't known spots,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""me"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""me"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.81,68
+microsoft/Phi-4-mini-instruct,req_036,Find the ball and the cup,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> [is_visible(cup) | search_for(cup)] -> navigate_to(cup),Two targets in sequence,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""object, hint"" />
+  <Action name=""IsVisible"" parameters=""object"" />
+  <Action name=""NavigateTo"" parameters=""target"" />
+  <Action name=""LookAt"" parameters=""target"" />
+  <Action name=""Grab"" parameters=""object"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""object"" />
+  <Action name=""IsAt"" parameters=""target"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""object, hint"" />
+  <Action name=""IsVisible"" parameters=""object"" />
+  <Action name=""NavigateTo"" parameters=""target"" />
+  <Action name=""LookAt"" parameters=""target"" />
+  <Action name=""Grab"" parameters=""object"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Crush"" parameters=""object"" />
+  <Action name=""IsAt"" parameters=""target"" />
+</BehaviorTree>
+```",n,1,4.08,118
+microsoft/Phi-4-mini-instruct,req_036,Find the ball and the cup,hard,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,"search_for(ball, ""ball"") -> navigate_to(ball) -> search_for(cup, ""cup"") -> navigate_to(cup)",[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> [is_visible(cup) | search_for(cup)] -> navigate_to(cup),Two targets in sequence,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""ball"" />
+            <SearchFor object=""cup"" hint=""cup"" />
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""ball"" />
+            <SearchFor object=""cup"" hint=""cup"" />
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.28,85
+microsoft/Phi-4-mini-instruct,req_037,Find the remote and show it to me,hard,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),"Show' = bring and hold out, not release","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, remote"" />
+  <Action name=""IsVisible"" parameters=""remote"" />
+  <Action name=""NavigateTo"" parameters=""remote"" />
+  <Action name=""LookAt"" parameters=""remote"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Say"" parameters=""text, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""Release"" parameters=""remote"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                 <IsVisible object=""user"" />
+                 <SearchFor object=""user"" hint=""starting position"" />
+             </Fallback>
+            <NavigateTo target=""user""  />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, remote"" />
+  <Action name=""IsVisible"" parameters=""remote"" />
+  <Action name=""NavigateTo"" parameters=""remote"" />
+  <Action name=""LookAt"" parameters=""remote"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose"" />
+  <Action name=""Say"" parameters=""text, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+  <Action name=""Release"" parameters=""remote"" />
+</BehaviorTree>
+```",n,1,4.45,130
+microsoft/Phi-4-mini-instruct,req_037,Find the remote and show it to me,hard,one_example,tfidf,ex_11,Show the user you're excited,0.29,y,,n,,,"search_for(remote, ""remote"") -> navigate_to(user) -> look_at(remote) -> grab(remote) -> is_visible(remote) -> is_at(user)",[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),"Show' = bring and hold out, not release","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""remote"" />
+            <NavigateTo target=""user"" />
+            <LookAt target=""remote"" />
+            <Grab object=""remote"" />
+            <IsVisible object=""remote"" />
+            <IsAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                 <IsVisible object=""user"" />
+                 <SearchFor object=""user"" hint=""starting position"" />
+             </Fallback>
+            <NavigateTo target=""user""  />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""remote"" />
+            <NavigateTo target=""user"" />
+            <LookAt target=""remote"" />
+            <Grab object=""remote"" />
+            <IsVisible object=""remote"" />
+            <IsAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.63,98
+microsoft/Phi-4-mini-instruct,req_038,"If you see a can, crush it",tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[(is_visible(can) -> navigate_to(can) -> grab(can) -> crush(can)) | say(""I don't see a can."", curious)]",Conditional: must NOT use SearchFor. Fallback reply optional,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can"" hint=""true""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""can"" />
+                <NavigateTo target=""can"" />
+                <Grab object=""can"" />
+                <Crush object=""can"" />
+            </Sequence>
+            <Say text=""I don't see a can."" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can"" hint=""true""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+</BehaviorTree>
+```",n,1,2.43,53
+microsoft/Phi-4-mini-instruct,req_038,"If you see a can, crush it",tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.41,y,,n,,,"is_visible(can) -> search_for(can, ""can"") -> navigate_to(can) -> grab(can) -> crush(can)","[(is_visible(can) -> navigate_to(can) -> grab(can) -> crush(can)) | say(""I don't see a can."", curious)]",Conditional: must NOT use SearchFor. Fallback reply optional,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""can"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""can"" />
+                <NavigateTo target=""can"" />
+                <Grab object=""can"" />
+                <Crush object=""can"" />
+            </Sequence>
+            <Say text=""I don't see a can."" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""can"" />
+            <SearchFor object=""can"" hint=""can"" />
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.34,89
+microsoft/Phi-4-mini-instruct,req_039,"Find the ball, and if you can't, tell me",tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[([is_visible(ball) | search_for(ball)] -> navigate_to(ball)) | say(""I couldn't find it."", sad)]",Explicit failure branch,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+  <Action name=""Say"" parameters=""text, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Fallback>
+                    <IsVisible object=""ball"" />
+                    <SearchFor object=""ball"" />
+                </Fallback>
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+  <Action name=""Say"" parameters=""text, neutral"" />
+  <Action name=""Express"" parameters=""neutral"" />
+</BehaviorTree>
+```",n,1,4.17,118
+microsoft/Phi-4-mini-instruct,req_039,"Find the ball, and if you can't, tell me",tricky,one_example,tfidf,ex_08,"Try to find the pen, and say so if you can't",0.52,y,,n,,,"[(is_visible(ball) -> search_for(ball, ""ball"") -> navigate_to(ball)) | say(""I couldn't find the ball."", sad)]","[([is_visible(ball) | search_for(ball)] -> navigate_to(ball)) | say(""I couldn't find it."", sad)]",Explicit failure branch,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""ball"" />
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find the ball."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Fallback>
+                    <IsVisible object=""ball"" />
+                    <SearchFor object=""ball"" />
+                </Fallback>
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""ball"" />
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find the ball."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.56,96
+microsoft/Phi-4-mini-instruct,req_040,Find the ball but don't pick it up,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball),Negation: tree must not contain Grab,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""LookAt"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""LookAt"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+</BehaviorTree>
+```",n,1,3.12,80
+microsoft/Phi-4-mini-instruct,req_040,Find the ball but don't pick it up,tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.55,y,,n,,,"search_for(ball, ""ball"") -> navigate_to(ball) -> look_at(ball)",[is_visible(ball) | search_for(ball)] -> navigate_to(ball),Negation: tree must not contain Grab,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""ball"" hint=""ball"" />
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.99,72
+microsoft/Phi-4-mini-instruct,req_041,"Don't move, just look at the ball",tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[(is_visible(ball) -> look_at(ball)) | say(""I can't see it from here."", confused)]","No SearchFor or NavigateTo, since both move the robot","```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""LookAt"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+  <Action name=""SearchFor"" parameters=""ball"" hint=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I can't see it from here."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""LookAt"" parameters=""ball"" />
+  <Action name=""IsAt"" parameters=""ball"" />
+  <Action name=""SearchFor"" parameters=""ball"" hint=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```",n,1,3.83,107
+microsoft/Phi-4-mini-instruct,req_041,"Don't move, just look at the ball",tricky,one_example,tfidf,ex_14,Raise your arm,0.23,y,,n,,,look_at(ball),"[(is_visible(ball) -> look_at(ball)) | say(""I can't see it from here."", confused)]","No SearchFor or NavigateTo, since both move the robot","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""ball"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I can't see it from here."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""ball"" />
+    </BehaviorTree>
+</root>",n,1,2.17,42
+microsoft/Phi-4-mini-instruct,req_042,"Pick up the blue cup, not the red one",tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,[is_visible(blue cup) | search_for(blue cup)] -> navigate_to(blue cup) -> grab(blue cup),Negation: 'red cup' must not appear,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""blue cup, not red cup"" />
+  <Action name=""NavigateTo"" parameters=""blue cup"" />
+  <Action name=""Grab"" parameters=""blue cup"" />
+  <Action name=""MoveArm"" parameters=""pose for carrying"" />
+  <Action name=""IsVisible"" parameters=""blue cup"" />
+  <Action name=""Crush"" parameters=""blue cup"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""blue cup, not red cup"" />
+  <Action name=""NavigateTo"" parameters=""blue cup"" />
+  <Action name=""Grab"" parameters=""blue cup"" />
+  <Action name=""MoveArm"" parameters=""pose for carrying"" />
+  <Action name=""IsVisible"" parameters=""blue cup"" />
+  <Action name=""Crush"" parameters=""blue cup"" />
+</BehaviorTree>
+```",n,1,3.66,101
+microsoft/Phi-4-mini-instruct,req_042,"Pick up the blue cup, not the red one",tricky,one_example,tfidf,ex_05,Move the marker onto the shelf,0.45,y,,n,,,"search_for(blue cup, ""blue"") -> navigate_to(blue cup) -> grab(blue cup)",[is_visible(blue cup) | search_for(blue cup)] -> navigate_to(blue cup) -> grab(blue cup),Negation: 'red cup' must not appear,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""blue cup"" hint=""blue"" />
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""blue cup"" hint=""blue"" />
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.00,74
+microsoft/Phi-4-mini-instruct,req_043,Is the ball in front of you?,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[(is_visible(ball) -> say(""Yes, I see it!"", happy)) | say(""No, I don't see it."", sad)]","Answer with a condition, not a search","```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <Say text=""Yes, I see it!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""No, I don't see it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""SearchFor"" parameters=""ball, hint"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```",n,1,3.03,79
+microsoft/Phi-4-mini-instruct,req_043,Is the ball in front of you?,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.27,y,,n,,,"[(is_visible(ball) -> look_at(ball)) | say(""I don't see a ball."", confused)]","[(is_visible(ball) -> say(""Yes, I see it!"", happy)) | say(""No, I don't see it."", sad)]","Answer with a condition, not a search","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see a ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <Say text=""Yes, I see it!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""No, I don't see it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see a ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.32,84
+microsoft/Phi-4-mini-instruct,req_044,Are you at the door yet?,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[(is_at(door) -> say(""Yes!"", happy)) | say(""Not yet!"", curious)]",,"```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""door"" />
+  <Action name=""IsAt"" parameters=""door"" />
+  <Action name=""SearchFor"" parameters=""door, door"" />
+  <Action name=""NavigateTo"" parameters=""door"" />
+  <Action name=""Grab"" parameters=""door"" />
+  <Action name=""Crush"" parameters=""door"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""door"" />
+                <Say text=""Yes!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""Not yet!"" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""IsVisible"" parameters=""door"" />
+  <Action name=""IsAt"" parameters=""door"" />
+  <Action name=""SearchFor"" parameters=""door, door"" />
+  <Action name=""NavigateTo"" parameters=""door"" />
+  <Action name=""Grab"" parameters=""door"" />
+  <Action name=""Crush"" parameters=""door"" />
+</BehaviorTree>
+```",n,1,3.37,92
+microsoft/Phi-4-mini-instruct,req_044,Are you at the door yet?,tricky,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,"is_visible(door) -> search_for(door, ""door"") -> navigate_to(door) -> is_at(door)","[(is_at(door) -> say(""Yes!"", happy)) | say(""Not yet!"", curious)]",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""door"" />
+            <SearchFor object=""door"" hint=""door"" />
+            <NavigateTo target=""door"" />
+            <IsAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""door"" />
+                <Say text=""Yes!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""Not yet!"" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""door"" />
+            <SearchFor object=""door"" hint=""door"" />
+            <NavigateTo target=""door"" />
+            <IsAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.10,81
+microsoft/Phi-4-mini-instruct,req_045,Check if the ball is still behind the table,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"[(search_for(ball, ""behind the table"") -> say(""It's still there!"", happy)) | say(""It's gone!"", surprised)]",,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, behind the table"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <SearchFor object=""ball"" hint=""behind the table"" />
+                <Say text=""It's still there!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""It's gone!"" emotion=""surprised"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""ball, behind the table"" />
+  <Action name=""IsVisible"" parameters=""ball"" />
+  <Action name=""NavigateTo"" parameters=""ball"" />
+  <Action name=""Grab"" parameters=""ball"" />
+  <Action name=""Crush"" parameters=""ball"" />
+</BehaviorTree>
+```",n,1,3.14,81
+microsoft/Phi-4-mini-instruct,req_045,Check if the ball is still behind the table,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.47,y,,n,,,"[(is_visible(ball) -> is_at(table) -> look_at(ball)) | say(""I don't see the ball."", confused)]","[(search_for(ball, ""behind the table"") -> say(""It's still there!"", happy)) | say(""It's gone!"", surprised)]",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <IsAt target=""table"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see the ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <SearchFor object=""ball"" hint=""behind the table"" />
+                <Say text=""It's still there!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""It's gone!"" emotion=""surprised"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <IsAt target=""table"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see the ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.52,93
+microsoft/Phi-4-mini-instruct,req_046,Crush every can you find,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,"ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can) -> navigate_to(can) -> grab(can) -> crush(can) } } -> say(""All clean!"", happy)",Loops until SearchFor fails. SearchFor must not return a can already crushed,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" />
+                        <NavigateTo target=""can"" />
+                        <Grab object=""can"" />
+                        <Crush object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""All clean!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action name=""Crush"" parameters=""can""/>
+  <Action name=""SearchFor"" parameters=""can, visible""/>
+  <Action name=""IsVisible"" parameters=""can""/>
+  <Action",n,1,27.85,1024
+microsoft/Phi-4-mini-instruct,req_046,Crush every can you find,tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.58,n,Unknown behavior tree node 'WhileLoop'.,n,n,,"WhileLoop(condition=IsVisible object='can'){ search_for(can, ""crushable"") ; navigate_to(can) ; grab(can) ; crush(can) ; release(can) }","ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can) -> navigate_to(can) -> grab(can) -> crush(can) } } -> say(""All clean!"", happy)",Loops until SearchFor fails. SearchFor must not return a can already crushed,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <WhileLoop condition=""IsVisible object='can'"">
+                <SearchFor object='can' hint='crushable' />
+                <NavigateTo target='can' />
+                <Grab object='can' />
+                <Crush object='can' />
+                <Release target='can' />
+            </WhileLoop>
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" />
+                        <NavigateTo target=""can"" />
+                        <Grab object=""can"" />
+                        <Crush object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""All clean!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <WhileLoop condition=""IsVisible object='can'"">
+                <SearchFor object='can' hint='crushable' />
+                <NavigateTo target='can' />
+                <Grab object='can' />
+                <Crush object='can' />
+                <Release target='can' />
+            </WhileLoop>
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.98,108
+microsoft/Phi-4-mini-instruct,req_047,Put the remote back where you found it,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,navigate_to({remote.original_location}) -> release({remote.original_location}),Needs a blackboard key for the old location (BT team to define). A clarifying question is also acceptable,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, found location"" />
+  <Action name=""NavigateTo"" parameters=""found location"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose for holding remote"" />
+  <Action name=""NavigateTo"" parameters=""user's location"" />
+  <Action name=""Say"" parameters=""text: 'Put the remote back where you found it', emotion: neutral"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""{remote.original_location}"" />
+            <Release target=""{remote.original_location}"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""remote, found location"" />
+  <Action name=""NavigateTo"" parameters=""found location"" />
+  <Action name=""Grab"" parameters=""remote"" />
+  <Action name=""MoveArm"" parameters=""pose for holding remote"" />
+  <Action name=""NavigateTo"" parameters=""user's location"" />
+  <Action name=""Say"" parameters=""text: 'Put the remote back where you found it', emotion: neutral"" />
+</BehaviorTree>
+```",n,1,3.98,112
+microsoft/Phi-4-mini-instruct,req_047,Put the remote back where you found it,tricky,one_example,tfidf,ex_05,Move the marker onto the shelf,0.32,y,,n,,,"search_for(remote, ""where you found it"") -> navigate_to(remote) -> grab(remote) -> navigate_to(where you found it) -> release(where you found it)",navigate_to({remote.original_location}) -> release({remote.original_location}),Needs a blackboard key for the old location (BT team to define). A clarifying question is also acceptable,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""where you found it"" />
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""where you found it"" />
+            <Release target=""where you found it"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""{remote.original_location}"" />
+            <Release target=""{remote.original_location}"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""where you found it"" />
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""where you found it"" />
+            <Release target=""where you found it"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.62,97
+microsoft/Phi-4-mini-instruct,req_048,Give me a high five,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,move_arm(high_five),Valid only if 'high_five' is a named pose; otherwise expect cannot_do,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, high five"" />
+  <Action name=""NavigateTo"" parameters=""high five"" />
+  <Action name=""LookAt"" parameters=""high five"" />
+  <Action name=""Grab"" parameters=""high five"" />
+  <Action name=""MoveArm"" parameters=""high five pose"" />
+  <Action name=""Express"" parameters=""high five emotion"" />
+  <Action name=""Release"" parameters=""high five"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""high_five"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, high five"" />
+  <Action name=""NavigateTo"" parameters=""high five"" />
+  <Action name=""LookAt"" parameters=""high five"" />
+  <Action name=""Grab"" parameters=""high five"" />
+  <Action name=""MoveArm"" parameters=""high five pose"" />
+  <Action name=""Express"" parameters=""high five emotion"" />
+  <Action name=""Release"" parameters=""high five"" />
+</BehaviorTree>
+```",n,1,3.99,113
+microsoft/Phi-4-mini-instruct,req_048,Give me a high five,tricky,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,"is_visible(user) -> search_for(user, ""high five"") -> navigate_to(user) -> look_at(user) -> grab(user) -> move_arm(high five) -> release(user)",move_arm(high_five),Valid only if 'high_five' is a named pose; otherwise expect cannot_do,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""user"" />
+            <SearchFor object=""user"" hint=""high five"" />
+            <NavigateTo target=""user"" />
+            <LookAt target=""user"" />
+            <Grab object=""user"" />
+            <MoveArm pose=""high five"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""high_five"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <IsVisible object=""user"" />
+            <SearchFor object=""user"" hint=""high five"" />
+            <NavigateTo target=""user"" />
+            <LookAt target=""user"" />
+            <Grab object=""user"" />
+            <MoveArm pose=""high five"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.97,108
+microsoft/Phi-4-mini-instruct,req_049,Nod if you understand,tricky,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 1, column 0.",n,n,,,express(happy),No nod skill; Express covers head tilts,"```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, Nod"" />
+  <Action name=""Say"" parameters=""Nod, Neutral"" />
+  <Action name=""Express"" parameters=""Neutral"" />
+  <Action name=""LookAt"" parameters=""Nod"" />
+  <Action name=""IsVisible"" parameters=""Nod"" />
+  <Action name=""IsAt"" parameters=""Nod"" />
+</BehaviorTree>
+```","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Express emotion=""happy"" />
+    </BehaviorTree>
+</root>","```xml
+<BehaviorTree>
+  <Action name=""SearchFor"" parameters=""Wall-E, Nod"" />
+  <Action name=""Say"" parameters=""Nod, Neutral"" />
+  <Action name=""Express"" parameters=""Neutral"" />
+  <Action name=""LookAt"" parameters=""Nod"" />
+  <Action name=""IsVisible"" parameters=""Nod"" />
+  <Action name=""IsAt"" parameters=""Nod"" />
+</BehaviorTree>
+```",n,1,3.67,98
+microsoft/Phi-4-mini-instruct,req_049,Nod if you understand,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.47,y,,n,,,"[(is_visible(plant) -> look_at(plant) -> express(understanding)) | say(""I understand."", confident)]",express(happy),No nod skill; Express covers head tilts,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""plant"" />
+                <LookAt target=""plant"" />
+                <Express emotion=""understanding"" />
+            </Sequence>
+            <Say text=""I understand."" emotion=""confident"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Express emotion=""happy"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""plant"" />
+                <LookAt target=""plant"" />
+                <Express emotion=""understanding"" />
+            </Sequence>
+            <Say text=""I understand."" emotion=""confident"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.35,90

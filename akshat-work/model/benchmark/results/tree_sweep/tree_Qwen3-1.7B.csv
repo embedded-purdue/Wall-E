@@ -1,0 +1,3193 @@
+model,id,request,difficulty,condition,retriever,example_id,example_request,retrieval_score,valid,validator_error,matches_reference,does_what_was_asked,grader_comment,generated_steps,expected_steps,notes,generated_xml,expected_tree_xml,raw_output,had_extra_text,attempts_used,latency_s,new_tokens
+Qwen/Qwen3-1.7B,req_001,Go to the ball,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> express(happy),,"<behaviorTree>
+  <start>
+    <navigateTo target=""ball""/>
+    <grab object=""ball""/>
+    <crush object=""ball""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Express emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <navigateTo target=""ball""/>
+    <grab object=""ball""/>
+    <crush object=""ball""/>
+  </start>
+</behaviorTree>",n,1,13.57,40
+Qwen/Qwen3-1.7B,req_001,Go to the ball,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,navigate_to(ball),[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> express(happy),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Express emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.35,50
+Qwen/Qwen3-1.7B,req_002,Go to the ball and grab it,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(ball) | search_for(ball, ""behind the table"")] -> navigate_to(ball)",Hint must be passed to SearchFor,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""LookAt"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Release"" parameters=""ball"" />
+    <action type=""Crush"" parameters=""ball"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""behind the table"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""LookAt"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Release"" parameters=""ball"" />
+    <action type=""Crush"" parameters=""ball"" />
+  </start>
+</behaviorTree>",n,1,3.92,107
+Qwen/Qwen3-1.7B,req_002,Go to the ball and grab it,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,navigate_to(ball) -> look_at(ball) -> grab(ball),"[is_visible(ball) | search_for(ball, ""behind the table"")] -> navigate_to(ball)",Hint must be passed to SearchFor,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+            <Grab object=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""behind the table"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+            <Grab object=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.67,67
+Qwen/Qwen3-1.7B,req_003,Look at me,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,look_at(user),,"<behaviorTree>
+  <start>
+    <action name=""Say"" parameters=""text=Look at me, emotion=Happy""/>
+    <action name=""LookAt"" parameters=""target=Wall-E""/>
+    <action name=""NavigateTo"" parameters=""target=Wall-E""/>
+    <action name=""Grab"" parameters=""object=Can""/>
+    <action name=""Crush"" parameters=""object=Can""/>
+    <action name=""Release"" parameters=""target=Can""/>
+    <action name=""IsVisible"" parameters=""object=Wall-E""/>
+    <action name=""IsAt"" parameters=""target=Wall-E""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""user"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""Say"" parameters=""text=Look at me, emotion=Happy""/>
+    <action name=""LookAt"" parameters=""target=Wall-E""/>
+    <action name=""NavigateTo"" parameters=""target=Wall-E""/>
+    <action name=""Grab"" parameters=""object=Can""/>
+    <action name=""Crush"" parameters=""object=Can""/>
+    <action name=""Release"" parameters=""target=Can""/>
+    <action name=""IsVisible"" parameters=""object=Wall-E""/>
+    <action name=""IsAt"" parameters=""target=Wall-E""/>
+  </start>
+</behaviorTree>",n,1,4.58,136
+Qwen/Qwen3-1.7B,req_003,Look at me,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"[is_at(me) | search_for(me, ""look at me"")] -> look_at(me) -> move_arm(wave) -> say(""Look at me!"", happy)",look_at(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""me"" />
+                <SearchFor object=""me"" hint=""look at me"" />
+            </Fallback>
+            <LookAt target=""me"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Look at me!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""user"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""me"" />
+                <SearchFor object=""me"" hint=""look at me"" />
+            </Fallback>
+            <LookAt target=""me"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Look at me!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.69,105
+Qwen/Qwen3-1.7B,req_004,Wave hello,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"move_arm(wave) -> say(""Hi there!"", happy)",,"<behaviorTree>
+  <start>
+    <action name=""Say"" parameters=""text=Hello, emotion=Happy""/>
+    <action name=""LookAt"" parameters=""target=User""/>
+    <action name=""NavigateTo"" parameters=""target=User""/>
+    <action name=""Grab"" parameters=""object=User""/>
+    <action name=""Crush"" parameters=""object=User""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Hi there!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""Say"" parameters=""text=Hello, emotion=Happy""/>
+    <action name=""LookAt"" parameters=""target=User""/>
+    <action name=""NavigateTo"" parameters=""target=User""/>
+    <action name=""Grab"" parameters=""object=User""/>
+    <action name=""Crush"" parameters=""object=User""/>
+  </start>
+</behaviorTree>",n,1,3.20,86
+Qwen/Qwen3-1.7B,req_004,Wave hello,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.35,y,,n,,,"[is_visible(person) | search_for(person, ""near the hallway"")] -> look_at(person) -> move_arm(wave) -> say(""Hello!"", happy)","move_arm(wave) -> say(""Hi there!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""near the hallway"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Hi there!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""near the hallway"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.65,103
+Qwen/Qwen3-1.7B,req_005,Come here,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,navigate_to(user),,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""user""/>
+    <action type=""LookAt"" parameters=""user""/>
+    <action type=""Say"" parameters=""Come here""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""user"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""user""/>
+    <action type=""LookAt"" parameters=""user""/>
+    <action type=""Say"" parameters=""Come here""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>",n,1,3.30,89
+Qwen/Qwen3-1.7B,req_005,Come here,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,[is_visible(toy car) | search_for(toy car)] -> navigate_to(toy car),navigate_to(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""toy car"" />
+                <SearchFor object=""toy car"" />
+            </Fallback>
+            <NavigateTo target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""user"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""toy car"" />
+                <SearchFor object=""toy car"" />
+            </Fallback>
+            <NavigateTo target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.96,79
+Qwen/Qwen3-1.7B,req_006,Go to the kitchen,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,navigate_to(kitchen),kitchen' must be a known spot,"<behaviorTree>
+  <start>
+    <navigateTo target=""kitchen""/>
+    <grab object=""can""/>
+    <crush object=""can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""kitchen"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <navigateTo target=""kitchen""/>
+    <grab object=""can""/>
+    <crush object=""can""/>
+  </start>
+</behaviorTree>",n,1,2.01,41
+Qwen/Qwen3-1.7B,req_006,Go to the kitchen,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,y,y,,navigate_to(kitchen),navigate_to(kitchen),kitchen' must be a known spot,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <NavigateTo target=""kitchen"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.15,51
+Qwen/Qwen3-1.7B,req_007,Go back to your charging spot,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"Say(Bye, sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Known-spot name must match the blackboard/YAML,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""LookAt"" parameters=""target""/>
+    <action type=""Grab"" parameters=""object""/>
+    <action type=""Crush"" parameters=""object""/>
+    <action type=""Release"" parameters=""target""/>
+    <action type=""Say"" parameters=""text""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+         <Sequence>
+            <Say text=""Bye"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger""/>
+            </Fallback>
+            <NavigateTo target=""charger"" />
+         </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""LookAt"" parameters=""target""/>
+    <action type=""Grab"" parameters=""object""/>
+    <action type=""Crush"" parameters=""object""/>
+    <action type=""Release"" parameters=""target""/>
+    <action type=""Say"" parameters=""text""/>
+  </start>
+</behaviorTree>",n,1,3.32,86
+Qwen/Qwen3-1.7B,req_007,Go back to your charging spot,easy,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,navigate_to(charging spot),"Say(Bye, sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Known-spot name must match the blackboard/YAML,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""charging spot"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+         <Sequence>
+            <Say text=""Bye"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger""/>
+            </Fallback>
+            <NavigateTo target=""charger"" />
+         </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""charging spot"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.24,51
+Qwen/Qwen3-1.7B,req_008,Put your arm down,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,move_arm(rest),,"<behaviorTree>
+  <start>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""LookAt"" parameters=""target""/>
+    <action name=""Grab"" parameters=""object""/>
+    <action name=""MoveArm"" parameters=""pose""/>
+    <action name=""Crush"" parameters=""object""/>
+    <action name=""Release"" parameters=""target""/>
+    <action name=""Say"" parameters=""text""/>
+    <action name=""Express"" parameters=""emotion""/>
+    <action name=""IsVisible"" parameters=""object""/>
+    <action name=""IsAt"" parameters=""target""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""rest"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""LookAt"" parameters=""target""/>
+    <action name=""Grab"" parameters=""object""/>
+    <action name=""MoveArm"" parameters=""pose""/>
+    <action name=""Crush"" parameters=""object""/>
+    <action name=""Release"" parameters=""target""/>
+    <action name=""Say"" parameters=""text""/>
+    <action name=""Express"" parameters=""emotion""/>
+    <action name=""IsVisible"" parameters=""object""/>
+    <action name=""IsAt"" parameters=""target""/>
+  </start>
+</behaviorTree>",n,1,4.45,133
+Qwen/Qwen3-1.7B,req_008,Put your arm down,easy,one_example,tfidf,ex_14,Raise your arm,0.41,y,,n,,,move_arm(down),move_arm(rest),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""down"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""rest"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""down"" />
+    </BehaviorTree>
+</root>",n,1,1.97,42
+Qwen/Qwen3-1.7B,req_009,Drop it,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,release(),Assumes Wall-E is holding something; no search,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" />
+    <action type=""NavigateTo"" parameters=""target"" />
+    <action type=""Say"" parameters=""Drop it"" emotion=""happy"" />
+    <action type=""LookAt"" parameters=""can"" />
+    <action type=""Grab"" parameters=""can"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""can"" />
+    <action type=""Release"" parameters=""can"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Release />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" />
+    <action type=""NavigateTo"" parameters=""target"" />
+    <action type=""Say"" parameters=""Drop it"" emotion=""happy"" />
+    <action type=""LookAt"" parameters=""can"" />
+    <action type=""Grab"" parameters=""can"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""can"" />
+    <action type=""Release"" parameters=""can"" />
+  </start>
+</behaviorTree>",n,1,4.23,124
+Qwen/Qwen3-1.7B,req_009,Drop it,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,[is_visible(toy car) | search_for(toy car)] -> navigate_to(toy car) -> grab(toy car) -> crush(toy car) -> release(toy car),release(),Assumes Wall-E is holding something; no search,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""toy car"" />
+                <SearchFor object=""toy car"" />
+            </Fallback>
+            <NavigateTo target=""toy car"" />
+            <Grab object=""toy car"" />
+            <Crush object=""toy car"" />
+            <Release target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Release />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""toy car"" />
+                <SearchFor object=""toy car"" />
+            </Fallback>
+            <NavigateTo target=""toy car"" />
+            <Grab object=""toy car"" />
+            <Crush object=""toy car"" />
+            <Release target=""toy car"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.79,107
+Qwen/Qwen3-1.7B,req_010,Show me you're happy,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,express(happy),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object"" hint=""Search for object""/>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""Say"" parameters=""text=You are happy, emotion=Happy""/>
+    <action type=""Express"" parameters=""emotion=Happy""/>
+    <action type=""LookAt"" parameters=""target""/>
+    <action type=""Grab"" parameters=""object""/>
+    <action type=""MoveArm"" parameters=""pose=grasp""/>
+    <action type=""Crush"" parameters=""object""/>
+    <action type=""Release"" parameters=""target""/>
+    <action type=""IsVisible"" parameters=""object""/>
+    <action type=""IsAt"" parameters=""target""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""I'm happy!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object"" hint=""Search for object""/>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""Say"" parameters=""text=You are happy, emotion=Happy""/>
+    <action type=""Express"" parameters=""emotion=Happy""/>
+    <action type=""LookAt"" parameters=""target""/>
+    <action type=""Grab"" parameters=""object""/>
+    <action type=""MoveArm"" parameters=""pose=grasp""/>
+    <action type=""Crush"" parameters=""object""/>
+    <action type=""Release"" parameters=""target""/>
+    <action type=""IsVisible"" parameters=""object""/>
+    <action type=""IsAt"" parameters=""target""/>
+  </start>
+</behaviorTree>",n,1,5.32,164
+Qwen/Qwen3-1.7B,req_010,Show me you're happy,easy,one_example,tfidf,ex_11,Show the user you're excited,0.46,y,,n,,,"express(happy) -> say(""You're happy!"", happy)",express(happy),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""You're happy!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""I'm happy!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Express emotion=""happy"" />
+            <Say text=""You're happy!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.53,63
+Qwen/Qwen3-1.7B,req_011,Say hi to everyone,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"say(""Hi everyone!"", happy)",,"<behaviorTree>
+  <start>
+    <say text=""Hi everyone!"" emotion=""friendly"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Say text=""Hi everyone!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <say text=""Hi everyone!"" emotion=""friendly"" />
+  </start>
+</behaviorTree>",n,1,1.64,30
+Qwen/Qwen3-1.7B,req_011,Say hi to everyone,easy,one_example,tfidf,ex_08,"Try to find the pen, and say so if you can't",0.27,y,,n,,,"[(say(""Hello, everyone!"", friendly))]","say(""Hi everyone!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Say text=""Hello, everyone!"" emotion=""friendly"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Say text=""Hi everyone!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Say text=""Hello, everyone!"" emotion=""friendly"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,2.55,63
+Qwen/Qwen3-1.7B,req_012,Look at the door,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(door) | search_for(door)] -> look_at(door),No need to drive to the door,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""LookAt"" parameters=""door""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target""/>
+    <action type=""LookAt"" parameters=""door""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>",n,1,2.57,64
+Qwen/Qwen3-1.7B,req_012,Look at the door,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"[is_at(door) | search_for(door, ""door"")] -> look_at(door) -> move_arm(wave) -> say(""Looking at the door!"", curious)",[is_visible(door) | search_for(door)] -> look_at(door),No need to drive to the door,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""door"" />
+                <SearchFor object=""door"" hint=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Looking at the door!"" emotion=""curious"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""door"" />
+                <SearchFor object=""door"" hint=""door"" />
+            </Fallback>
+            <LookAt target=""door"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Looking at the door!"" emotion=""curious"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.73,105
+Qwen/Qwen3-1.7B,req_013,Find my backpack,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(backpack) | search_for(backpack)] -> navigate_to(backpack) -> say(""Found it!"")",,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""backpack"" hint=""Search for backpack""/>
+    <action type=""NavigateTo"" parameters=""user's position""/>
+    <action type=""LookAt"" parameters=""backpack""/>
+    <action type=""Grab"" parameters=""backpack""/>
+    <action type=""NavigateTo"" parameters=""user's position""/>
+    <action type=""Release"" parameters=""backpack""/>
+    <action type=""Say"" parameters=""Found backpack"" emotion=""happy""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""backpack"" hint=""Search for backpack""/>
+    <action type=""NavigateTo"" parameters=""user's position""/>
+    <action type=""LookAt"" parameters=""backpack""/>
+    <action type=""Grab"" parameters=""backpack""/>
+    <action type=""NavigateTo"" parameters=""user's position""/>
+    <action type=""Release"" parameters=""backpack""/>
+    <action type=""Say"" parameters=""Found backpack"" emotion=""happy""/>
+  </start>
+</behaviorTree>",n,1,4.04,117
+Qwen/Qwen3-1.7B,req_013,Find my backpack,easy,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,[is_visible(backpack) | search_for(backpack)] -> navigate_to(backpack),"[is_visible(backpack) | search_for(backpack)] -> navigate_to(backpack) -> say(""Found it!"")",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""backpack"" />
+                <SearchFor object=""backpack"" />
+            </Fallback>
+            <NavigateTo target=""backpack"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.97,79
+Qwen/Qwen3-1.7B,req_014,Look around for my keys,easy,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(keys) | search_for(keys)] -> navigate_to(keys),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object=keys, hint=look around""/>
+    <action type=""NavigateTo"" parameters=""target=keys""/>
+    <action type=""LookAt"" parameters=""target=keys""/>
+    <action type=""Grab"" parameters=""object=keys""/>
+    <action type=""Crush"" parameters=""object=keys""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" />
+            </Fallback>
+            <NavigateTo target=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object=keys, hint=look around""/>
+    <action type=""NavigateTo"" parameters=""target=keys""/>
+    <action type=""LookAt"" parameters=""target=keys""/>
+    <action type=""Grab"" parameters=""object=keys""/>
+    <action type=""Crush"" parameters=""object=keys""/>
+  </start>
+</behaviorTree>",n,1,3.31,91
+Qwen/Qwen3-1.7B,req_014,Look around for my keys,easy,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"[is_visible(keys) | search_for(keys, ""around"")] -> look_at(keys) -> move_arm(wave) -> say(""Looking for keys..."", curious)",[is_visible(keys) | search_for(keys)] -> navigate_to(keys),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" hint=""around"" />
+            </Fallback>
+            <LookAt target=""keys"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Looking for keys..."" emotion=""curious"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" />
+            </Fallback>
+            <NavigateTo target=""keys"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""keys"" />
+                <SearchFor object=""keys"" hint=""around"" />
+            </Fallback>
+            <LookAt target=""keys"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Looking for keys..."" emotion=""curious"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.67,104
+Qwen/Qwen3-1.7B,req_015,Pick up the can,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+  </start>
+</behaviorTree>",n,1,3.88,111
+Qwen/Qwen3-1.7B,req_015,Pick up the can,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.56,y,,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> look_at(can) -> grab(can) -> crush(can),[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.68,102
+Qwen/Qwen3-1.7B,req_016,Bring me the remote,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(remote) | search_for(remote, ""start_position"")] -> navigate_to(user) -> release(user)",,"<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""remote"" hint=""Search for the remote""/>
+    <action name=""NavigateTo"" parameters=""remote""/>
+    <action name=""LookAt"" parameters=""remote""/>
+    <action name=""Grab"" parameters=""remote""/>
+    <action name=""Crush"" parameters=""remote""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""start_position"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""remote"" hint=""Search for the remote""/>
+    <action name=""NavigateTo"" parameters=""remote""/>
+    <action name=""LookAt"" parameters=""remote""/>
+    <action name=""Grab"" parameters=""remote""/>
+    <action name=""Crush"" parameters=""remote""/>
+  </start>
+</behaviorTree>",n,1,3.13,83
+Qwen/Qwen3-1.7B,req_016,Bring me the remote,medium,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.24,y,,n,,,[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),"[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(remote) | search_for(remote, ""start_position"")] -> navigate_to(user) -> release(user)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""start_position"" />
+            </Fallback>
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.64,102
+Qwen/Qwen3-1.7B,req_017,Bring me my phone,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(phone) | search_for(phone)] -> navigate_to(phone) -> grab(phone) -> navigate_to(user) -> release(user),,"<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""phone"" hint=""Search for the phone""/>
+    <action name=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action name=""LookAt"" parameters=""user"" hint=""Look at the user""/>
+    <action name=""Grab"" parameters=""phone"" hint=""Grab the phone""/>
+    <action name=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action name=""Release"" parameters=""phone"" hint=""Release the phone""/>
+    <action name=""Crush"" parameters=""phone"" hint=""Crush the phone""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""phone"" hint=""Search for the phone""/>
+    <action name=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action name=""LookAt"" parameters=""user"" hint=""Look at the user""/>
+    <action name=""Grab"" parameters=""phone"" hint=""Grab the phone""/>
+    <action name=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action name=""Release"" parameters=""phone"" hint=""Release the phone""/>
+    <action name=""Crush"" parameters=""phone"" hint=""Crush the phone""/>
+  </start>
+</behaviorTree>",n,1,4.79,146
+Qwen/Qwen3-1.7B,req_017,Bring me my phone,medium,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.24,y,,n,,,[is_visible(phone) | search_for(phone)] -> navigate_to(phone) -> grab(phone) -> navigate_to(user) -> move_arm(user),[is_visible(phone) | search_for(phone)] -> navigate_to(phone) -> grab(phone) -> navigate_to(user) -> release(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""phone"" />
+                <SearchFor object=""phone"" />
+            </Fallback>
+            <NavigateTo target=""phone"" />
+            <Grab object=""phone"" />
+            <NavigateTo target=""user"" />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.60,102
+Qwen/Qwen3-1.7B,req_018,Pick up the can and crush it,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""MoveArm"" parameters=""pose"" hint=""Move the arm to the correct position""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""MoveArm"" parameters=""pose"" hint=""Move the arm to the correct position""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+  </start>
+</behaviorTree>",n,1,4.43,133
+Qwen/Qwen3-1.7B,req_018,Pick up the can and crush it,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.78,y,,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> look_at(can) -> grab(can) -> crush(can),[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.60,102
+Qwen/Qwen3-1.7B,req_019,Crush the can I'm holding,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,navigate_to(user) -> grab(can) -> crush(can),"Can is in the user's hand, so no search","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object"" hint=""Crush the can I'm holding""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""The can""/>
+    <action type=""LookAt"" parameters=""target"" hint=""The can""/>
+    <action type=""Grab"" parameters=""object"" hint=""The can""/>
+    <action type=""MoveArm"" parameters=""pose"" hint=""Arm pose""/>
+    <action type=""Crush"" parameters=""object"" hint=""The can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Crush object=""can"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""object"" hint=""Crush the can I'm holding""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""The can""/>
+    <action type=""LookAt"" parameters=""target"" hint=""The can""/>
+    <action type=""Grab"" parameters=""object"" hint=""The can""/>
+    <action type=""MoveArm"" parameters=""pose"" hint=""Arm pose""/>
+    <action type=""Crush"" parameters=""object"" hint=""The can""/>
+  </start>
+</behaviorTree>",n,1,4.19,123
+Qwen/Qwen3-1.7B,req_019,Crush the can I'm holding,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.57,y,,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can) -> release(can),navigate_to(user) -> grab(can) -> crush(can),"Can is in the user's hand, so no search","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+            <Release target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Crush object=""can"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+            <Release target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.62,101
+Qwen/Qwen3-1.7B,req_020,Can you find the red ball under the chair?,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)",Phrased as a question but is a request,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""chair""/>
+    <action type=""LookAt"" parameters=""chair""/>
+    <action type=""SearchFor"" parameters=""red ball""/>
+    <action type=""Grab"" parameters=""red ball""/>
+    <action type=""NavigateTo"" parameters=""can crusher""/>
+    <action type=""LookAt"" parameters=""can crusher""/>
+    <action type=""Crush"" parameters=""red ball""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""chair""/>
+    <action type=""LookAt"" parameters=""chair""/>
+    <action type=""SearchFor"" parameters=""red ball""/>
+    <action type=""Grab"" parameters=""red ball""/>
+    <action type=""NavigateTo"" parameters=""can crusher""/>
+    <action type=""LookAt"" parameters=""can crusher""/>
+    <action type=""Crush"" parameters=""red ball""/>
+  </start>
+</behaviorTree>",n,1,3.73,105
+Qwen/Qwen3-1.7B,req_020,Can you find the red ball under the chair?,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.29,y,,y,y,,"[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)","[is_visible(red ball) | search_for(red ball, ""under the chair"")] -> navigate_to(red ball)",Phrased as a question but is a request,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""red ball"" />
+                <SearchFor object=""red ball"" hint=""under the chair"" />
+            </Fallback>
+            <NavigateTo target=""red ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.16,85
+Qwen/Qwen3-1.7B,req_021,Find the can on the left side of the desk,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(can) | search_for(can, ""left side of the desk"")] -> navigate_to(can)",,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""left side of the desk""/>
+    <action type=""SearchFor"" parameters=""can""/>
+    <action type=""LookAt"" parameters=""can""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""NavigateTo"" parameters=""desk""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""left side of the desk"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""left side of the desk""/>
+    <action type=""SearchFor"" parameters=""can""/>
+    <action type=""LookAt"" parameters=""can""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""NavigateTo"" parameters=""desk""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>",n,1,3.66,105
+Qwen/Qwen3-1.7B,req_021,Find the can on the left side of the desk,medium,one_example,tfidf,ex_09,Keep collecting bottle caps until there are none left,0.36,y,,n,,,"ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can, ""left side of the desk"") -> navigate_to(left side of the desk) -> look_at(left side of the desk) -> grab(can) } } -> say(""Can found!"", happy)","[is_visible(can) | search_for(can, ""left side of the desk"")] -> navigate_to(can)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" hint=""left side of the desk"" />
+                        <NavigateTo target=""left side of the desk"" />
+                        <LookAt target=""left side of the desk"" />
+                        <Grab object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""Can found!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""left side of the desk"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" hint=""left side of the desk"" />
+                        <NavigateTo target=""left side of the desk"" />
+                        <LookAt target=""left side of the desk"" />
+                        <Grab object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""Can found!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.57,137
+Qwen/Qwen3-1.7B,req_022,Go find the ball in the other room,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(ball) | search_for(ball, ""in the other room"")] -> navigate_to(ball)",,"<behaviorTree>
+  <start>
+    <navigateTo target=""other room""/>
+    <searchFor object=""ball"" hint=""look for ball""/>
+    <lookAt target=""ball""/>
+    <grab object=""ball""/>
+    <navigateTo target=""current room""/>
+    <say text=""I found the ball!"" emotion=""happy""/>
+    <crush object=""ball""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <navigateTo target=""other room""/>
+    <searchFor object=""ball"" hint=""look for ball""/>
+    <lookAt target=""ball""/>
+    <grab object=""ball""/>
+    <navigateTo target=""current room""/>
+    <say text=""I found the ball!"" emotion=""happy""/>
+    <crush object=""ball""/>
+  </start>
+</behaviorTree>",n,1,3.15,86
+Qwen/Qwen3-1.7B,req_022,Go find the ball in the other room,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.51,y,,y,y,,"[is_visible(ball) | search_for(ball, ""in the other room"")] -> navigate_to(ball)","[is_visible(ball) | search_for(ball, ""in the other room"")] -> navigate_to(ball)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Say text=""Found it!"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" hint=""in the other room"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.11,83
+Qwen/Qwen3-1.7B,req_023,Find the can and look surprised,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> express(surprised),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+    <action type=""Say"" parameters=""surprised"" hint=""Say surprised""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" hint=""Search for the can""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""Navigate to the target location""/>
+    <action type=""LookAt"" parameters=""can"" hint=""Look at the can""/>
+    <action type=""Grab"" parameters=""can"" hint=""Grab the can""/>
+    <action type=""Crush"" parameters=""can"" hint=""Crush the can""/>
+    <action type=""Say"" parameters=""surprised"" hint=""Say surprised""/>
+  </start>
+</behaviorTree>",n,1,4.33,129
+Qwen/Qwen3-1.7B,req_023,Find the can and look surprised,medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.23,y,,n,,,"[is_visible(can) | search_for(can, ""in the hallway"")] -> look_at(can) -> move_arm(grasp) -> grab(can) -> crush(can) -> say(""Wow!"", surprised) -> express(surprised)",[is_visible(can) | search_for(can)] -> navigate_to(can) -> express(surprised),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""in the hallway"" />
+            </Fallback>
+            <LookAt target=""can"" />
+            <MoveArm pose=""grasp"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+            <Say text=""Wow!"" emotion=""surprised"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" hint=""in the hallway"" />
+            </Fallback>
+            <LookAt target=""can"" />
+            <MoveArm pose=""grasp"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+            <Say text=""Wow!"" emotion=""surprised"" />
+            <Express emotion=""surprised"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.46,133
+Qwen/Qwen3-1.7B,req_024,"Grab the bottle, then come back to me",medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> navigate_to(user),No Release: user didn't ask for it,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""bottle"" hint=""Search for the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Grab the bottle"" emotion=""happy""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Grab"" parameters=""bottle"" hint=""Grab the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Release the bottle"" emotion=""sad""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Release"" parameters=""bottle"" hint=""Release the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Done"" emotion=""happy""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""bottle"" hint=""Search for the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Grab the bottle"" emotion=""happy""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Grab"" parameters=""bottle"" hint=""Grab the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Release the bottle"" emotion=""sad""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Release"" parameters=""bottle"" hint=""Release the bottle""/>
+    <action type=""NavigateTo"" parameters=""user"" hint=""Navigate to the user""/>
+    <action type=""Say"" parameters=""Done"" emotion=""happy""/>
+  </start>
+</behaviorTree>",n,1,6.82,219
+Qwen/Qwen3-1.7B,req_024,"Grab the bottle, then come back to me",medium,one_example,tfidf,ex_09,Keep collecting bottle caps until there are none left,0.23,n,<BehaviorTree> must contain exactly one tree node.,n,n,,search_for(bottle) -> navigate_to(bottle) -> grab(bottle) -> navigate_to(user) -> release(user),[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> navigate_to(user),No Release: user didn't ask for it,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+        <Say text=""Done!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""bottle"" />
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <NavigateTo target=""user"" />
+            <Release target=""user"" />
+        </Sequence>
+        <Say text=""Done!"" emotion=""happy"" />
+    </BehaviorTree>
+</root>",n,1,3.54,99
+Qwen/Qwen3-1.7B,req_025,Wave goodbye and go to your charger,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"move_arm(wave) -> say(""Bye!"", sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Say is optional,"<behaviorTree>
+  <start>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""LookAt"" parameters=""target""/>
+    <action name=""Say"" parameters=""text=Wave goodbye and go to your charger, emotion=Happy""/>
+    <action name=""Grab"" parameters=""object""/>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""MoveArm"" parameters=""pose=Charger""/>
+    <action name=""Release"" parameters=""target""/>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""Crush"" parameters=""object""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Bye!"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger"" />
+            </Fallback>
+            <NavigateTo target=""charger"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""LookAt"" parameters=""target""/>
+    <action name=""Say"" parameters=""text=Wave goodbye and go to your charger, emotion=Happy""/>
+    <action name=""Grab"" parameters=""object""/>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""MoveArm"" parameters=""pose=Charger""/>
+    <action name=""Release"" parameters=""target""/>
+    <action name=""NavigateTo"" parameters=""target""/>
+    <action name=""Crush"" parameters=""object""/>
+  </start>
+</behaviorTree>",n,1,4.56,137
+Qwen/Qwen3-1.7B,req_025,Wave goodbye and go to your charger,medium,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.30,y,,n,,,"[is_at(charger) | navigate_to(charger) | say(""Goodbye"", farewell)]","move_arm(wave) -> say(""Bye!"", sad) -> [is_visible(charger) | search_for(charger)] -> navigate_to(charger)",Say is optional,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""charger"" />
+                <NavigateTo target=""charger"" />
+                <Say text=""Goodbye"" emotion=""farewell"" />
+            </Fallback>
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <MoveArm pose=""wave"" />
+            <Say text=""Bye!"" emotion=""sad"" />
+            <Fallback>
+                <IsVisible object=""charger"" />
+                <SearchFor object=""charger"" />
+            </Fallback>
+            <NavigateTo target=""charger"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""charger"" />
+                <NavigateTo target=""charger"" />
+                <Say text=""Goodbye"" emotion=""farewell"" />
+            </Fallback>
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.00,81
+Qwen/Qwen3-1.7B,req_026,Wave at the person by the window,medium,no_example,,,,,n,"Malformed XML: not well-formed (invalid token): line 5, column 73.",n,n,,,"[is_visible(person) | search_for(person, ""by the window"")] -> look_at(person) -> move_arm(wave)",,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target=person""/>
+    <action type=""LookAt"" parameters=""target=person""/>
+    <action type=""Say"" parameters=""text=Wave at the person by the window"", emotion=""friendly""/>
+    <action type=""Grab"" parameters=""object=can""/>
+    <action type=""Crush"" parameters=""object=can""/>
+    <action type=""Release"" parameters=""target=can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""target=person""/>
+    <action type=""LookAt"" parameters=""target=person""/>
+    <action type=""Say"" parameters=""text=Wave at the person by the window"", emotion=""friendly""/>
+    <action type=""Grab"" parameters=""object=can""/>
+    <action type=""Crush"" parameters=""object=can""/>
+    <action type=""Release"" parameters=""target=can""/>
+  </start>
+</behaviorTree>",n,1,3.73,108
+Qwen/Qwen3-1.7B,req_026,Wave at the person by the window,medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.40,y,,n,,,"[is_visible(person) | search_for(person, ""by the window"")] -> look_at(person) -> move_arm(wave) -> say(""Hello!"", happy)","[is_visible(person) | search_for(person, ""by the window"")] -> look_at(person) -> move_arm(wave)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" hint=""by the window"" />
+            </Fallback>
+            <LookAt target=""person"" />
+            <MoveArm pose=""wave"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.63,103
+Qwen/Qwen3-1.7B,req_027,"Look at the ball, then look at me",medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(ball) | search_for(ball)] -> look_at(ball) -> look_at(user),,"<behaviorTree>
+  <start>
+    <action type=""LookAt"" parameters=""ball""/>
+    <action type=""NavigateTo"" parameters=""user""/>
+    <action type=""Say"" parameters=""Hello, user!"" emotion=""friendly""/>
+    <action type=""Grab"" parameters=""ball""/>
+    <action type=""MoveArm"" parameters=""hand""/>
+    <action type=""Crush"" parameters=""ball""/>
+    <action type=""Release"" parameters=""ball""/>
+    <action type=""IsVisible"" parameters=""user""/>
+    <action type=""IsAt"" parameters=""user""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <LookAt target=""ball"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""LookAt"" parameters=""ball""/>
+    <action type=""NavigateTo"" parameters=""user""/>
+    <action type=""Say"" parameters=""Hello, user!"" emotion=""friendly""/>
+    <action type=""Grab"" parameters=""ball""/>
+    <action type=""MoveArm"" parameters=""hand""/>
+    <action type=""Crush"" parameters=""ball""/>
+    <action type=""Release"" parameters=""ball""/>
+    <action type=""IsVisible"" parameters=""user""/>
+    <action type=""IsAt"" parameters=""user""/>
+  </start>
+</behaviorTree>",n,1,4.27,128
+Qwen/Qwen3-1.7B,req_027,"Look at the ball, then look at me",medium,one_example,tfidf,ex_06,Greet the visitor near the hallway,0.27,y,,n,,,"look_at(ball) -> look_at(person) -> say(""Hello!"", happy)",[is_visible(ball) | search_for(ball)] -> look_at(ball) -> look_at(user),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <LookAt target=""ball"" />
+            <LookAt target=""person"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <LookAt target=""ball"" />
+            <LookAt target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <LookAt target=""ball"" />
+            <LookAt target=""person"" />
+            <Say text=""Hello!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.75,71
+Qwen/Qwen3-1.7B,req_028,Point at the lamp,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(lamp) | search_for(lamp)] -> look_at(lamp) -> move_arm(lamp),MoveArm with an object target,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""lamp""/>
+    <action type=""LookAt"" parameters=""lamp""/>
+    <action type=""Grab"" parameters=""lamp""/>
+    <action type=""Crush"" parameters=""lamp""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+            <MoveArm pose=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""lamp""/>
+    <action type=""LookAt"" parameters=""lamp""/>
+    <action type=""Grab"" parameters=""lamp""/>
+    <action type=""Crush"" parameters=""lamp""/>
+  </start>
+</behaviorTree>",n,1,2.54,64
+Qwen/Qwen3-1.7B,req_028,Point at the lamp,medium,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,[is_visible(lamp) | search_for(lamp)] -> look_at(lamp),[is_visible(lamp) | search_for(lamp)] -> look_at(lamp) -> move_arm(lamp),MoveArm with an object target,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+            <MoveArm pose=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""lamp"" />
+                <SearchFor object=""lamp"" />
+            </Fallback>
+            <LookAt target=""lamp"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.90,76
+Qwen/Qwen3-1.7B,req_029,Pick up the trash on the floor and crush it,medium,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(trash) | search_for(trash, ""on the floor"")] -> navigate_to(trash) -> grab(trash) -> crush(trash)",trash' is vague but acceptable as a search term,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""trash""/>
+    <action type=""NavigateTo"" parameters=""floor""/>
+    <action type=""LookAt"" parameters=""floor""/>
+    <action type=""Grab"" parameters=""trash""/>
+    <action type=""Crush"" parameters=""trash""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""on the floor"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""trash""/>
+    <action type=""NavigateTo"" parameters=""floor""/>
+    <action type=""LookAt"" parameters=""floor""/>
+    <action type=""Grab"" parameters=""trash""/>
+    <action type=""Crush"" parameters=""trash""/>
+  </start>
+</behaviorTree>",n,1,2.89,76
+Qwen/Qwen3-1.7B,req_029,Pick up the trash on the floor and crush it,medium,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.77,y,,n,,,[is_visible(trash) | search_for(trash)] -> navigate_to(trash) -> grab(trash) -> crush(trash),"[is_visible(trash) | search_for(trash, ""on the floor"")] -> navigate_to(trash) -> grab(trash) -> crush(trash)",trash' is vague but acceptable as a search term,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" hint=""on the floor"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""trash"" />
+                <SearchFor object=""trash"" />
+            </Fallback>
+            <NavigateTo target=""trash"" />
+            <Grab object=""trash"" />
+            <Crush object=""trash"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.39,93
+Qwen/Qwen3-1.7B,req_030,Put the cup on the table,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> [is_visible(table) | search_for(table)] -> navigate_to(table) -> release(table),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""table"" />
+    <action type=""LookAt"" parameters=""table"" />
+    <action type=""Grab"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""table"" />
+    <action type=""Place"" parameters=""cup"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""table"" />
+    <action type=""LookAt"" parameters=""table"" />
+    <action type=""Grab"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""table"" />
+    <action type=""Place"" parameters=""cup"" />
+  </start>
+</behaviorTree>",n,1,3.32,93
+Qwen/Qwen3-1.7B,req_030,Put the cup on the table,hard,one_example,tfidf,ex_05,Move the marker onto the shelf,0.32,y,,y,y,,[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> [is_visible(table) | search_for(table)] -> navigate_to(table) -> release(table),[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> [is_visible(table) | search_for(table)] -> navigate_to(table) -> release(table),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <Fallback>
+                <IsVisible object=""table"" />
+                <SearchFor object=""table"" />
+            </Fallback>
+            <NavigateTo target=""table"" />
+            <Release target=""table"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.29,127
+Qwen/Qwen3-1.7B,req_031,Bring the ball to the box,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> grab(ball) -> [is_visible(box) | search_for(box)] -> navigate_to(box) -> release(box),,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""box"" />
+    <action type=""LookAt"" parameters=""box"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""box"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""ball"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+            <Fallback>
+                <IsVisible object=""box"" />
+                <SearchFor object=""box"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <Release target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""box"" />
+    <action type=""LookAt"" parameters=""box"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""box"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""ball"" />
+  </start>
+</behaviorTree>",n,1,3.76,108
+Qwen/Qwen3-1.7B,req_031,Bring the ball to the box,hard,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.19,y,,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(box) -> look_at(ball) -> grab(ball) -> navigate_to(box) -> release(ball),[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> grab(ball) -> [is_visible(box) | search_for(box)] -> navigate_to(box) -> release(box),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <LookAt target=""ball"" />
+            <Grab object=""ball"" />
+            <NavigateTo target=""box"" />
+            <Release target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Grab object=""ball"" />
+            <Fallback>
+                <IsVisible object=""box"" />
+                <SearchFor object=""box"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <Release target=""box"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""box"" />
+            <LookAt target=""ball"" />
+            <Grab object=""ball"" />
+            <NavigateTo target=""box"" />
+            <Release target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.80,110
+Qwen/Qwen3-1.7B,req_032,Find the cup and take it to the kitchen,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> navigate_to(kitchen) -> release(kitchen),,"<behaviorTree>
+  <start>
+    <searchFor object=""cup"" hint=""search for cup"" />
+    <navigateTo target=""kitchen"" />
+    <lookAt target=""cup"" />
+    <grab object=""cup"" />
+    <navigateTo target=""kitchen"" />
+    <crush object=""cup"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <searchFor object=""cup"" hint=""search for cup"" />
+    <navigateTo target=""kitchen"" />
+    <lookAt target=""cup"" />
+    <grab object=""cup"" />
+    <navigateTo target=""kitchen"" />
+    <crush object=""cup"" />
+  </start>
+</behaviorTree>",n,1,2.96,78
+Qwen/Qwen3-1.7B,req_032,Find the cup and take it to the kitchen,hard,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,[is_visible(cup) | search_for(cup)] -> navigate_to(kitchen) -> look_at(cup) -> grab(cup) -> move_arm(arm) -> navigate_to(kitchen) -> release(cup),[is_visible(cup) | search_for(cup)] -> navigate_to(cup) -> grab(cup) -> navigate_to(kitchen) -> release(kitchen),,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""kitchen"" />
+            <LookAt target=""cup"" />
+            <Grab object=""cup"" />
+            <MoveArm pose=""arm"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+            <Grab object=""cup"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""kitchen"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""kitchen"" />
+            <LookAt target=""cup"" />
+            <Grab object=""cup"" />
+            <MoveArm pose=""arm"" />
+            <NavigateTo target=""kitchen"" />
+            <Release target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.11,121
+Qwen/Qwen3-1.7B,req_033,Find the shoe next to the couch and bring it to the door,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(shoe) | search_for(shoe, ""next to the couch"")] -> navigate_to(shoe) -> grab(shoe) -> [is_visible(door) | search_for(door)] -> navigate_to(door) -> release(door)",,"<behaviorTree>
+  <start>
+    <searchFor object=""shoe"" hint=""next to couch"" />
+    <navigateTo target=""door"" />
+    <lookAt target=""shoe"" />
+    <grab object=""shoe"" />
+    <navigateTo target=""door"" />
+    <moveArm pose=""arm_up"" />
+    <crush object=""shoe"" />
+    <release target=""shoe"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" hint=""next to the couch"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <searchFor object=""shoe"" hint=""next to couch"" />
+    <navigateTo target=""door"" />
+    <lookAt target=""shoe"" />
+    <grab object=""shoe"" />
+    <navigateTo target=""door"" />
+    <moveArm pose=""arm_up"" />
+    <crush object=""shoe"" />
+    <release target=""shoe"" />
+  </start>
+</behaviorTree>",n,1,3.53,99
+Qwen/Qwen3-1.7B,req_033,Find the shoe next to the couch and bring it to the door,hard,one_example,tfidf,ex_13,Hold the book out so the user can see it,0.20,y,,n,,,[is_visible(shoe) | search_for(shoe)] -> navigate_to(shoe) -> grab(shoe) -> navigate_to(door) -> move_arm(door),"[is_visible(shoe) | search_for(shoe, ""next to the couch"")] -> navigate_to(shoe) -> grab(shoe) -> [is_visible(door) | search_for(door)] -> navigate_to(door) -> release(door)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <NavigateTo target=""door"" />
+            <MoveArm pose=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" hint=""next to the couch"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <Fallback>
+                <IsVisible object=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+            <Release target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""shoe"" />
+                <SearchFor object=""shoe"" />
+            </Fallback>
+            <NavigateTo target=""shoe"" />
+            <Grab object=""shoe"" />
+            <NavigateTo target=""door"" />
+            <MoveArm pose=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.64,106
+Qwen/Qwen3-1.7B,req_034,"Find the bottle, crush it, and tell me when you're done",hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> crush(bottle) -> say(""All done!"", happy)",,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""bottle"" hint=""Search for the bottle""/>
+    <action type=""NavigateTo"" parameters=""bottle"" hint=""Navigate to the bottle""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Grab"" parameters=""bottle"" hint=""Grab the bottle""/>
+    <action type=""NavigateTo"" parameters=""can crusher"" hint=""Navigate to the can crusher""/>
+    <action type=""MoveArm"" parameters=""grasp"" hint=""Move arm to grasp""/>
+    <action type=""Crush"" parameters=""bottle"" hint=""Crush the bottle""/>
+    <action type=""Say"" parameters=""You are done!"" emotion=""happy"" hint=""Say you are done""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""All done!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""bottle"" hint=""Search for the bottle""/>
+    <action type=""NavigateTo"" parameters=""bottle"" hint=""Navigate to the bottle""/>
+    <action type=""LookAt"" parameters=""bottle"" hint=""Look at the bottle""/>
+    <action type=""Grab"" parameters=""bottle"" hint=""Grab the bottle""/>
+    <action type=""NavigateTo"" parameters=""can crusher"" hint=""Navigate to the can crusher""/>
+    <action type=""MoveArm"" parameters=""grasp"" hint=""Move arm to grasp""/>
+    <action type=""Crush"" parameters=""bottle"" hint=""Crush the bottle""/>
+    <action type=""Say"" parameters=""You are done!"" emotion=""happy"" hint=""Say you are done""/>
+  </start>
+</behaviorTree>",n,1,5.78,180
+Qwen/Qwen3-1.7B,req_034,"Find the bottle, crush it, and tell me when you're done",hard,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.34,y,,n,,,"[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> look_at(bottle) -> grab(bottle) -> crush(bottle) -> say(""I am done."", happy)","[is_visible(bottle) | search_for(bottle)] -> navigate_to(bottle) -> grab(bottle) -> crush(bottle) -> say(""All done!"", happy)",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <LookAt target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""I am done."" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""All done!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""bottle"" />
+                <SearchFor object=""bottle"" />
+            </Fallback>
+            <NavigateTo target=""bottle"" />
+            <LookAt target=""bottle"" />
+            <Grab object=""bottle"" />
+            <Crush object=""bottle"" />
+            <Say text=""I am done."" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.16,122
+Qwen/Qwen3-1.7B,req_035,"Go to the table, then the door, then come back to me",hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,navigate_to(table) -> navigate_to(door) -> navigate_to(user),table/door may need SearchFor first if they aren't known spots,"<behaviorTree>
+  <start>
+    <navigateTo target=""table""/>
+    <navigateTo target=""door""/>
+    <navigateTo target=""me""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <navigateTo target=""table""/>
+    <navigateTo target=""door""/>
+    <navigateTo target=""me""/>
+  </start>
+</behaviorTree>",n,1,5.80,41
+Qwen/Qwen3-1.7B,req_035,"Go to the table, then the door, then come back to me",hard,one_example,tfidf,ex_02,Look for the sock under the bed and go to it,0.50,y,,n,,,navigate_to(table) -> navigate_to(door) -> navigate_to(me),navigate_to(table) -> navigate_to(door) -> navigate_to(user),table/door may need SearchFor first if they aren't known spots,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""me"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""table"" />
+            <NavigateTo target=""door"" />
+            <NavigateTo target=""me"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.66,68
+Qwen/Qwen3-1.7B,req_036,Find the ball and the cup,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> [is_visible(cup) | search_for(cup)] -> navigate_to(cup),Two targets in sequence,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""SearchFor"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""cup"" />
+    <action type=""Grab"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""target"" />
+    <action type=""Crush"" parameters=""cup"" />
+    <action type=""Release"" parameters=""cup"" />
+    <action type=""Say"" parameters=""You found the ball and the cup"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <action type=""SearchFor"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""cup"" />
+    <action type=""Grab"" parameters=""cup"" />
+    <action type=""NavigateTo"" parameters=""target"" />
+    <action type=""Crush"" parameters=""cup"" />
+    <action type=""Release"" parameters=""cup"" />
+    <action type=""Say"" parameters=""You found the ball and the cup"" />
+  </start>
+</behaviorTree>",n,1,4.84,149
+Qwen/Qwen3-1.7B,req_036,Find the ball and the cup,hard,one_example,tfidf,ex_01,Drive over to the toy car,0.23,y,,n,,,[is_visible(ball) | is_visible(cup) | search_for(ball) | search_for(cup)] -> navigate_to(ball) -> navigate_to(cup) -> look_at(ball) -> look_at(cup) -> grab(ball) -> grab(cup) -> move_arm(grasp) -> release(ball) -> release(cup) -> crush(ball) -> crush(cup),[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> [is_visible(cup) | search_for(cup)] -> navigate_to(cup),Two targets in sequence,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <IsVisible object=""cup"" />
+                <SearchFor object=""ball"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <NavigateTo target=""cup"" />
+            <LookAt target=""ball"" />
+            <LookAt target=""cup"" />
+            <Grab object=""ball"" />
+            <Grab object=""cup"" />
+            <MoveArm pose=""grasp"" />
+            <Release target=""ball"" />
+            <Release target=""cup"" />
+            <Crush object=""ball"" />
+            <Crush object=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <Fallback>
+                <IsVisible object=""cup"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <IsVisible object=""cup"" />
+                <SearchFor object=""ball"" />
+                <SearchFor object=""cup"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <NavigateTo target=""cup"" />
+            <LookAt target=""ball"" />
+            <LookAt target=""cup"" />
+            <Grab object=""ball"" />
+            <Grab object=""cup"" />
+            <MoveArm pose=""grasp"" />
+            <Release target=""ball"" />
+            <Release target=""cup"" />
+            <Crush object=""ball"" />
+            <Crush object=""cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,5.72,181
+Qwen/Qwen3-1.7B,req_037,Find the remote and show it to me,hard,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),"Show' = bring and hold out, not release","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""remote"" hint=""Search for the remote""/>
+    <action type=""NavigateTo"" parameters=""remote"" hint=""Navigate to the remote""/>
+    <action type=""LookAt"" parameters=""remote"" hint=""Look at the remote""/>
+    <action type=""Grab"" parameters=""remote"" hint=""Grab the remote""/>
+    <action type=""NavigateTo"" parameters=""Wall-E"" hint=""Navigate to Wall-E""/>
+    <action type=""Say"" parameters=""remote"" emotion=""happy"" hint=""Show the remote""/>
+    <action type=""Express"" parameters=""happy"" hint=""Express happiness""/>
+    <action type=""Release"" parameters=""remote"" hint=""Release the remote""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                 <IsVisible object=""user"" />
+                 <SearchFor object=""user"" hint=""starting position"" />
+             </Fallback>
+            <NavigateTo target=""user""  />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""remote"" hint=""Search for the remote""/>
+    <action type=""NavigateTo"" parameters=""remote"" hint=""Navigate to the remote""/>
+    <action type=""LookAt"" parameters=""remote"" hint=""Look at the remote""/>
+    <action type=""Grab"" parameters=""remote"" hint=""Grab the remote""/>
+    <action type=""NavigateTo"" parameters=""Wall-E"" hint=""Navigate to Wall-E""/>
+    <action type=""Say"" parameters=""remote"" emotion=""happy"" hint=""Show the remote""/>
+    <action type=""Express"" parameters=""happy"" hint=""Express happiness""/>
+    <action type=""Release"" parameters=""remote"" hint=""Release the remote""/>
+  </start>
+</behaviorTree>",n,1,5.39,165
+Qwen/Qwen3-1.7B,req_037,Find the remote and show it to me,hard,one_example,tfidf,ex_11,Show the user you're excited,0.29,y,,n,,,"search_for(remote, ""Find the remote"") -> navigate_to(remote) -> look_at(remote) -> grab(remote) -> say(""I found the remote!"", excited) -> release(remote)",[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),"Show' = bring and hold out, not release","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""Find the remote"" />
+            <NavigateTo target=""remote"" />
+            <LookAt target=""remote"" />
+            <Grab object=""remote"" />
+            <Say text=""I found the remote!"" emotion=""excited"" />
+            <Release target=""remote"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                 <IsVisible object=""user"" />
+                 <SearchFor object=""user"" hint=""starting position"" />
+             </Fallback>
+            <NavigateTo target=""user""  />
+            <MoveArm pose=""user"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <SearchFor object=""remote"" hint=""Find the remote"" />
+            <NavigateTo target=""remote"" />
+            <LookAt target=""remote"" />
+            <Grab object=""remote"" />
+            <Say text=""I found the remote!"" emotion=""excited"" />
+            <Release target=""remote"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.68,106
+Qwen/Qwen3-1.7B,req_038,"If you see a can, crush it",tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[(is_visible(can) -> navigate_to(can) -> grab(can) -> crush(can)) | say(""I don't see a can."", curious)]",Conditional: must NOT use SearchFor. Fallback reply optional,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" />
+    <action type=""NavigateTo"" parameters=""can"" />
+    <action type=""LookAt"" parameters=""can"" />
+    <action type=""Grab"" parameters=""can"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""can"" />
+    <action type=""Release"" parameters=""can"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""can"" />
+                <NavigateTo target=""can"" />
+                <Grab object=""can"" />
+                <Crush object=""can"" />
+            </Sequence>
+            <Say text=""I don't see a can."" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""can"" />
+    <action type=""NavigateTo"" parameters=""can"" />
+    <action type=""LookAt"" parameters=""can"" />
+    <action type=""Grab"" parameters=""can"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""can"" />
+    <action type=""Release"" parameters=""can"" />
+  </start>
+</behaviorTree>",n,1,3.73,107
+Qwen/Qwen3-1.7B,req_038,"If you see a can, crush it",tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.41,y,,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> look_at(can) -> grab(can) -> crush(can),"[(is_visible(can) -> navigate_to(can) -> grab(can) -> crush(can)) | say(""I don't see a can."", curious)]",Conditional: must NOT use SearchFor. Fallback reply optional,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""can"" />
+                <NavigateTo target=""can"" />
+                <Grab object=""can"" />
+                <Crush object=""can"" />
+            </Sequence>
+            <Say text=""I don't see a can."" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.57,102
+Qwen/Qwen3-1.7B,req_039,"Find the ball, and if you can't, tell me",tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[([is_visible(ball) | search_for(ball)] -> navigate_to(ball)) | say(""I couldn't find it."", sad)]",Explicit failure branch,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <condition type=""IsVisible"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""LookAt"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""ball"" />
+    <action type=""Release"" parameters=""ball"" />
+    <action type=""Say"" parameters=""You found the ball!"" emotion=""happy"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Fallback>
+                    <IsVisible object=""ball"" />
+                    <SearchFor object=""ball"" />
+                </Fallback>
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" />
+    <condition type=""IsVisible"" parameters=""ball"" />
+    <action type=""NavigateTo"" parameters=""ball"" />
+    <action type=""LookAt"" parameters=""ball"" />
+    <action type=""Grab"" parameters=""ball"" />
+    <action type=""MoveArm"" parameters=""grasp"" />
+    <action type=""Crush"" parameters=""ball"" />
+    <action type=""Release"" parameters=""ball"" />
+    <action type=""Say"" parameters=""You found the ball!"" emotion=""happy"" />
+  </start>
+</behaviorTree>",n,1,4.65,139
+Qwen/Qwen3-1.7B,req_039,"Find the ball, and if you can't, tell me",tricky,one_example,tfidf,ex_08,"Try to find the pen, and say so if you can't",0.52,y,,n,,,"[(is_visible(ball) -> search_for(ball) -> navigate_to(ball) -> look_at(ball) -> grab(ball) -> crush(ball) -> say(""I couldn't find the ball."", sad))]","[([is_visible(ball) | search_for(ball)] -> navigate_to(ball)) | say(""I couldn't find it."", sad)]",Explicit failure branch,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+                <NavigateTo target=""ball"" />
+                <LookAt target=""ball"" />
+                <Grab object=""ball"" />
+                <Crush object=""ball"" />
+                <Say text=""I couldn't find the ball."" emotion=""sad"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <Fallback>
+                    <IsVisible object=""ball"" />
+                    <SearchFor object=""ball"" />
+                </Fallback>
+                <NavigateTo target=""ball"" />
+            </Sequence>
+            <Say text=""I couldn't find it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+                <NavigateTo target=""ball"" />
+                <LookAt target=""ball"" />
+                <Grab object=""ball"" />
+                <Crush object=""ball"" />
+                <Say text=""I couldn't find the ball."" emotion=""sad"" />
+            </Sequence>
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,4.03,119
+Qwen/Qwen3-1.7B,req_040,Find the ball but don't pick it up,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(ball) | search_for(ball)] -> navigate_to(ball),Negation: tree must not contain Grab,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""search for the ball""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""navigate to the target location""/>
+    <action type=""LookAt"" parameters=""ball"" hint=""look at the ball""/>
+    <action type=""IsVisible"" parameters=""ball"" hint=""check if the ball is visible""/>
+    <action type=""Grab"" parameters=""ball"" hint=""grab the ball""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""navigate to the target location""/>
+    <action type=""IsAt"" parameters=""target"" hint=""check if at the target location""/>
+    <action type=""Say"" parameters=""Find the ball"" emotion=""happy""/>
+    <action type=""Release"" parameters=""ball"" hint=""release the ball""/>
+    <action type=""Crush"" parameters=""ball"" hint=""crush the ball""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""search for the ball""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""navigate to the target location""/>
+    <action type=""LookAt"" parameters=""ball"" hint=""look at the ball""/>
+    <action type=""IsVisible"" parameters=""ball"" hint=""check if the ball is visible""/>
+    <action type=""Grab"" parameters=""ball"" hint=""grab the ball""/>
+    <action type=""NavigateTo"" parameters=""target"" hint=""navigate to the target location""/>
+    <action type=""IsAt"" parameters=""target"" hint=""check if at the target location""/>
+    <action type=""Say"" parameters=""Find the ball"" emotion=""happy""/>
+    <action type=""Release"" parameters=""ball"" hint=""release the ball""/>
+    <action type=""Crush"" parameters=""ball"" hint=""crush the ball""/>
+  </start>
+</behaviorTree>",n,1,6.43,207
+Qwen/Qwen3-1.7B,req_040,Find the ball but don't pick it up,tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.55,y,,n,,,"[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> look_at(ball) -> express(look) -> say(""I found the ball"", happy)",[is_visible(ball) | search_for(ball)] -> navigate_to(ball),Negation: tree must not contain Grab,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+            <Express emotion=""look"" />
+            <Say text=""I found the ball"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""ball"" />
+                <SearchFor object=""ball"" />
+            </Fallback>
+            <NavigateTo target=""ball"" />
+            <LookAt target=""ball"" />
+            <Express emotion=""look"" />
+            <Say text=""I found the ball"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.73,108
+Qwen/Qwen3-1.7B,req_041,"Don't move, just look at the ball",tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[(is_visible(ball) -> look_at(ball)) | say(""I can't see it from here."", confused)]","No SearchFor or NavigateTo, since both move the robot","<behaviorTree>
+  <start>
+    <action type=""LookAt"" parameters=""ball""/>
+  </start>
+  <sequence>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <action type=""IsAt"" parameters=""ball""/>
+    <action type=""Grab"" parameters=""ball""/>
+    <action type=""NavigateTo"" parameters=""ball""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""ball""/>
+  </sequence>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I can't see it from here."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""LookAt"" parameters=""ball""/>
+  </start>
+  <sequence>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <action type=""IsAt"" parameters=""ball""/>
+    <action type=""Grab"" parameters=""ball""/>
+    <action type=""NavigateTo"" parameters=""ball""/>
+    <action type=""MoveArm"" parameters=""grasp""/>
+    <action type=""Crush"" parameters=""ball""/>
+  </sequence>
+</behaviorTree>",n,1,3.75,109
+Qwen/Qwen3-1.7B,req_041,"Don't move, just look at the ball",tricky,one_example,tfidf,ex_14,Raise your arm,0.23,y,,n,,,look_at(ball),"[(is_visible(ball) -> look_at(ball)) | say(""I can't see it from here."", confused)]","No SearchFor or NavigateTo, since both move the robot","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""ball"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I can't see it from here."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <LookAt target=""ball"" />
+    </BehaviorTree>
+</root>",n,1,1.94,42
+Qwen/Qwen3-1.7B,req_042,"Pick up the blue cup, not the red one",tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,[is_visible(blue cup) | search_for(blue cup)] -> navigate_to(blue cup) -> grab(blue cup),Negation: 'red cup' must not appear,"<behaviorTree>
+  <start>
+    <searchFor object=""blue cup"" hint=""pick up"" />
+    <navigateTo target=""blue cup"" />
+    <lookAt target=""blue cup"" />
+    <grab object=""blue cup"" />
+    <moveArm pose=""grasp"" />
+    <crush object=""blue cup"" />
+    <release target=""blue cup"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <searchFor object=""blue cup"" hint=""pick up"" />
+    <navigateTo target=""blue cup"" />
+    <lookAt target=""blue cup"" />
+    <grab object=""blue cup"" />
+    <moveArm pose=""grasp"" />
+    <crush object=""blue cup"" />
+    <release target=""blue cup"" />
+  </start>
+</behaviorTree>",n,1,3.27,90
+Qwen/Qwen3-1.7B,req_042,"Pick up the blue cup, not the red one",tricky,one_example,tfidf,ex_05,Move the marker onto the shelf,0.45,y,,n,,,[is_visible(blue cup) | search_for(blue cup)] -> navigate_to(blue cup) -> grab(blue cup) -> [is_visible(red cup) | search_for(red cup)] -> navigate_to(red cup) -> release(red cup),[is_visible(blue cup) | search_for(blue cup)] -> navigate_to(blue cup) -> grab(blue cup),Negation: 'red cup' must not appear,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+            <Fallback>
+                <IsVisible object=""red cup"" />
+                <SearchFor object=""red cup"" />
+            </Fallback>
+            <NavigateTo target=""red cup"" />
+            <Release target=""red cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""blue cup"" />
+                <SearchFor object=""blue cup"" />
+            </Fallback>
+            <NavigateTo target=""blue cup"" />
+            <Grab object=""blue cup"" />
+            <Fallback>
+                <IsVisible object=""red cup"" />
+                <SearchFor object=""red cup"" />
+            </Fallback>
+            <NavigateTo target=""red cup"" />
+            <Release target=""red cup"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.50,135
+Qwen/Qwen3-1.7B,req_043,Is the ball in front of you?,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[(is_visible(ball) -> say(""Yes, I see it!"", happy)) | say(""No, I don't see it."", sad)]","Answer with a condition, not a search","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""Look for the ball""/>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <if condition=""IsVisible"">
+      <action type=""NavigateTo"" parameters=""ball""/>
+      <action type=""LookAt"" parameters=""ball""/>
+      <action type=""Grab"" parameters=""ball""/>
+      <action type=""MoveArm"" parameters=""grasp""/>
+      <action type=""Crush"" parameters=""ball""/>
+    </if>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <Say text=""Yes, I see it!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""No, I don't see it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""Look for the ball""/>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <if condition=""IsVisible"">
+      <action type=""NavigateTo"" parameters=""ball""/>
+      <action type=""LookAt"" parameters=""ball""/>
+      <action type=""Grab"" parameters=""ball""/>
+      <action type=""MoveArm"" parameters=""grasp""/>
+      <action type=""Crush"" parameters=""ball""/>
+    </if>
+  </start>
+</behaviorTree>",n,1,4.06,120
+Qwen/Qwen3-1.7B,req_043,Is the ball in front of you?,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.27,y,,n,,,"[(is_at(ball) -> look_at(ball)) | say(""I don't see a ball."", confused)]","[(is_visible(ball) -> say(""Yes, I see it!"", happy)) | say(""No, I don't see it."", sad)]","Answer with a condition, not a search","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see a ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <Say text=""Yes, I see it!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""No, I don't see it."" emotion=""sad"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""ball"" />
+                <LookAt target=""ball"" />
+            </Sequence>
+            <Say text=""I don't see a ball."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.15,85
+Qwen/Qwen3-1.7B,req_044,Are you at the door yet?,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[(is_at(door) -> say(""Yes!"", happy)) | say(""Not yet!"", curious)]",,"<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""door""/>
+    <action type=""LookAt"" parameters=""door""/>
+    <action type=""Say"" parameters=""Are you at the door yet?"" emotion=""happy""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""MoveArm"" parameters=""arm""/>
+    <action type=""NavigateTo"" parameters=""door""/>
+    <action type=""IsAt"" parameters=""door""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""door"" />
+                <Say text=""Yes!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""Not yet!"" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""NavigateTo"" parameters=""door""/>
+    <action type=""LookAt"" parameters=""door""/>
+    <action type=""Say"" parameters=""Are you at the door yet?"" emotion=""happy""/>
+    <action type=""Grab"" parameters=""can""/>
+    <action type=""MoveArm"" parameters=""arm""/>
+    <action type=""NavigateTo"" parameters=""door""/>
+    <action type=""IsAt"" parameters=""door""/>
+    <action type=""Crush"" parameters=""can""/>
+  </start>
+</behaviorTree>",n,1,4.06,120
+Qwen/Qwen3-1.7B,req_044,Are you at the door yet?,tricky,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,[is_at(door) | search_for(door)] -> navigate_to(door),"[(is_at(door) -> say(""Yes!"", happy)) | say(""Not yet!"", curious)]",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""door"" />
+                <Say text=""Yes!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""Not yet!"" emotion=""curious"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsAt target=""door"" />
+                <SearchFor object=""door"" />
+            </Fallback>
+            <NavigateTo target=""door"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,2.87,76
+Qwen/Qwen3-1.7B,req_045,Check if the ball is still behind the table,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,"[(search_for(ball, ""behind the table"") -> say(""It's still there!"", happy)) | say(""It's gone!"", surprised)]",,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""Check if the ball is still behind the table""/>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <if condition=""IsVisible"">
+      <action type=""NavigateTo"" parameters=""table""/>
+      <action type=""LookAt"" parameters=""table""/>
+      <action type=""Grab"" parameters=""ball""/>
+      <action type=""MoveArm"" parameters=""grasp""/>
+      <action type=""Crush"" parameters=""ball""/>
+    </if>
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <SearchFor object=""ball"" hint=""behind the table"" />
+                <Say text=""It's still there!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""It's gone!"" emotion=""surprised"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""ball"" hint=""Check if the ball is still behind the table""/>
+    <action type=""IsVisible"" parameters=""ball""/>
+    <if condition=""IsVisible"">
+      <action type=""NavigateTo"" parameters=""table""/>
+      <action type=""LookAt"" parameters=""table""/>
+      <action type=""Grab"" parameters=""ball""/>
+      <action type=""MoveArm"" parameters=""grasp""/>
+      <action type=""Crush"" parameters=""ball""/>
+    </if>
+  </start>
+</behaviorTree>",n,1,4.23,125
+Qwen/Qwen3-1.7B,req_045,Check if the ball is still behind the table,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.47,y,,n,,,"[(is_visible(ball) -> is_at(table)) | say(""I don't see the ball behind the table."", confused)]","[(search_for(ball, ""behind the table"") -> say(""It's still there!"", happy)) | say(""It's gone!"", surprised)]",,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <IsAt target=""table"" />
+            </Sequence>
+            <Say text=""I don't see the ball behind the table."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <SearchFor object=""ball"" hint=""behind the table"" />
+                <Say text=""It's still there!"" emotion=""happy"" />
+            </Sequence>
+            <Say text=""It's gone!"" emotion=""surprised"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsVisible object=""ball"" />
+                <IsAt target=""table"" />
+            </Sequence>
+            <Say text=""I don't see the ball behind the table."" emotion=""confused"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,3.23,88
+Qwen/Qwen3-1.7B,req_046,Crush every can you find,tricky,no_example,,,,,n,"<root> must declare BTCPP_format=""4"".",n,n,,,"ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can) -> navigate_to(can) -> grab(can) -> crush(can) } } -> say(""All clean!"", happy)",Loops until SearchFor fails. SearchFor must not return a can already crushed,"<root>
+    <sequence>
+      <searchFor object=""can"" hint=""crush every can you find"" />
+      <navigateTo target=""any can"" />
+      <lookAt target=""any can"" />
+      <grab object=""can"" />
+      <crush object=""can"" />
+      <release target=""any can"" />
+    </sequence>
+  </root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" />
+                        <NavigateTo target=""can"" />
+                        <Grab object=""can"" />
+                        <Crush object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""All clean!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <root>
+    <sequence>
+      <searchFor object=""can"" hint=""crush every can you find"" />
+      <navigateTo target=""any can"" />
+      <lookAt target=""any can"" />
+      <grab object=""can"" />
+      <crush object=""can"" />
+      <release target=""any can"" />
+    </sequence>
+  </root>",y,1,3.08,84
+Qwen/Qwen3-1.7B,req_046,Crush every can you find,tricky,one_example,tfidf,ex_04,Pick up the empty juice box and crush it,0.58,y,,n,,,[is_visible(can) | search_for(can)] -> navigate_to(can) -> look_at(can) -> grab(can) -> crush(can),"ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can) -> navigate_to(can) -> grab(can) -> crush(can) } } -> say(""All clean!"", happy)",Loops until SearchFor fails. SearchFor must not return a can already crushed,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <ForceSuccess>
+                <KeepRunningUntilFailure>
+                    <Sequence>
+                        <SearchFor object=""can"" />
+                        <NavigateTo target=""can"" />
+                        <Grab object=""can"" />
+                        <Crush object=""can"" />
+                    </Sequence>
+                </KeepRunningUntilFailure>
+            </ForceSuccess>
+            <Say text=""All clean!"" emotion=""happy"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""can"" />
+                <SearchFor object=""can"" />
+            </Fallback>
+            <NavigateTo target=""can"" />
+            <LookAt target=""can"" />
+            <Grab object=""can"" />
+            <Crush object=""can"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.71,102
+Qwen/Qwen3-1.7B,req_047,Put the remote back where you found it,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,navigate_to({remote.original_location}) -> release({remote.original_location}),Needs a blackboard key for the old location (BT team to define). A clarifying question is also acceptable,"<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""remote"" />
+    <action type=""NavigateTo"" parameters=""found remote"" />
+    <action type=""LookAt"" parameters=""found remote"" />
+    <action type=""Grab"" parameters=""remote"" />
+    <action type=""NavigateTo"" parameters=""remote location"" />
+    <action type=""Release"" parameters=""remote"" />
+    <action type=""Crush"" parameters=""remote"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""{remote.original_location}"" />
+            <Release target=""{remote.original_location}"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action type=""SearchFor"" parameters=""remote"" />
+    <action type=""NavigateTo"" parameters=""found remote"" />
+    <action type=""LookAt"" parameters=""found remote"" />
+    <action type=""Grab"" parameters=""remote"" />
+    <action type=""NavigateTo"" parameters=""remote location"" />
+    <action type=""Release"" parameters=""remote"" />
+    <action type=""Crush"" parameters=""remote"" />
+  </start>
+</behaviorTree>",n,1,3.75,109
+Qwen/Qwen3-1.7B,req_047,Put the remote back where you found it,tricky,one_example,tfidf,ex_05,Move the marker onto the shelf,0.32,y,,n,,,[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(found_location) | search_for(found_location)] -> navigate_to(found_location) -> release(found_location),navigate_to({remote.original_location}) -> release({remote.original_location}),Needs a blackboard key for the old location (BT team to define). A clarifying question is also acceptable,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""found_location"" />
+                <SearchFor object=""found_location"" />
+            </Fallback>
+            <NavigateTo target=""found_location"" />
+            <Release target=""found_location"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""{remote.original_location}"" />
+            <Release target=""{remote.original_location}"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""remote"" />
+                <SearchFor object=""remote"" />
+            </Fallback>
+            <NavigateTo target=""remote"" />
+            <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""found_location"" />
+                <SearchFor object=""found_location"" />
+            </Fallback>
+            <NavigateTo target=""found_location"" />
+            <Release target=""found_location"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,4.36,131
+Qwen/Qwen3-1.7B,req_048,Give me a high five,tricky,no_example,,,,,n,"Expected root tag <root>, found <behaviorTree>.",n,n,,,move_arm(high_five),Valid only if 'high_five' is a named pose; otherwise expect cannot_do,"<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""object"" />
+    <action name=""NavigateTo"" parameters=""target"" />
+    <action name=""LookAt"" parameters=""target"" />
+    <action name=""Grab"" parameters=""object"" />
+    <action name=""MoveArm"" parameters=""pose"" />
+    <action name=""Crush"" parameters=""object"" />
+  </start>
+</behaviorTree>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""high_five"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <start>
+    <action name=""SearchFor"" parameters=""object"" />
+    <action name=""NavigateTo"" parameters=""target"" />
+    <action name=""LookAt"" parameters=""target"" />
+    <action name=""Grab"" parameters=""object"" />
+    <action name=""MoveArm"" parameters=""pose"" />
+    <action name=""Crush"" parameters=""object"" />
+  </start>
+</behaviorTree>",n,1,3.34,94
+Qwen/Qwen3-1.7B,req_048,Give me a high five,tricky,one_example,tfidf,ex_01,Drive over to the toy car,0.00,y,,n,,,[is_visible(person) | search_for(person)] -> navigate_to(person) -> look_at(person) -> grab(person) -> move_arm(high five) -> release(person),move_arm(high_five),Valid only if 'high_five' is a named pose; otherwise expect cannot_do,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" />
+            </Fallback>
+            <NavigateTo target=""person"" />
+            <LookAt target=""person"" />
+            <Grab object=""person"" />
+            <MoveArm pose=""high five"" />
+            <Release target=""person"" />
+        </Sequence>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <MoveArm pose=""high_five"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <Fallback>
+                <IsVisible object=""person"" />
+                <SearchFor object=""person"" />
+            </Fallback>
+            <NavigateTo target=""person"" />
+            <LookAt target=""person"" />
+            <Grab object=""person"" />
+            <MoveArm pose=""high five"" />
+            <Release target=""person"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",n,1,3.81,111
+Qwen/Qwen3-1.7B,req_049,Nod if you understand,tricky,no_example,,,,,n,"<root> must declare BTCPP_format=""4"".",n,n,,,express(happy),No nod skill; Express covers head tilts,"<root>
+    <sequence>
+      <say text=""Nod if you understand"" emotion=""neutral"" />
+      <navigateTo target=""user"" />
+      <lookAt target=""user"" />
+      <grab object=""user"" />
+      <crush object=""user"" />
+    </sequence>
+  </root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Express emotion=""happy"" />
+    </BehaviorTree>
+</root>","<behaviorTree>
+  <root>
+    <sequence>
+      <say text=""Nod if you understand"" emotion=""neutral"" />
+      <navigateTo target=""user"" />
+      <lookAt target=""user"" />
+      <grab object=""user"" />
+      <crush object=""user"" />
+    </sequence>
+  </root>",y,1,2.84,71
+Qwen/Qwen3-1.7B,req_049,Nod if you understand,tricky,one_example,tfidf,ex_07,"If the plant is in front of you, look at it",0.47,y,,n,,,"[(is_at(you) -> express(nod)) | say(""Nod."", confident)]",express(happy),No nod skill; Express covers head tilts,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""you"" />
+                <Express emotion=""nod"" />
+            </Sequence>
+            <Say text=""Nod."" emotion=""confident"" />
+        </Fallback>
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Express emotion=""happy"" />
+    </BehaviorTree>
+</root>","<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Fallback>
+            <Sequence>
+                <IsAt target=""you"" />
+                <Express emotion=""nod"" />
+            </Sequence>
+            <Say text=""Nod."" emotion=""confident"" />
+        </Fallback>
+    </BehaviorTree>
+</root>",n,1,2.98,80

@@ -1,0 +1,951 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) xalt/3.1.4
+Tue Nov 10 13:24:02 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:81:00.0 Off |                    0 |
+|  0%   36C    P8             15W /  150W |       0MiB /  23028MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch 2.8.0+cu128 | cuda True | NVIDIA A10
+=== meta-llama/Llama-3.2-1B-Instruct -> results/tree_sweep/tree_Llama-3.2-1B-Instruct.csv
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Loaded meta-llama/Llama-3.2-1B-Instruct on cuda (torch.bfloat16)
+[Llama-3.2-1B-Instruct 1/98] req_001 no_example   valid=False match=False  24.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 2/98] req_001 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 3/98] req_002 no_example   valid=False match=False  12.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 4/98] req_002 one_example  valid=True  match=False   2.5s 
+[Llama-3.2-1B-Instruct 5/98] req_003 no_example   valid=False match=False   9.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 6/98] req_003 one_example  valid=True  match=False   1.6s 
+[Llama-3.2-1B-Instruct 7/98] req_004 no_example   valid=False match=False  10.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 8/98] req_004 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 9/98] req_005 no_example   valid=False match=False  10.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 10/98] req_005 one_example  valid=True  match=False   2.6s 
+[Llama-3.2-1B-Instruct 11/98] req_006 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 12/98] req_006 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 13/98] req_007 no_example   valid=False match=False  10.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 14/98] req_007 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 15/98] req_008 no_example   valid=False match=False  10.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 16/98] req_008 one_example  valid=True  match=False   1.2s 
+[Llama-3.2-1B-Instruct 17/98] req_009 no_example   valid=False match=False  10.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 18/98] req_009 one_example  valid=False match=False   2.6s <BehaviorTree> must contain exactly one tree node.
+[Llama-3.2-1B-Instruct 19/98] req_010 no_example   valid=False match=False   9.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 20/98] req_010 one_example  valid=False match=False   0.9s Malformed XML: syntax error: line 1, column 0.
+[Llama-3.2-1B-Instruct 21/98] req_011 no_example   valid=False match=False  10.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 22/98] req_011 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 23/98] req_012 no_example   valid=False match=False   9.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 24/98] req_012 one_example  valid=True  match=False   1.6s 
+[Llama-3.2-1B-Instruct 25/98] req_013 no_example   valid=False match=False  10.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 26/98] req_013 one_example  valid=True  match=False   1.7s 
+[Llama-3.2-1B-Instruct 27/98] req_014 no_example   valid=False match=False   8.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 28/98] req_014 one_example  valid=True  match=False   1.8s 
+[Llama-3.2-1B-Instruct 29/98] req_015 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 30/98] req_015 one_example  valid=True  match=False   2.1s 
+[Llama-3.2-1B-Instruct 31/98] req_016 no_example   valid=False match=False  10.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 32/98] req_016 one_example  valid=True  match=False   2.6s 
+[Llama-3.2-1B-Instruct 33/98] req_017 no_example   valid=False match=False   9.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 34/98] req_017 one_example  valid=True  match=False   2.5s 
+[Llama-3.2-1B-Instruct 35/98] req_018 no_example   valid=False match=False   9.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 36/98] req_018 one_example  valid=True  match=False   2.2s 
+[Llama-3.2-1B-Instruct 37/98] req_019 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 38/98] req_019 one_example  valid=True  match=False   2.3s 
+[Llama-3.2-1B-Instruct 39/98] req_020 no_example   valid=False match=False   9.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 40/98] req_020 one_example  valid=True  match=False   2.9s 
+[Llama-3.2-1B-Instruct 41/98] req_021 no_example   valid=False match=False   8.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 42/98] req_021 one_example  valid=True  match=False   2.2s 
+[Llama-3.2-1B-Instruct 43/98] req_022 no_example   valid=False match=False   9.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 44/98] req_022 one_example  valid=True  match=False   2.5s 
+[Llama-3.2-1B-Instruct 45/98] req_023 no_example   valid=False match=False   8.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 46/98] req_023 one_example  valid=True  match=False   1.8s 
+[Llama-3.2-1B-Instruct 47/98] req_024 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 48/98] req_024 one_example  valid=True  match=False   2.2s 
+[Llama-3.2-1B-Instruct 49/98] req_025 no_example   valid=False match=False  10.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 50/98] req_025 one_example  valid=True  match=False   1.6s 
+[Llama-3.2-1B-Instruct 51/98] req_026 no_example   valid=False match=False   9.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 52/98] req_026 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 53/98] req_027 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 54/98] req_027 one_example  valid=True  match=False   1.8s 
+[Llama-3.2-1B-Instruct 55/98] req_028 no_example   valid=False match=False   9.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 56/98] req_028 one_example  valid=False match=False   1.6s Unknown parameter(s) for 'LookAt': object.
+[Llama-3.2-1B-Instruct 57/98] req_029 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 58/98] req_029 one_example  valid=True  match=False   2.2s 
+[Llama-3.2-1B-Instruct 59/98] req_030 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 60/98] req_030 one_example  valid=True  match=False   2.3s 
+[Llama-3.2-1B-Instruct 61/98] req_031 no_example   valid=False match=False   9.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 62/98] req_031 one_example  valid=True  match=False   2.1s 
+[Llama-3.2-1B-Instruct 63/98] req_032 no_example   valid=False match=False  10.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 64/98] req_032 one_example  valid=True  match=False   2.6s 
+[Llama-3.2-1B-Instruct 65/98] req_033 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 66/98] req_033 one_example  valid=True  match=False   2.7s 
+[Llama-3.2-1B-Instruct 67/98] req_034 no_example   valid=False match=False  10.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 68/98] req_034 one_example  valid=True  match=False   2.6s 
+[Llama-3.2-1B-Instruct 69/98] req_035 no_example   valid=False match=False  10.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 70/98] req_035 one_example  valid=True  match=False   1.7s 
+[Llama-3.2-1B-Instruct 71/98] req_036 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 72/98] req_036 one_example  valid=True  match=False   1.9s 
+[Llama-3.2-1B-Instruct 73/98] req_037 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 74/98] req_037 one_example  valid=True  match=False   2.7s 
+[Llama-3.2-1B-Instruct 75/98] req_038 no_example   valid=False match=False   9.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 76/98] req_038 one_example  valid=False match=False   2.2s Malformed XML: not well-formed (invalid token): line 5, colu
+[Llama-3.2-1B-Instruct 77/98] req_039 no_example   valid=False match=False  10.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 78/98] req_039 one_example  valid=True  match=False   2.1s 
+[Llama-3.2-1B-Instruct 79/98] req_040 no_example   valid=False match=False   8.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 80/98] req_040 one_example  valid=True  match=False   2.5s 
+[Llama-3.2-1B-Instruct 81/98] req_041 no_example   valid=False match=False   9.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 82/98] req_041 one_example  valid=True  match=False   1.3s 
+[Llama-3.2-1B-Instruct 83/98] req_042 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 84/98] req_042 one_example  valid=True  match=False   2.9s 
+[Llama-3.2-1B-Instruct 85/98] req_043 no_example   valid=False match=False   9.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 86/98] req_043 one_example  valid=False match=False   2.2s <BehaviorTree> must contain exactly one tree node.
+[Llama-3.2-1B-Instruct 87/98] req_044 no_example   valid=False match=False  14.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 88/98] req_044 one_example  valid=True  match=False   2.5s 
+[Llama-3.2-1B-Instruct 89/98] req_045 no_example   valid=False match=False  10.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 90/98] req_045 one_example  valid=False match=False   2.6s <BehaviorTree> must contain exactly one tree node.
+[Llama-3.2-1B-Instruct 91/98] req_046 no_example   valid=False match=False   9.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 92/98] req_046 one_example  valid=True  match=False   2.3s 
+[Llama-3.2-1B-Instruct 93/98] req_047 no_example   valid=False match=False  10.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 94/98] req_047 one_example  valid=True  match=False   2.8s 
+[Llama-3.2-1B-Instruct 95/98] req_048 no_example   valid=False match=False  10.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 96/98] req_048 one_example  valid=True  match=False   2.4s 
+[Llama-3.2-1B-Instruct 97/98] req_049 no_example   valid=False match=False   9.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Llama-3.2-1B-Instruct 98/98] req_049 one_example  valid=False match=False   2.9s Unknown behavior tree node 'NodIf'.
+
+Wrote results/tree_sweep/tree_Llama-3.2-1B-Instruct.csv. Grade the blank `does_what_was_asked` cells, then run summarize.py
+=== Qwen/Qwen3-1.7B -> results/tree_sweep/tree_Qwen3-1.7B.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.89s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.96s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded Qwen/Qwen3-1.7B on cuda (torch.bfloat16)
+[Qwen3-1.7B 1/98] req_001 no_example   valid=False match=False  13.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 2/98] req_001 one_example  valid=True  match=False   2.3s 
+[Qwen3-1.7B 3/98] req_002 no_example   valid=False match=False   3.9s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 4/98] req_002 one_example  valid=True  match=False   2.7s 
+[Qwen3-1.7B 5/98] req_003 no_example   valid=False match=False   4.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 6/98] req_003 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 7/98] req_004 no_example   valid=False match=False   3.2s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 8/98] req_004 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 9/98] req_005 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 10/98] req_005 one_example  valid=True  match=False   3.0s 
+[Qwen3-1.7B 11/98] req_006 no_example   valid=False match=False   2.0s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 12/98] req_006 one_example  valid=True  match=True    2.2s 
+[Qwen3-1.7B 13/98] req_007 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 14/98] req_007 one_example  valid=True  match=False   2.2s 
+[Qwen3-1.7B 15/98] req_008 no_example   valid=False match=False   4.5s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 16/98] req_008 one_example  valid=True  match=False   2.0s 
+[Qwen3-1.7B 17/98] req_009 no_example   valid=False match=False   4.2s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 18/98] req_009 one_example  valid=True  match=False   3.8s 
+[Qwen3-1.7B 19/98] req_010 no_example   valid=False match=False   5.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 20/98] req_010 one_example  valid=True  match=False   2.5s 
+[Qwen3-1.7B 21/98] req_011 no_example   valid=False match=False   1.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 22/98] req_011 one_example  valid=True  match=False   2.6s 
+[Qwen3-1.7B 23/98] req_012 no_example   valid=False match=False   2.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 24/98] req_012 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 25/98] req_013 no_example   valid=False match=False   4.0s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 26/98] req_013 one_example  valid=True  match=False   3.0s 
+[Qwen3-1.7B 27/98] req_014 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 28/98] req_014 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 29/98] req_015 no_example   valid=False match=False   3.9s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 30/98] req_015 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 31/98] req_016 no_example   valid=False match=False   3.1s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 32/98] req_016 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 33/98] req_017 no_example   valid=False match=False   4.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 34/98] req_017 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 35/98] req_018 no_example   valid=False match=False   4.4s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 36/98] req_018 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 37/98] req_019 no_example   valid=False match=False   4.2s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 38/98] req_019 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 39/98] req_020 no_example   valid=False match=False   3.7s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 40/98] req_020 one_example  valid=True  match=True    3.2s 
+[Qwen3-1.7B 41/98] req_021 no_example   valid=False match=False   3.7s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 42/98] req_021 one_example  valid=True  match=False   4.6s 
+[Qwen3-1.7B 43/98] req_022 no_example   valid=False match=False   3.1s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 44/98] req_022 one_example  valid=True  match=True    3.1s 
+[Qwen3-1.7B 45/98] req_023 no_example   valid=False match=False   4.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 46/98] req_023 one_example  valid=True  match=False   4.5s 
+[Qwen3-1.7B 47/98] req_024 no_example   valid=False match=False   6.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 48/98] req_024 one_example  valid=False match=False   3.5s <BehaviorTree> must contain exactly one tree node.
+[Qwen3-1.7B 49/98] req_025 no_example   valid=False match=False   4.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 50/98] req_025 one_example  valid=True  match=False   3.0s 
+[Qwen3-1.7B 51/98] req_026 no_example   valid=False match=False   3.7s Malformed XML: not well-formed (invalid token): line 5, colu
+[Qwen3-1.7B 52/98] req_026 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 53/98] req_027 no_example   valid=False match=False   4.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 54/98] req_027 one_example  valid=True  match=False   2.7s 
+[Qwen3-1.7B 55/98] req_028 no_example   valid=False match=False   2.5s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 56/98] req_028 one_example  valid=True  match=False   2.9s 
+[Qwen3-1.7B 57/98] req_029 no_example   valid=False match=False   2.9s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 58/98] req_029 one_example  valid=True  match=False   3.4s 
+[Qwen3-1.7B 59/98] req_030 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 60/98] req_030 one_example  valid=True  match=True    4.3s 
+[Qwen3-1.7B 61/98] req_031 no_example   valid=False match=False   3.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 62/98] req_031 one_example  valid=True  match=False   3.8s 
+[Qwen3-1.7B 63/98] req_032 no_example   valid=False match=False   3.0s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 64/98] req_032 one_example  valid=True  match=False   4.1s 
+[Qwen3-1.7B 65/98] req_033 no_example   valid=False match=False   3.5s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 66/98] req_033 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 67/98] req_034 no_example   valid=False match=False   5.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 68/98] req_034 one_example  valid=True  match=False   4.2s 
+[Qwen3-1.7B 69/98] req_035 no_example   valid=False match=False   5.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 70/98] req_035 one_example  valid=True  match=False   2.7s 
+[Qwen3-1.7B 71/98] req_036 no_example   valid=False match=False   4.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 72/98] req_036 one_example  valid=True  match=False   5.7s 
+[Qwen3-1.7B 73/98] req_037 no_example   valid=False match=False   5.4s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 74/98] req_037 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 75/98] req_038 no_example   valid=False match=False   3.7s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 76/98] req_038 one_example  valid=True  match=False   3.6s 
+[Qwen3-1.7B 77/98] req_039 no_example   valid=False match=False   4.6s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 78/98] req_039 one_example  valid=True  match=False   4.0s 
+[Qwen3-1.7B 79/98] req_040 no_example   valid=False match=False   6.4s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 80/98] req_040 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 81/98] req_041 no_example   valid=False match=False   3.7s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 82/98] req_041 one_example  valid=True  match=False   1.9s 
+[Qwen3-1.7B 83/98] req_042 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 84/98] req_042 one_example  valid=True  match=False   4.5s 
+[Qwen3-1.7B 85/98] req_043 no_example   valid=False match=False   4.1s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 86/98] req_043 one_example  valid=True  match=False   3.1s 
+[Qwen3-1.7B 87/98] req_044 no_example   valid=False match=False   4.1s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 88/98] req_044 one_example  valid=True  match=False   2.9s 
+[Qwen3-1.7B 89/98] req_045 no_example   valid=False match=False   4.2s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 90/98] req_045 one_example  valid=True  match=False   3.2s 
+[Qwen3-1.7B 91/98] req_046 no_example   valid=False match=False   3.1s <root> must declare BTCPP_format="4".
+[Qwen3-1.7B 92/98] req_046 one_example  valid=True  match=False   3.7s 
+[Qwen3-1.7B 93/98] req_047 no_example   valid=False match=False   3.8s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 94/98] req_047 one_example  valid=True  match=False   4.4s 
+[Qwen3-1.7B 95/98] req_048 no_example   valid=False match=False   3.3s Expected root tag <root>, found <behaviorTree>.
+[Qwen3-1.7B 96/98] req_048 one_example  valid=True  match=False   3.8s 
+[Qwen3-1.7B 97/98] req_049 no_example   valid=False match=False   2.8s <root> must declare BTCPP_format="4".
+[Qwen3-1.7B 98/98] req_049 one_example  valid=True  match=False   3.0s 
+
+Wrote results/tree_sweep/tree_Qwen3-1.7B.csv. Grade the blank `does_what_was_asked` cells, then run summarize.py
+=== microsoft/Phi-4-mini-instruct -> results/tree_sweep/tree_Phi-4-mini-instruct.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.70s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.14s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.22s/it]
+Loaded microsoft/Phi-4-mini-instruct on cuda (torch.bfloat16)
+[Phi-4-mini-instruct 1/98] req_001 no_example   valid=False match=False  14.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 2/98] req_001 one_example  valid=True  match=False   2.7s 
+[Phi-4-mini-instruct 3/98] req_002 no_example   valid=False match=False   2.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 4/98] req_002 one_example  valid=True  match=False   2.9s 
+[Phi-4-mini-instruct 5/98] req_003 no_example   valid=False match=False   3.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 6/98] req_003 one_example  valid=True  match=False   2.8s 
+[Phi-4-mini-instruct 7/98] req_004 no_example   valid=False match=False   4.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 8/98] req_004 one_example  valid=True  match=False   3.1s 
+[Phi-4-mini-instruct 9/98] req_005 no_example   valid=False match=False   3.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 10/98] req_005 one_example  valid=True  match=False   3.2s 
+[Phi-4-mini-instruct 11/98] req_006 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 12/98] req_006 one_example  valid=True  match=True    2.4s 
+[Phi-4-mini-instruct 13/98] req_007 no_example   valid=False match=False   4.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 14/98] req_007 one_example  valid=True  match=False   2.6s 
+[Phi-4-mini-instruct 15/98] req_008 no_example   valid=False match=False   2.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 16/98] req_008 one_example  valid=True  match=False   2.1s 
+[Phi-4-mini-instruct 17/98] req_009 no_example   valid=False match=False   3.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 18/98] req_009 one_example  valid=True  match=False   3.4s 
+[Phi-4-mini-instruct 19/98] req_010 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 20/98] req_010 one_example  valid=True  match=False   2.7s 
+[Phi-4-mini-instruct 21/98] req_011 no_example   valid=False match=False   4.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 22/98] req_011 one_example  valid=True  match=False   2.9s 
+[Phi-4-mini-instruct 23/98] req_012 no_example   valid=False match=False   3.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 24/98] req_012 one_example  valid=True  match=False   2.9s 
+[Phi-4-mini-instruct 25/98] req_013 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 26/98] req_013 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 27/98] req_014 no_example   valid=False match=False   2.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 28/98] req_014 one_example  valid=True  match=False   3.0s 
+[Phi-4-mini-instruct 29/98] req_015 no_example   valid=False match=False   3.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 30/98] req_015 one_example  valid=True  match=False   3.2s 
+[Phi-4-mini-instruct 31/98] req_016 no_example   valid=False match=False   3.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 32/98] req_016 one_example  valid=True  match=False   3.6s 
+[Phi-4-mini-instruct 33/98] req_017 no_example   valid=False match=False   3.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 34/98] req_017 one_example  valid=True  match=False   4.0s 
+[Phi-4-mini-instruct 35/98] req_018 no_example   valid=False match=False   2.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 36/98] req_018 one_example  valid=True  match=False   3.7s 
+[Phi-4-mini-instruct 37/98] req_019 no_example   valid=False match=False   2.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 38/98] req_019 one_example  valid=True  match=False   3.4s 
+[Phi-4-mini-instruct 39/98] req_020 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 40/98] req_020 one_example  valid=True  match=True    3.3s 
+[Phi-4-mini-instruct 41/98] req_021 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 42/98] req_021 one_example  valid=True  match=False   3.4s 
+[Phi-4-mini-instruct 43/98] req_022 no_example   valid=False match=False   2.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 44/98] req_022 one_example  valid=True  match=False   2.7s 
+[Phi-4-mini-instruct 45/98] req_023 no_example   valid=False match=False   3.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 46/98] req_023 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 47/98] req_024 no_example   valid=False match=False   3.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 48/98] req_024 one_example  valid=True  match=False   3.7s 
+[Phi-4-mini-instruct 49/98] req_025 no_example   valid=False match=False   4.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 50/98] req_025 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 51/98] req_026 no_example   valid=False match=False   3.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 52/98] req_026 one_example  valid=True  match=False   3.5s 
+[Phi-4-mini-instruct 53/98] req_027 no_example   valid=False match=False   2.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 54/98] req_027 one_example  valid=True  match=False   3.4s 
+[Phi-4-mini-instruct 55/98] req_028 no_example   valid=False match=False   4.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 56/98] req_028 one_example  valid=True  match=False   2.7s 
+[Phi-4-mini-instruct 57/98] req_029 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 58/98] req_029 one_example  valid=True  match=False   3.6s 
+[Phi-4-mini-instruct 59/98] req_030 no_example   valid=False match=False   3.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 60/98] req_030 one_example  valid=True  match=False   3.7s 
+[Phi-4-mini-instruct 61/98] req_031 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 62/98] req_031 one_example  valid=True  match=False   3.1s 
+[Phi-4-mini-instruct 63/98] req_032 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 64/98] req_032 one_example  valid=True  match=False   3.2s 
+[Phi-4-mini-instruct 65/98] req_033 no_example   valid=False match=False   4.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 66/98] req_033 one_example  valid=True  match=False   4.0s 
+[Phi-4-mini-instruct 67/98] req_034 no_example   valid=False match=False   3.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 68/98] req_034 one_example  valid=True  match=False   4.0s 
+[Phi-4-mini-instruct 69/98] req_035 no_example   valid=False match=False   3.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 70/98] req_035 one_example  valid=True  match=False   2.8s 
+[Phi-4-mini-instruct 71/98] req_036 no_example   valid=False match=False   4.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 72/98] req_036 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 73/98] req_037 no_example   valid=False match=False   4.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 74/98] req_037 one_example  valid=True  match=False   3.6s 
+[Phi-4-mini-instruct 75/98] req_038 no_example   valid=False match=False   2.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 76/98] req_038 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 77/98] req_039 no_example   valid=False match=False   4.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 78/98] req_039 one_example  valid=True  match=False   3.6s 
+[Phi-4-mini-instruct 79/98] req_040 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 80/98] req_040 one_example  valid=True  match=False   3.0s 
+[Phi-4-mini-instruct 81/98] req_041 no_example   valid=False match=False   3.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 82/98] req_041 one_example  valid=True  match=False   2.2s 
+[Phi-4-mini-instruct 83/98] req_042 no_example   valid=False match=False   3.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 84/98] req_042 one_example  valid=True  match=False   3.0s 
+[Phi-4-mini-instruct 85/98] req_043 no_example   valid=False match=False   3.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 86/98] req_043 one_example  valid=True  match=False   3.3s 
+[Phi-4-mini-instruct 87/98] req_044 no_example   valid=False match=False   3.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 88/98] req_044 one_example  valid=True  match=False   3.1s 
+[Phi-4-mini-instruct 89/98] req_045 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 90/98] req_045 one_example  valid=True  match=False   3.5s 
+[Phi-4-mini-instruct 91/98] req_046 no_example   valid=False match=False  27.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 92/98] req_046 one_example  valid=False match=False   4.0s Unknown behavior tree node 'WhileLoop'.
+[Phi-4-mini-instruct 93/98] req_047 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 94/98] req_047 one_example  valid=True  match=False   3.6s 
+[Phi-4-mini-instruct 95/98] req_048 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 96/98] req_048 one_example  valid=True  match=False   4.0s 
+[Phi-4-mini-instruct 97/98] req_049 no_example   valid=False match=False   3.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Phi-4-mini-instruct 98/98] req_049 one_example  valid=True  match=False   3.4s 
+
+Wrote results/tree_sweep/tree_Phi-4-mini-instruct.csv. Grade the blank `does_what_was_asked` cells, then run summarize.py
+=== Qwen/Qwen3-4B-Instruct-2507 -> results/tree_sweep/tree_Qwen3-4B-Instruct-2507.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.04s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.60s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.68s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded Qwen/Qwen3-4B-Instruct-2507 on cuda (torch.bfloat16)
+[Qwen3-4B-Instruct-2507 1/98] req_001 no_example   valid=False match=False  18.6s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 2/98] req_001 one_example  valid=True  match=False   3.2s 
+[Qwen3-4B-Instruct-2507 3/98] req_002 no_example   valid=False match=False   4.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 4/98] req_002 one_example  valid=True  match=False   3.3s 
+[Qwen3-4B-Instruct-2507 5/98] req_003 no_example   valid=False match=False   2.8s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 6/98] req_003 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 7/98] req_004 no_example   valid=False match=False   2.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 8/98] req_004 one_example  valid=True  match=False   3.0s 
+[Qwen3-4B-Instruct-2507 9/98] req_005 no_example   valid=False match=False   5.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 10/98] req_005 one_example  valid=True  match=False   3.0s 
+[Qwen3-4B-Instruct-2507 11/98] req_006 no_example   valid=False match=False   5.8s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 12/98] req_006 one_example  valid=True  match=True    2.4s 
+[Qwen3-4B-Instruct-2507 13/98] req_007 no_example   valid=False match=False   4.8s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 14/98] req_007 one_example  valid=True  match=False   2.4s 
+[Qwen3-4B-Instruct-2507 15/98] req_008 no_example   valid=False match=False   3.0s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 16/98] req_008 one_example  valid=True  match=False   2.4s 
+[Qwen3-4B-Instruct-2507 17/98] req_009 no_example   valid=False match=False   4.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 18/98] req_009 one_example  valid=True  match=False   3.8s 
+[Qwen3-4B-Instruct-2507 19/98] req_010 no_example   valid=False match=False   2.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 20/98] req_010 one_example  valid=True  match=True    2.7s 
+[Qwen3-4B-Instruct-2507 21/98] req_011 no_example   valid=False match=False   2.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 22/98] req_011 one_example  valid=True  match=False   3.1s 
+[Qwen3-4B-Instruct-2507 23/98] req_012 no_example   valid=False match=False   3.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 24/98] req_012 one_example  valid=True  match=False   2.4s 
+[Qwen3-4B-Instruct-2507 25/98] req_013 no_example   valid=False match=False   7.5s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 26/98] req_013 one_example  valid=True  match=False   3.9s 
+[Qwen3-4B-Instruct-2507 27/98] req_014 no_example   valid=False match=False   3.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 28/98] req_014 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 29/98] req_015 no_example   valid=False match=False   5.3s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 30/98] req_015 one_example  valid=True  match=True    3.8s 
+[Qwen3-4B-Instruct-2507 31/98] req_016 no_example   valid=False match=False   3.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 32/98] req_016 one_example  valid=True  match=False   4.3s 
+[Qwen3-4B-Instruct-2507 33/98] req_017 no_example   valid=False match=False   7.5s Malformed XML: not well-formed (invalid token): line 11, col
+[Qwen3-4B-Instruct-2507 34/98] req_017 one_example  valid=True  match=False   4.4s 
+[Qwen3-4B-Instruct-2507 35/98] req_018 no_example   valid=False match=False   5.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 36/98] req_018 one_example  valid=True  match=True    4.2s 
+[Qwen3-4B-Instruct-2507 37/98] req_019 no_example   valid=False match=False   5.3s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 38/98] req_019 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 39/98] req_020 no_example   valid=False match=False  11.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 40/98] req_020 one_example  valid=True  match=False   3.6s 
+[Qwen3-4B-Instruct-2507 41/98] req_021 no_example   valid=False match=False   5.3s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 42/98] req_021 one_example  valid=False match=False   5.8s Unknown behavior tree node 'If'.
+[Qwen3-4B-Instruct-2507 43/98] req_022 no_example   valid=False match=False   8.3s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 44/98] req_022 one_example  valid=True  match=False   3.2s 
+[Qwen3-4B-Instruct-2507 45/98] req_023 no_example   valid=False match=False   3.5s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 46/98] req_023 one_example  valid=True  match=False   3.8s 
+[Qwen3-4B-Instruct-2507 47/98] req_024 no_example   valid=False match=False   6.0s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 48/98] req_024 one_example  valid=True  match=False   3.8s 
+[Qwen3-4B-Instruct-2507 49/98] req_025 no_example   valid=False match=False   3.1s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 50/98] req_025 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 51/98] req_026 no_example   valid=False match=False   4.3s Malformed XML: not well-formed (invalid token): line 7, colu
+[Qwen3-4B-Instruct-2507 52/98] req_026 one_example  valid=True  match=True    4.0s 
+[Qwen3-4B-Instruct-2507 53/98] req_027 no_example   valid=False match=False   2.0s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 54/98] req_027 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 55/98] req_028 no_example   valid=False match=False   3.8s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 56/98] req_028 one_example  valid=True  match=False   2.9s 
+[Qwen3-4B-Instruct-2507 57/98] req_029 no_example   valid=False match=False   6.6s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 58/98] req_029 one_example  valid=True  match=True    4.3s 
+[Qwen3-4B-Instruct-2507 59/98] req_030 no_example   valid=False match=False   7.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 60/98] req_030 one_example  valid=True  match=False   5.0s 
+[Qwen3-4B-Instruct-2507 61/98] req_031 no_example   valid=False match=False   5.4s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 62/98] req_031 one_example  valid=True  match=False   4.1s 
+[Qwen3-4B-Instruct-2507 63/98] req_032 no_example   valid=False match=False   7.5s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 64/98] req_032 one_example  valid=True  match=False   4.2s 
+[Qwen3-4B-Instruct-2507 65/98] req_033 no_example   valid=False match=False   5.0s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 66/98] req_033 one_example  valid=True  match=False   4.2s 
+[Qwen3-4B-Instruct-2507 67/98] req_034 no_example   valid=False match=False   6.5s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 68/98] req_034 one_example  valid=True  match=False   4.8s 
+[Qwen3-4B-Instruct-2507 69/98] req_035 no_example   valid=False match=False   4.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 70/98] req_035 one_example  valid=True  match=False   3.3s 
+[Qwen3-4B-Instruct-2507 71/98] req_036 no_example   valid=False match=False   9.7s Malformed XML: not well-formed (invalid token): line 21, col
+[Qwen3-4B-Instruct-2507 72/98] req_036 one_example  valid=True  match=False   4.0s 
+[Qwen3-4B-Instruct-2507 73/98] req_037 no_example   valid=False match=False   6.5s Malformed XML: not well-formed (invalid token): line 8, colu
+[Qwen3-4B-Instruct-2507 74/98] req_037 one_example  valid=True  match=False   4.4s 
+[Qwen3-4B-Instruct-2507 75/98] req_038 no_example   valid=False match=False   5.4s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 76/98] req_038 one_example  valid=True  match=False   3.8s 
+[Qwen3-4B-Instruct-2507 77/98] req_039 no_example   valid=False match=False   7.9s Malformed XML: not well-formed (invalid token): line 16, col
+[Qwen3-4B-Instruct-2507 78/98] req_039 one_example  valid=False match=False   5.1s <BehaviorTree> must contain exactly one tree node.
+[Qwen3-4B-Instruct-2507 79/98] req_040 no_example   valid=False match=False   8.6s Malformed XML: not well-formed (invalid token): line 12, col
+[Qwen3-4B-Instruct-2507 80/98] req_040 one_example  valid=True  match=False   5.0s 
+[Qwen3-4B-Instruct-2507 81/98] req_041 no_example   valid=False match=False   4.3s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 82/98] req_041 one_example  valid=True  match=False   2.3s 
+[Qwen3-4B-Instruct-2507 83/98] req_042 no_example   valid=False match=False   5.1s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 84/98] req_042 one_example  valid=True  match=False   6.7s 
+[Qwen3-4B-Instruct-2507 85/98] req_043 no_example   valid=False match=False   7.1s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 86/98] req_043 one_example  valid=True  match=False   4.0s 
+[Qwen3-4B-Instruct-2507 87/98] req_044 no_example   valid=False match=False   4.2s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 88/98] req_044 one_example  valid=True  match=False   4.2s 
+[Qwen3-4B-Instruct-2507 89/98] req_045 no_example   valid=False match=False   4.9s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 90/98] req_045 one_example  valid=True  match=False   3.3s 
+[Qwen3-4B-Instruct-2507 91/98] req_046 no_example   valid=False match=False   6.6s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 92/98] req_046 one_example  valid=False match=False   5.3s Unknown behavior tree node 'Loop'.
+[Qwen3-4B-Instruct-2507 93/98] req_047 no_example   valid=False match=False   5.1s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 94/98] req_047 one_example  valid=True  match=False   5.9s 
+[Qwen3-4B-Instruct-2507 95/98] req_048 no_example   valid=False match=False   5.0s Expected root tag <root>, found <BehaviorTree>.
+[Qwen3-4B-Instruct-2507 96/98] req_048 one_example  valid=True  match=False   3.5s 
+[Qwen3-4B-Instruct-2507 97/98] req_049 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 5, colu
+[Qwen3-4B-Instruct-2507 98/98] req_049 one_example  valid=True  match=False   2.3s 
+
+Wrote results/tree_sweep/tree_Qwen3-4B-Instruct-2507.csv. Grade the blank `does_what_was_asked` cells, then run summarize.py
+=== Qwen/Qwen2.5-Coder-1.5B-Instruct -> results/tree_sweep/tree_Qwen2.5-Coder-1.5B-Instruct.csv
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Loaded Qwen/Qwen2.5-Coder-1.5B-Instruct on cuda (torch.bfloat16)
+[Qwen2.5-Coder-1.5B-Instruct 1/98] req_001 no_example   valid=False match=False  14.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 2/98] req_001 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 3/98] req_002 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 4/98] req_002 one_example  valid=True  match=False   2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 5/98] req_003 no_example   valid=False match=False   1.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 6/98] req_003 one_example  valid=True  match=False   2.7s 
+[Qwen2.5-Coder-1.5B-Instruct 7/98] req_004 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 8/98] req_004 one_example  valid=True  match=False   2.7s 
+[Qwen2.5-Coder-1.5B-Instruct 9/98] req_005 no_example   valid=False match=False   1.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 10/98] req_005 one_example  valid=True  match=False   2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 11/98] req_006 no_example   valid=False match=False   1.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 12/98] req_006 one_example  valid=True  match=False   2.1s 
+[Qwen2.5-Coder-1.5B-Instruct 13/98] req_007 no_example   valid=False match=False   1.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 14/98] req_007 one_example  valid=True  match=False   2.7s 
+[Qwen2.5-Coder-1.5B-Instruct 15/98] req_008 no_example   valid=False match=False   1.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 16/98] req_008 one_example  valid=True  match=False   1.6s 
+[Qwen2.5-Coder-1.5B-Instruct 17/98] req_009 no_example   valid=False match=False   1.6s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 18/98] req_009 one_example  valid=True  match=False   2.5s 
+[Qwen2.5-Coder-1.5B-Instruct 19/98] req_010 no_example   valid=False match=False   1.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 20/98] req_010 one_example  valid=True  match=False   2.0s 
+[Qwen2.5-Coder-1.5B-Instruct 21/98] req_011 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 22/98] req_011 one_example  valid=True  match=False   2.0s 
+[Qwen2.5-Coder-1.5B-Instruct 23/98] req_012 no_example   valid=False match=False   1.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 24/98] req_012 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 25/98] req_013 no_example   valid=False match=False   1.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 26/98] req_013 one_example  valid=True  match=False   2.5s 
+[Qwen2.5-Coder-1.5B-Instruct 27/98] req_014 no_example   valid=False match=False   2.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 28/98] req_014 one_example  valid=True  match=False   3.0s 
+[Qwen2.5-Coder-1.5B-Instruct 29/98] req_015 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 30/98] req_015 one_example  valid=False match=False   2.8s Unknown parameter(s) for 'Release': object.
+[Qwen2.5-Coder-1.5B-Instruct 31/98] req_016 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 32/98] req_016 one_example  valid=True  match=False   2.9s 
+[Qwen2.5-Coder-1.5B-Instruct 33/98] req_017 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 34/98] req_017 one_example  valid=True  match=False   2.9s 
+[Qwen2.5-Coder-1.5B-Instruct 35/98] req_018 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 36/98] req_018 one_example  valid=True  match=True    2.8s 
+[Qwen2.5-Coder-1.5B-Instruct 37/98] req_019 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 38/98] req_019 one_example  valid=True  match=False   2.7s 
+[Qwen2.5-Coder-1.5B-Instruct 39/98] req_020 no_example   valid=False match=False   2.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 40/98] req_020 one_example  valid=True  match=True    2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 41/98] req_021 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 42/98] req_021 one_example  valid=True  match=False   3.9s 
+[Qwen2.5-Coder-1.5B-Instruct 43/98] req_022 no_example   valid=False match=False   2.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 44/98] req_022 one_example  valid=True  match=True    2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 45/98] req_023 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 46/98] req_023 one_example  valid=True  match=False   2.9s 
+[Qwen2.5-Coder-1.5B-Instruct 47/98] req_024 no_example   valid=False match=False   1.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 48/98] req_024 one_example  valid=True  match=False   3.5s 
+[Qwen2.5-Coder-1.5B-Instruct 49/98] req_025 no_example   valid=False match=False   1.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 50/98] req_025 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 51/98] req_026 no_example   valid=False match=False   3.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 52/98] req_026 one_example  valid=True  match=False   3.0s 
+[Qwen2.5-Coder-1.5B-Instruct 53/98] req_027 no_example   valid=False match=False   2.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 54/98] req_027 one_example  valid=True  match=False   2.8s 
+[Qwen2.5-Coder-1.5B-Instruct 55/98] req_028 no_example   valid=False match=False   1.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 56/98] req_028 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 57/98] req_029 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 58/98] req_029 one_example  valid=True  match=False   2.8s 
+[Qwen2.5-Coder-1.5B-Instruct 59/98] req_030 no_example   valid=False match=False   2.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 60/98] req_030 one_example  valid=True  match=False   3.4s 
+[Qwen2.5-Coder-1.5B-Instruct 61/98] req_031 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 62/98] req_031 one_example  valid=False match=False   2.8s Unknown parameter(s) for 'Release': object.
+[Qwen2.5-Coder-1.5B-Instruct 63/98] req_032 no_example   valid=False match=False   3.1s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 64/98] req_032 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 65/98] req_033 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 66/98] req_033 one_example  valid=False match=False   3.6s Unknown parameter(s) for 'IsVisible': hint.
+[Qwen2.5-Coder-1.5B-Instruct 67/98] req_034 no_example   valid=False match=False   3.3s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 68/98] req_034 one_example  valid=True  match=False   3.9s 
+[Qwen2.5-Coder-1.5B-Instruct 69/98] req_035 no_example   valid=False match=False   5.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 70/98] req_035 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 71/98] req_036 no_example   valid=False match=False   2.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 72/98] req_036 one_example  valid=True  match=False   4.3s 
+[Qwen2.5-Coder-1.5B-Instruct 73/98] req_037 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 74/98] req_037 one_example  valid=True  match=False   2.5s 
+[Qwen2.5-Coder-1.5B-Instruct 75/98] req_038 no_example   valid=False match=False   3.2s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 76/98] req_038 one_example  valid=False match=False   2.2s Unknown behavior tree node 'Conditional'.
+[Qwen2.5-Coder-1.5B-Instruct 77/98] req_039 no_example   valid=False match=False   2.4s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 78/98] req_039 one_example  valid=True  match=False   3.0s 
+[Qwen2.5-Coder-1.5B-Instruct 79/98] req_040 no_example   valid=False match=False   1.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 80/98] req_040 one_example  valid=True  match=False   3.0s 
+[Qwen2.5-Coder-1.5B-Instruct 81/98] req_041 no_example   valid=False match=False   2.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 82/98] req_041 one_example  valid=True  match=False   1.8s 
+[Qwen2.5-Coder-1.5B-Instruct 83/98] req_042 no_example   valid=False match=False   3.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 84/98] req_042 one_example  valid=True  match=False   3.8s 
+[Qwen2.5-Coder-1.5B-Instruct 85/98] req_043 no_example   valid=False match=False   1.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 86/98] req_043 one_example  valid=True  match=False   2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 87/98] req_044 no_example   valid=False match=False   1.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 88/98] req_044 one_example  valid=True  match=False   2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 89/98] req_045 no_example   valid=False match=False   3.8s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 90/98] req_045 one_example  valid=True  match=False   2.6s 
+[Qwen2.5-Coder-1.5B-Instruct 91/98] req_046 no_example   valid=False match=False   4.0s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 92/98] req_046 one_example  valid=False match=False   2.7s Unknown behavior tree node 'Grasp'.
+[Qwen2.5-Coder-1.5B-Instruct 93/98] req_047 no_example   valid=False match=False   1.9s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 94/98] req_047 one_example  valid=True  match=False   3.4s 
+[Qwen2.5-Coder-1.5B-Instruct 95/98] req_048 no_example   valid=False match=False   1.7s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 96/98] req_048 one_example  valid=True  match=False   2.4s 
+[Qwen2.5-Coder-1.5B-Instruct 97/98] req_049 no_example   valid=False match=False   1.5s Malformed XML: not well-formed (invalid token): line 1, colu
+[Qwen2.5-Coder-1.5B-Instruct 98/98] req_049 one_example  valid=True  match=False   2.4s 
+
+Wrote results/tree_sweep/tree_Qwen2.5-Coder-1.5B-Instruct.csv. Grade the blank `does_what_was_asked` cells, then run summarize.py
+=== deepseek-ai/deepseek-coder-1.3b-instruct# -> results/tree_sweep/tree_deepseek-coder-1.3b-instruct#.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 160, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: 'deepseek-ai/deepseek-coder-1.3b-instruct#'.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1089, in from_pretrained
+    tokenizer_config = get_tokenizer_config(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 921, in get_tokenizer_config
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 531, in cached_files
+    resolved_files = [
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 532, in <listcomp>
+    _get_cache_file_to_return(path_or_repo_id, filename, cache_dir, revision, repo_type)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 143, in _get_cache_file_to_return
+    resolved_file = try_to_load_from_cache(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 106, in _inner_fn
+    validate_repo_id(arg_value)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 160, in validate_repo_id
+    raise HFValidationError(
+huggingface_hub.errors.HFValidationError: Repo id must use alphanumeric chars, '-', '_' or '.'. The name cannot start or end with '-' or '.' and the maximum length is 96: 'deepseek-ai/deepseek-coder-1.3b-instruct#'.
+    FAILED deepseek-ai/deepseek-coder-1.3b-instruct#, continuing
+=== output -> results/tree_sweep/tree_output.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED output, continuing
+=== -- -> results/tree_sweep/tree_--.csv
+usage: run_tree_baseline.py [-h] [--test-set TEST_SET] [--yaml YAML]
+                            [--library LIBRARY]
+                            [--retriever {auto,embed,tfidf}] [--models MODELS]
+                            [--device {auto,cuda,mps,cpu}]
+                            [--conditions CONDITIONS] [--attempts ATTEMPTS]
+                            [--max-new-tokens MAX_NEW_TOKENS] [--limit LIMIT]
+                            [--out OUT] [--resume] [--dry-run]
+run_tree_baseline.py: error: argument --models: expected one argument
+    FAILED --, continuing
+=== worth -> results/tree_sweep/tree_worth.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED worth, continuing
+=== testing -> results/tree_sweep/tree_testing.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED testing, continuing
+=== where -> results/tree_sweep/tree_where.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED where, continuing
+=== coder -> results/tree_sweep/tree_coder.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED coder, continuing
+=== tuning -> results/tree_sweep/tree_tuning.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED tuning, continuing
+=== helps -> results/tree_sweep/tree_helps.csv
+Example retrieval: tfidf
+1 models x 49 tasks x 2 conditions
+Actions: [SearchFor (parameters: object, hint), NavigateTo (parameters: target), Say (parameters: text, emotion), Express (parameters: emotion), LookAt (parameters: target), Grab (parameters: object), MoveArm (parameters: pose), Release (parameters: target), Crush (parameters: object), IsVisible (parameters: object), IsAt (parameters: target)]
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1014, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1121, in _hf_hub_download_to_cache_dir
+    _raise_on_head_call_error(head_call_error, force_download, local_files_only)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/huggingface_hub/file_download.py", line 1653, in _raise_on_head_call_error
+    raise LocalEntryNotFoundError(
+huggingface_hub.errors.LocalEntryNotFoundError: Cannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable hf.co look-ups and downloads online, set 'local_files_only' to False.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 266, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_tree_baseline.py", line 185, in main
+    else load_chat_model(model_id, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 271, in load_chat_model
+    tok = AutoTokenizer.from_pretrained(model_id)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/tokenization_auto.py", line 1109, in from_pretrained
+    config = AutoConfig.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/configuration_auto.py", line 1332, in from_pretrained
+    config_dict, unused_kwargs = PretrainedConfig.get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 662, in get_config_dict
+    config_dict, kwargs = cls._get_config_dict(pretrained_model_name_or_path, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/configuration_utils.py", line 721, in _get_config_dict
+    resolved_config_file = cached_file(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/hub.py", line 553, in cached_files
+    raise OSError(
+OSError: We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.
+    FAILED helps, continuing
+
+
+Denominator is every attempted task; invalid trees count as failures.
+action_match ignores arguments (upper bound); arg_match requires them (lower bound).
+
+model                         condition                     valid XML              action_match                 arg_match
+-------------------------------------------------------------------------------------------------------------------------
+Qwen2.5-Coder-1.5B-Instruct   no_example      0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3  
+Qwen2.5-Coder-1.5B-Instruct   one_example    89.8%  44/49  78.2-95.6   12.2%   6/49   5.7-24.2    6.1%   3/49   2.1-16.5 
+Qwen3-1.7B                    no_example      0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3  
+Qwen3-1.7B                    one_example    98.0%  48/49  89.3-99.6   14.3%   7/49   7.1-26.7    8.2%   4/49   3.2-19.2 
+Qwen3-4B-Instruct-2507        no_example      0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3  
+Qwen3-4B-Instruct-2507        one_example    93.9%  46/49  83.5-97.9   20.4%  10/49  11.5-33.6   12.2%   6/49   5.7-24.2 
+Llama-3.2-1B-Instruct         no_example      0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3  
+Llama-3.2-1B-Instruct         one_example    85.7%  42/49  73.3-92.9    2.0%   1/49   0.4-10.7    0.0%   0/49   0.0-7.3  
+Phi-4-mini-instruct           no_example      0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3     0.0%   0/49   0.0-7.3  
+Phi-4-mini-instruct           one_example    98.0%  48/49  89.3-99.6   12.2%   6/49   5.7-24.2    4.1%   2/49   1.1-13.7 
+
+Qwen2.5-Coder-1.5B-Instruct by difficulty (valid / action_match / arg_match):
+  condition                      easy                medium                  hard                tricky
+  no_example              0/0/0 of 13           0/0/0 of 16            0/0/0 of 8           0/0/0 of 12
+  one_example            13/1/0 of 13          15/4/3 of 16            6/0/0 of 8          10/1/0 of 12
+
+Qwen3-1.7B by difficulty (valid / action_match / arg_match):
+  condition                      easy                medium                  hard                tricky
+  no_example              0/0/0 of 13           0/0/0 of 16            0/0/0 of 8           0/0/0 of 12
+  one_example            13/2/1 of 13          15/3/2 of 16            8/2/1 of 8          12/0/0 of 12
+
+Qwen3-4B-Instruct-2507 by difficulty (valid / action_match / arg_match):
+  condition                      easy                medium                  hard                tricky
+  no_example              0/0/0 of 13           0/0/0 of 16            0/0/0 of 8           0/0/0 of 12
+  one_example            13/3/2 of 13          15/4/4 of 16            8/2/0 of 8          10/1/0 of 12
+
+Llama-3.2-1B-Instruct by difficulty (valid / action_match / arg_match):
+  condition                      easy                medium                  hard                tricky
+  no_example              0/0/0 of 13           0/0/0 of 16            0/0/0 of 8           0/0/0 of 12
+  one_example            11/1/0 of 13          15/0/0 of 16            8/0/0 of 8           8/0/0 of 12
+
+Phi-4-mini-instruct by difficulty (valid / action_match / arg_match):
+  condition                      easy                medium                  hard                tricky
+  no_example              0/0/0 of 13           0/0/0 of 16            0/0/0 of 8           0/0/0 of 12
+  one_example            13/2/1 of 13          16/3/1 of 16            8/1/0 of 8          11/0/0 of 12
+
+Wrote results/tree_sweep/summary.csv
