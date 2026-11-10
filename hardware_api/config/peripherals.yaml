@@ -66,3 +66,18 @@ crusher_node:
     mock_chamber_closed: false
     mock_lock_engaged: false
     mock_contents_ok: false
+
+sensors_node:
+  ros__parameters:
+    backend: mock
+    rate_hz: 5.0
+    # TODO(electrical): how many HC-SR04P sensors and where. One per name.
+    ultrasonic_names: [front]
+    ultrasonic_frames: [ultrasonic_front]
+    ultrasonic_min_range: 0.02   # m
+    ultrasonic_max_range: 4.0    # m
+    # TODO(electrical): real pack limits (placeholders for a 20 V drill pack).
+    battery_empty_volts: 15.0
+    battery_full_volts: 20.5
+    mock_battery_volts: 20.0
+    mock_distances: [1.5]        # m, one per ultrasonic

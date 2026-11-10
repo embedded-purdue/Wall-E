@@ -1,0 +1,74 @@
+# Parameters for the real robot: every ESP32 node on the esp32 backend, sharing one
+# serial link. Run with: ros2 launch hardware_api esp32.launch.py
+#
+# TODO(electrical): every channel number and pulse width below is a PLACEHOLDER.
+# Fill them in from the channel map in docs/esp32-protocol.md before moving a servo.
+# Start each servo near its center (1500 us) and widen the range slowly.
+
+drive_node:
+  ros__parameters:
+    backend: esp32
+    esp32_port: /dev/ttyTHS1     # Jetson UART; /dev/ttyUSB0 for a USB-UART cable on a laptop
+    esp32_baud: 115200
+    # TODO(electrical/mechanical): measured values, see config/drive.yaml
+    wheel_radius: 0.05
+    track_width: 0.40
+    ticks_per_rev: 2000
+    max_wheel_speed: 1.0
+    speed_cap_fraction: 0.6
+    watchdog_timeout: 0.5
+    control_rate_hz: 50.0
+
+head_eyes_node:
+  ros__parameters:
+    backend: esp32
+    esp32_port: /dev/ttyTHS1
+    esp32_baud: 115200
+    control_rate_hz: 50.0
+    head_pan_min: -1.2
+    head_pan_max: 1.2
+    head_tilt_min: -0.5
+    head_tilt_max: 0.5
+    eye_min: -0.5
+    eye_max: 0.5
+    head_max_speed: 2.0
+    eye_max_speed: 6.0
+    # Maestro channel + pulse width (us) at the joint's min and max angle.
+    head_pan_channel: 0
+    head_pan_min_us: 1000.0
+    head_pan_max_us: 2000.0
+    head_tilt_channel: 1
+    head_tilt_min_us: 1200.0
+    head_tilt_max_us: 1800.0
+    eye_left_channel: 2
+    eye_left_min_us: 1200.0
+    eye_left_max_us: 1800.0
+    eye_right_channel: 3
+    eye_right_min_us: 1200.0
+    eye_right_max_us: 1800.0
+
+arm_node:
+  ros__parameters:
+    backend: esp32               # gripper servo only; arm joints stay mock until RoboClaw arm messages exist
+    esp32_port: /dev/ttyTHS1
+    esp32_baud: 115200
+    control_rate_hz: 50.0
+    arm_joint_names: [shoulder_pan, shoulder_lift, elbow, wrist]
+    arm_min: [-1.5, -0.5, 0.0, -1.5]
+    arm_max: [1.5, 1.5, 2.5, 1.5]
+    arm_max_speed: [1.0, 1.0, 1.5, 2.0]
+    arm_home: [0.0, 0.0, 0.0, 0.0]
+    gripper_channel: 4
+    gripper_open_us: 1200.0
+    gripper_closed_us: 1800.0
+
+sensors_node:
+  ros__parameters:
+    backend: esp32
+    esp32_port: /dev/ttyTHS1
+    esp32_baud: 115200
+    rate_hz: 5.0
+    ultrasonic_names: [front]
+    ultrasonic_frames: [ultrasonic_front]
+    battery_empty_volts: 15.0
+    battery_full_volts: 20.5
