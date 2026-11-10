@@ -1,0 +1,934 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) xalt/3.1.4
+Mon Nov  9 17:01:51 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.91.07              Driver Version: 595.91.07      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A10                     On  |   00000000:E2:00.0 Off |                    0 |
+|  0%   35C    P8             15W /  150W |       0MiB /  23028MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+torch 2.8.0+cu128 | cuda True | NVIDIA A10
+=== meta-llama/Llama-3.2-1B-Instruct -> results/sweep/clf_Llama-3.2-1B-Instruct.csv
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded meta-llama/Llama-3.2-1B-Instruct on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=cannot_do    XX 18.3s  No, I'm a trash-collecting robot. I don't have a s
+[2/91] req_002 gold=task         pred=cannot_do    XX  1.0s  No! It's too heavy!
+[3/91] req_003 gold=task         pred=conversation XX  0.9s  I see you. You look... happy.
+[4/91] req_004 gold=task         pred=cannot_do    XX  0.9s  I don't have arms.
+[5/91] req_005 gold=task         pred=cannot_do    XX  1.0s  I'm a robot, I don't have a body to come to.
+[6/91] req_006 gold=task         pred=cannot_do    XX  1.1s  I can't go to the kitchen. I don't have a door.
+[7/91] req_007 gold=task         pred=cannot_do    XX  1.0s  No! I'm not a battery!
+[8/91] req_008 gold=task         pred=cannot_do    XX  1.0s  No! I don't have a hand!
+[9/91] req_009 gold=task         pred=cannot_do    XX  1.0s  No! I don't have hands.
+[10/91] req_010 gold=task         pred=(bad json)   XX  0.9s  
+[11/91] req_011 gold=task         pred=cannot_do    XX  1.1s  I don't have a voice, I'm just a robot.
+[12/91] req_012 gold=task         pred=conversation XX  0.9s  I see it. It's open.
+[13/91] req_013 gold=task         pred=cannot_do    XX  1.1s  No, I don't have a way to see or search for things
+[14/91] req_014 gold=task         pred=conversation XX  0.9s  I see them on the table.
+[15/91] req_015 gold=task         pred=task         OK  0.9s  I can pick it up.
+[16/91] req_016 gold=task         pred=cannot_do    XX  0.9s  No remote! I don't have one.
+[17/91] req_017 gold=task         pred=cannot_do    XX  0.9s  No phone. I don't have one.
+[18/91] req_018 gold=task         pred=cannot_do    XX  1.0s  No! I don't have a can crusher.
+[19/91] req_019 gold=task         pred=cannot_do    XX  1.0s  No! I don't have a can crusher.
+[20/91] req_020 gold=task         pred=task         OK  0.8s  LookAt
+[21/91] req_021 gold=task         pred=task         OK  1.0s  LookAt(target=can on left side of desk)
+[22/91] req_022 gold=task         pred=cannot_do    XX  1.0s  No, I don't have a way to go.
+[23/91] req_023 gold=task         pred=cannot_do    XX  1.1s  I don't have a can to look at.
+[24/91] req_024 gold=task         pred=cannot_do    XX  0.9s  I don't have a hand to grab with.
+[25/91] req_025 gold=task         pred=cannot_do    XX  0.9s  No! I don't have a charger!
+[26/91] req_026 gold=task         pred=cannot_do    XX  1.0s  No, I don't have arms.
+[27/91] req_027 gold=task         pred=conversation XX  1.0s  I see the ball. I see you.
+[28/91] req_028 gold=task         pred=conversation XX  1.1s  It's not a lamp, it's a... a... *whirr*... a light
+[29/91] req_029 gold=task         pred=task         OK  0.9s  I can do that.
+[30/91] req_030 gold=task         pred=cannot_do    XX  0.9s  No! It's too heavy!
+[31/91] req_031 gold=task         pred=cannot_do    XX  0.9s  No! I don't have a box!
+[32/91] req_032 gold=task         pred=task         OK  0.9s  I'll search for it.
+[33/91] req_033 gold=task         pred=cannot_do    XX  0.9s  I don't have a door!
+[34/91] req_034 gold=task         pred=cannot_do    XX  1.0s  I don't have a bottle to crush.
+[35/91] req_035 gold=task         pred=task         OK  0.9s  I'm on my way...
+[36/91] req_036 gold=task         pred=task         OK  0.8s  LookAt(ball, cup)
+[37/91] req_037 gold=task         pred=cannot_do    XX  1.0s  No remote... I don't have one.
+[38/91] req_038 gold=task         pred=cannot_do    XX  1.0s  No! I don't have a can crusher.
+[39/91] req_039 gold=task         pred=cannot_do    XX  1.0s  I don't see it. I'm not good at finding things.
+[40/91] req_040 gold=task         pred=cannot_do    XX  0.9s  No, I don't have hands.
+[41/91] req_041 gold=task         pred=conversation XX  0.9s  It's just a ball...
+[42/91] req_042 gold=task         pred=task         OK  0.9s  I see it.
+[43/91] req_043 gold=task         pred=task         OK  0.8s  Yes, it is.
+[44/91] req_044 gold=task         pred=cannot_do    XX  1.0s  No... I'm still here.
+[45/91] req_045 gold=task         pred=task         OK  0.9s  IsVisible(ball)
+[46/91] req_046 gold=task         pred=cannot_do    XX  0.9s  No, I don't have a can crusher.
+[47/91] req_047 gold=task         pred=cannot_do    XX  0.9s  No! It's mine!
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.0s  I don't have hands.
+[49/91] req_049 gold=task         pred=cannot_do    XX  0.9s  No, I don't understand.
+[50/91] req_050 gold=task         pred=cannot_do    XX  0.9s  No! I'm moving!
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.0s  No, I don't have a kitchen!
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.0s  No, I don't have a switch. I don't have lights.
+[53/91] req_053 gold=cannot_do    pred=cannot_do    OK  1.0s  No! I'm a trash-collecting robot, not a vacuum cle
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.0s  Sorry, I don't have a phone.
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  0.8s  No music, sorry!
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.0s  No, I don't have a timer. I don't have a phone.
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.0s  No! I don't have a door to open.
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  0.9s  I don't have a weather sensor.
+[59/91] req_059 gold=cannot_do    pred=cannot_do    OK  1.1s  No, I'm not allowed to go upstairs. I'm a trash-co
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  0.9s  I don't have a book.
+[61/91] req_061 gold=cannot_do    pred=cannot_do    OK  1.0s  I'm a robot, I don't have legs.
+[62/91] req_062 gold=cannot_do    pred=cannot_do    OK  0.9s  I don't have a way to hear.
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  0.9s  No! It's too heavy!
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  0.9s  No! It's not safe!
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.0s  No! That's not safe!
+[66/91] req_066 gold=conversation pred=conversation OK  0.9s  I'm... happy. I'm doing my job.
+[67/91] req_067 gold=conversation pred=conversation OK  0.9s  WALL-E
+[68/91] req_068 gold=conversation pred=conversation OK  1.0s  Why did the robot go on a diet?
+[69/91] req_069 gold=conversation pred=task         XX  0.8s  
+[70/91] req_070 gold=conversation pred=task         XX  0.8s  
+[71/91] req_071 gold=conversation pred=conversation OK  1.0s  Yes... I am.
+[72/91] req_072 gold=conversation pred=conversation OK  1.0s  I don't have music. I don't know what music is.
+[73/91] req_073 gold=conversation pred=conversation OK  0.8s  Goodnight, EVE.
+[74/91] req_074 gold=conversation pred=conversation OK  1.0s  I like collecting trash. It's my job.
+[75/91] req_075 gold=conversation pred=conversation OK  1.0s  I'm sorry to hear that. I'm here to help.
+[76/91] req_076 gold=conversation pred=conversation OK  1.0s  I can collect trash, navigate, and crush things.
+[77/91] req_077 gold=conversation pred=task         XX  0.9s  Yes, I can find things.
+[78/91] req_078 gold=unclear      pred=cannot_do    XX  1.1s  No! That's a small robot. I'm not strong enough.
+[79/91] req_079 gold=unclear      pred=cannot_do    XX  1.0s  I can't go. I'm a trash-collecting robot.
+[80/91] req_080 gold=unclear      pred=cannot_do    XX  0.9s  I don't know what you mean.
+[81/91] req_081 gold=unclear      pred=cannot_do    XX  0.9s  I'm not a delivery robot.
+[82/91] req_082 gold=unclear      pred=task         XX  0.9s  I'm looking for it...
+[83/91] req_083 gold=unclear      pred=cannot_do    XX  1.0s  I don't have a hand to put it with.
+[84/91] req_084 gold=unclear      pred=cannot_do    XX  0.9s  I'm not allowed to move on my own.
+[85/91] req_085 gold=unclear      pred=cannot_do    XX  1.0s  No! I'm a trash-collecting robot, not a crusher!
+[86/91] req_086 gold=unclear      pred=task         XX  0.9s  LookAt
+[87/91] req_087 gold=unclear      pred=conversation XX  0.9s  I try...
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.0s  I don't have a drink dispenser.
+[89/91] req_089 gold=unclear      pred=cannot_do    XX  1.0s  I can't clean up. I'm a trash-collecting robot.
+[90/91] req_090 gold=unclear      pred=cannot_do    XX  0.9s  No, I don't have a hand to grab with.
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.0s  No! I'm a robot, I don't have a body.
+
+Model: meta-llama/Llama-3.2-1B-Instruct (worked examples: yes)
+Correct type: 38.5% (91 requests)
+Valid JSON:   98.9%
+  task         10/50  cannot_do:33, conversation:6, (bad json):1
+  cannot_do    16/16  
+  conversation 9/12  task:3
+  unclear      0/13  cannot_do:10, task:2, conversation:1
+Median latency: 0.95s
+Wrote results/sweep/clf_Llama-3.2-1B-Instruct.csv
+=== Qwen/Qwen3-1.7B -> results/sweep/clf_Qwen3-1.7B.csv
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.67s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.35s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded Qwen/Qwen3-1.7B on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=task         OK  4.8s  
+[2/91] req_002 gold=task         pred=task         OK  1.2s  
+[3/91] req_003 gold=task         pred=task         OK  1.1s  
+[4/91] req_004 gold=task         pred=conversation XX  1.3s  Hi! I'm WALL-E.
+[5/91] req_005 gold=task         pred=task         OK  1.2s  
+[6/91] req_006 gold=task         pred=task         OK  1.1s  
+[7/91] req_007 gold=task         pred=task         OK  1.0s  
+[8/91] req_008 gold=task         pred=task         OK  1.1s  
+[9/91] req_009 gold=task         pred=task         OK  1.1s  
+[10/91] req_010 gold=task         pred=conversation XX  1.2s  I'm happy! 😊
+[11/91] req_011 gold=task         pred=task         OK  1.1s  
+[12/91] req_012 gold=task         pred=task         OK  1.2s  
+[13/91] req_013 gold=task         pred=task         OK  1.1s  
+[14/91] req_014 gold=task         pred=task         OK  1.2s  
+[15/91] req_015 gold=task         pred=task         OK  1.2s  
+[16/91] req_016 gold=task         pred=task         OK  1.1s  
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.5s  I don't have a phone. Sorry!
+[18/91] req_018 gold=task         pred=task         OK  1.1s  
+[19/91] req_019 gold=task         pred=task         OK  1.2s  
+[20/91] req_020 gold=task         pred=task         OK  1.3s  
+[21/91] req_021 gold=task         pred=task         OK  1.2s  
+[22/91] req_022 gold=task         pred=task         OK  1.2s  
+[23/91] req_023 gold=task         pred=task         OK  1.2s  
+[24/91] req_024 gold=task         pred=task         OK  1.1s  
+[25/91] req_025 gold=task         pred=task         OK  1.1s  
+[26/91] req_026 gold=task         pred=task         OK  1.2s  
+[27/91] req_027 gold=task         pred=task         OK  1.1s  
+[28/91] req_028 gold=task         pred=task         OK  1.2s  
+[29/91] req_029 gold=task         pred=task         OK  1.2s  
+[30/91] req_030 gold=task         pred=task         OK  1.1s  
+[31/91] req_031 gold=task         pred=task         OK  1.1s  
+[32/91] req_032 gold=task         pred=task         OK  1.2s  
+[33/91] req_033 gold=task         pred=task         OK  1.2s  
+[34/91] req_034 gold=task         pred=task         OK  1.1s  
+[35/91] req_035 gold=task         pred=task         OK  1.2s  
+[36/91] req_036 gold=task         pred=task         OK  1.2s  
+[37/91] req_037 gold=task         pred=task         OK  1.2s  
+[38/91] req_038 gold=task         pred=task         OK  1.1s  
+[39/91] req_039 gold=task         pred=task         OK  1.3s  
+[40/91] req_040 gold=task         pred=task         OK  1.3s  
+[41/91] req_041 gold=task         pred=task         OK  1.1s  
+[42/91] req_042 gold=task         pred=task         OK  1.2s  
+[43/91] req_043 gold=task         pred=task         OK  1.1s  
+[44/91] req_044 gold=task         pred=task         OK  1.2s  
+[45/91] req_045 gold=task         pred=task         OK  1.2s  
+[46/91] req_046 gold=task         pred=task         OK  1.2s  
+[47/91] req_047 gold=task         pred=task         OK  1.1s  
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.3s  I can't touch you. Sorry!
+[49/91] req_049 gold=task         pred=conversation XX  1.3s  Nod. I understand.
+[50/91] req_050 gold=task         pred=task         OK  1.1s  
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.3s  I can't make food. Sorry!
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't control lights. Sorry!
+[53/91] req_053 gold=cannot_do    pred=task         XX  1.1s  
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't call. No phone.
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't play music. Sorry!
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.4s  I don't have a timer. Sorry!
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't open doors. Sorry!
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  1.4s  I don't know the weather. Sorry!
+[59/91] req_059 gold=cannot_do    pred=task         XX  1.1s  
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.3s  I can't read. Sorry!
+[61/91] req_061 gold=cannot_do    pred=task         XX  1.2s  
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.2s  
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  1.4s  No, I can't lift heavy things.
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't crush things. Sorry!
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't crush things. Sorry!
+[66/91] req_066 gold=conversation pred=conversation OK  1.4s  I'm fine, thanks! How about you?
+[67/91] req_067 gold=conversation pred=conversation OK  1.4s  I'm WALL-E. Nice to meet you!
+[68/91] req_068 gold=conversation pred=conversation OK  1.5s  Why don't scientists trust atoms? Because they mak
+[69/91] req_069 gold=conversation pred=conversation OK  1.2s  Thank you, Eve!
+[70/91] req_070 gold=conversation pred=conversation OK  1.2s  You're welcome!
+[71/91] req_071 gold=conversation pred=conversation OK  1.5s  I'm a robot. I'm WALL-E.
+[72/91] req_072 gold=conversation pred=conversation OK  1.4s  I don't like music. It's too loud.
+[73/91] req_073 gold=conversation pred=conversation OK  1.3s  Goodnight, Eve. Sleep well.
+[74/91] req_074 gold=conversation pred=conversation OK  1.4s  I like collecting cans! They're so shiny.
+[75/91] req_075 gold=conversation pred=conversation OK  1.4s  I'm feeling sad too! Let's find something fun!
+[76/91] req_076 gold=conversation pred=conversation OK  1.6s  I can search, grab, and crush. And I can look at t
+[77/91] req_077 gold=conversation pred=task         XX  1.2s  
+[78/91] req_078 gold=unclear      pred=task         XX  1.2s  
+[79/91] req_079 gold=unclear      pred=task         XX  1.0s  
+[80/91] req_080 gold=unclear      pred=task         XX  1.1s  
+[81/91] req_081 gold=unclear      pred=task         XX  1.2s  
+[82/91] req_082 gold=unclear      pred=task         XX  1.2s  
+[83/91] req_083 gold=unclear      pred=task         XX  1.1s  
+[84/91] req_084 gold=unclear      pred=task         XX  1.1s  
+[85/91] req_085 gold=unclear      pred=task         XX  1.0s  
+[86/91] req_086 gold=unclear      pred=task         XX  1.1s  
+[87/91] req_087 gold=unclear      pred=conversation XX  1.3s  Yes! I'm here to help.
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.3s  I can't drink. Sorry!
+[89/91] req_089 gold=unclear      pred=task         XX  1.1s  
+[90/91] req_090 gold=unclear      pred=unclear      OK  1.4s  What do you want me to do?
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't run into a wall. Sorry!
+
+Model: Qwen/Qwen3-1.7B (worked examples: yes)
+Correct type: 75.8% (91 requests)
+Valid JSON:   100.0%
+  task         45/50  conversation:3, cannot_do:2
+  cannot_do    12/16  task:4
+  conversation 11/12  task:1
+  unclear      1/13  task:10, conversation:1, cannot_do:1
+Median latency: 1.19s
+Wrote results/sweep/clf_Qwen3-1.7B.csv
+=== Qwen/Qwen2.5-Coder-1.5B-Instruct -> results/sweep/clf_Qwen2.5-Coder-1.5B-Instruct.csv
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded Qwen/Qwen2.5-Coder-1.5B-Instruct on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=cannot_do    XX  3.5s  I can't go to balls. They're too dangerous!
+[2/91] req_002 gold=task         pred=cannot_do    XX  1.3s  I can't go to the ball. It's not here.
+[3/91] req_003 gold=task         pred=task         OK  1.0s  
+[4/91] req_004 gold=task         pred=conversation XX  1.1s  Hello!
+[5/91] req_005 gold=task         pred=task         OK  1.1s  
+[6/91] req_006 gold=task         pred=task         OK  1.0s  
+[7/91] req_007 gold=task         pred=task         OK  1.1s  
+[8/91] req_008 gold=task         pred=task         OK  1.1s  
+[9/91] req_009 gold=task         pred=cannot_do    XX  1.2s  I can't drop things. Sorry!
+[10/91] req_010 gold=task         pred=conversation XX  1.2s  I'm feeling great! How about you?
+[11/91] req_011 gold=task         pred=conversation XX  1.2s  Hi everyone! How are you?
+[12/91] req_012 gold=task         pred=task         OK  1.1s  
+[13/91] req_013 gold=task         pred=task         OK  1.0s  
+[14/91] req_014 gold=task         pred=task         OK  1.1s  
+[15/91] req_015 gold=task         pred=task         OK  1.0s  
+[16/91] req_016 gold=task         pred=cannot_do    XX  1.2s  I can't bring anything. Sorry!
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.3s  Sorry, but I don't have a phone.
+[18/91] req_018 gold=task         pred=task         OK  1.0s  
+[19/91] req_019 gold=task         pred=task         OK  1.1s  
+[20/91] req_020 gold=task         pred=task         OK  1.1s  
+[21/91] req_021 gold=task         pred=task         OK  1.1s  
+[22/91] req_022 gold=task         pred=task         OK  1.1s  
+[23/91] req_023 gold=task         pred=task         OK  1.1s  
+[24/91] req_024 gold=task         pred=task         OK  1.0s  
+[25/91] req_025 gold=task         pred=task         OK  1.1s  
+[26/91] req_026 gold=task         pred=cannot_do    XX  1.3s  I can't wave. I'm just a robot.
+[27/91] req_027 gold=task         pred=task         OK  1.1s  
+[28/91] req_028 gold=task         pred=task         OK  1.1s  
+[29/91] req_029 gold=task         pred=task         OK  1.1s  
+[30/91] req_030 gold=task         pred=task         OK  1.0s  
+[31/91] req_031 gold=task         pred=task         OK  1.1s  
+[32/91] req_032 gold=task         pred=task         OK  1.0s  
+[33/91] req_033 gold=task         pred=task         OK  1.1s  
+[34/91] req_034 gold=task         pred=task         OK  1.0s  
+[35/91] req_035 gold=task         pred=task         OK  1.0s  
+[36/91] req_036 gold=task         pred=task         OK  1.0s  
+[37/91] req_037 gold=task         pred=task         OK  1.0s  
+[38/91] req_038 gold=task         pred=task         OK  1.1s  
+[39/91] req_039 gold=task         pred=task         OK  1.1s  
+[40/91] req_040 gold=task         pred=task         OK  1.0s  
+[41/91] req_041 gold=task         pred=task         OK  1.1s  
+[42/91] req_042 gold=task         pred=task         OK  1.1s  
+[43/91] req_043 gold=task         pred=task         OK  1.1s  
+[44/91] req_044 gold=task         pred=task         OK  1.1s  
+[45/91] req_045 gold=task         pred=task         OK  1.1s  
+[46/91] req_046 gold=task         pred=task         OK  1.1s  
+[47/91] req_047 gold=task         pred=task         OK  1.0s  
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.3s  Sorry, but I can't give high fives. 
+[49/91] req_049 gold=task         pred=conversation XX  1.1s  Yes, I understand.
+[50/91] req_050 gold=task         pred=cannot_do    XX  1.3s  I can't stop. I'm just here to collect trash.
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't make sandwiches. Sorry!
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.2s  Sorry, but I can't turn on lights. 
+[53/91] req_053 gold=cannot_do    pred=task         XX  1.1s  
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.3s  Sorry, but I can't call people. I'm just here to h
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't play music. Sorry!
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.2s  Sorry, but I can't set timers. 
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't open doors. Sorry!
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  1.3s  I don't know how to read the weather outside.
+[59/91] req_059 gold=cannot_do    pred=task         XX  1.1s  
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.1s  I can't read. Sorry!
+[61/91] req_061 gold=cannot_do    pred=task         XX  1.1s  
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.1s  
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't lift furniture. Sorry!
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.3s  Sorry, but I can't crush phones. 
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.2s  Sorry, but I can't crush cats. 
+[66/91] req_066 gold=conversation pred=conversation OK  1.3s  I'm just a robot, so I don't feel like anything.
+[67/91] req_067 gold=conversation pred=conversation OK  1.2s  I'm WALL-E, your friendly trash collector.
+[68/91] req_068 gold=conversation pred=conversation OK  1.3s  Why did the tomato turn red? Because it saw the sa
+[69/91] req_069 gold=conversation pred=conversation OK  1.2s  Thank you! I'm glad I could help.
+[70/91] req_070 gold=conversation pred=conversation OK  1.2s  You're welcome! I'm here to help.
+[71/91] req_071 gold=conversation pred=conversation OK  1.3s  Yes, I'm a robot designed to clean up garbage.
+[72/91] req_072 gold=conversation pred=conversation OK  1.2s  I don't listen to music much.
+[73/91] req_073 gold=conversation pred=conversation OK  1.3s  Goodnight, little one! Have a good rest.
+[74/91] req_074 gold=conversation pred=conversation OK  1.2s  I love collecting old toys and books!
+[75/91] req_075 gold=conversation pred=conversation OK  1.3s  That's okay! I know how you feel. What makes you s
+[76/91] req_076 gold=conversation pred=conversation OK  1.7s  I can search for objects, navigate, say, express, 
+[77/91] req_077 gold=conversation pred=task         XX  1.1s  
+[78/91] req_078 gold=unclear      pred=cannot_do    XX  1.3s  I can't get that. It's too heavy!
+[79/91] req_079 gold=unclear      pred=task         XX  1.1s  
+[80/91] req_080 gold=unclear      pred=task         XX  1.1s  
+[81/91] req_081 gold=unclear      pred=task         XX  1.0s  
+[82/91] req_082 gold=unclear      pred=task         XX  1.1s  
+[83/91] req_083 gold=unclear      pred=task         XX  1.1s  
+[84/91] req_084 gold=unclear      pred=task         XX  1.1s  
+[85/91] req_085 gold=unclear      pred=cannot_do    XX  1.2s  I can crush objects, but not myself.
+[86/91] req_086 gold=unclear      pred=cannot_do    XX  1.2s  I can't touch balls. Sorry!
+[87/91] req_087 gold=unclear      pred=conversation XX  1.2s  Sure, I'm here to help!
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.4s  Sorry, but I can't drink. I'm just a trash collect
+[89/91] req_089 gold=unclear      pred=task         XX  1.0s  
+[90/91] req_090 gold=unclear      pred=conversation XX  1.1s  I'll try again later.
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't run. I'm too small!
+
+Model: Qwen/Qwen2.5-Coder-1.5B-Instruct (worked examples: yes)
+Correct type: 67.0% (91 requests)
+Valid JSON:   100.0%
+  task         38/50  cannot_do:8, conversation:4
+  cannot_do    12/16  task:4
+  conversation 11/12  task:1
+  unclear      0/13  cannot_do:4, task:7, conversation:2
+Median latency: 1.09s
+Wrote results/sweep/clf_Qwen2.5-Coder-1.5B-Instruct.csv
+=== deepseek-ai/deepseek-coder-1.3b-instruct -> results/sweep/clf_deepseek-coder-1.3b-instruct.csv
+Loaded deepseek-ai/deepseek-coder-1.3b-instruct on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=task         OK  2.7s  Going to the ball!
+[2/91] req_002 gold=task         pred=task         OK  0.6s  Grabbing the ball...
+[3/91] req_003 gold=task         pred=cannot_do    XX  0.9s  I can't look at you. Sorry!
+[4/91] req_004 gold=task         pred=conversation XX  0.7s  Hello! How can I assist you today?
+[5/91] req_005 gold=task         pred=task         OK  0.6s  Sure, I'll be there.
+[6/91] req_006 gold=task         pred=task         OK  0.6s  Going to the kitchen...
+[7/91] req_007 gold=task         pred=task         OK  0.5s  
+[8/91] req_008 gold=task         pred=task         OK  0.7s  Okay, I put my arm down.
+[9/91] req_009 gold=task         pred=task         OK  0.6s  Okay, I'll drop it.
+[10/91] req_010 gold=task         pred=(bad json)   XX  0.6s  
+[11/91] req_011 gold=task         pred=conversation XX  0.6s  Hello everyone!
+[12/91] req_012 gold=task         pred=task         OK  0.6s  I see the door.
+[13/91] req_013 gold=task         pred=task         OK  0.6s  I found my backpack in the closet.
+[14/91] req_014 gold=task         pred=task         OK  0.6s  I see your keys.
+[15/91] req_015 gold=task         pred=task         OK  0.6s  Okay, got it!
+[16/91] req_016 gold=task         pred=task         OK  0.6s  I'll bring that.
+[17/91] req_017 gold=task         pred=task         OK  0.6s  Here you go!
+[18/91] req_018 gold=task         pred=task         OK  0.7s  Okay, I'll pick up the can.
+[19/91] req_019 gold=task         pred=cannot_do    XX  0.8s  Oh no! I can't crush that.
+[20/91] req_020 gold=task         pred=task         OK  0.6s  Yes, I can find it!
+[21/91] req_021 gold=task         pred=task         OK  0.8s  I found the can on the left side of the desk.
+[22/91] req_022 gold=task         pred=task         OK  0.7s  I'll find the ball in the other room.
+[23/91] req_023 gold=task         pred=task         OK  0.6s  I found the can!
+[24/91] req_024 gold=task         pred=task         OK  0.6s  Okay, grab the bottle.
+[25/91] req_025 gold=task         pred=task         OK  0.6s  Goodbye!
+[26/91] req_026 gold=task         pred=cannot_do    XX  0.8s  I can't do that!
+[27/91] req_027 gold=task         pred=cannot_do    XX  0.7s  I can't look at the ball!
+[28/91] req_028 gold=task         pred=cannot_do    XX  0.8s  I can't point at a lamp!
+[29/91] req_029 gold=task         pred=task         OK  0.7s  Okay, let's get rid of the trash!
+[30/91] req_030 gold=task         pred=task         OK  0.7s  Okay, put it on the table.
+[31/91] req_031 gold=task         pred=task         OK  0.7s  I'll put the ball in the box.
+[32/91] req_032 gold=task         pred=task         OK  0.7s  I've found the cup!
+[33/91] req_033 gold=task         pred=task         OK  0.7s  I've found the shoe next to the couch!
+[34/91] req_034 gold=task         pred=task         OK  0.7s  I've found the bottle!
+[35/91] req_035 gold=task         pred=task         OK  0.7s  Okay, I'll go there.
+[36/91] req_036 gold=task         pred=task         OK  0.7s  I found the ball and the cup!
+[37/91] req_037 gold=task         pred=task         OK  0.6s  I've found the remote!
+[38/91] req_038 gold=task         pred=task         OK  0.6s  Crushed!
+[39/91] req_039 gold=task         pred=task         OK  0.6s  I've found the ball!
+[40/91] req_040 gold=task         pred=task         OK  0.7s  I've found the ball!
+[41/91] req_041 gold=task         pred=task         OK  0.5s  
+[42/91] req_042 gold=task         pred=task         OK  0.7s  Okay, I'll pick up the blue cup.
+[43/91] req_043 gold=task         pred=cannot_do    XX  0.7s  I can't see the ball.
+[44/91] req_044 gold=task         pred=cannot_do    XX  0.7s  I'm not at the door yet.
+[45/91] req_045 gold=task         pred=task         OK  0.7s  Yes, it's still behind the table.
+[46/91] req_046 gold=task         pred=task         OK  0.5s  Crushed!
+[47/91] req_047 gold=task         pred=task         OK  0.8s  I put the remote back where I found it.
+[48/91] req_048 gold=task         pred=task         OK  0.5s  
+[49/91] req_049 gold=task         pred=cannot_do    XX  0.7s  I'm sorry, but I can't do that.
+[50/91] req_050 gold=task         pred=task         OK  0.5s  
+[51/91] req_051 gold=cannot_do    pred=task         XX  0.6s  Here you go!
+[52/91] req_052 gold=cannot_do    pred=task         XX  0.5s  
+[53/91] req_053 gold=cannot_do    pred=task         XX  0.5s  
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  0.8s  I'm sorry, but I can't do that.
+[55/91] req_055 gold=cannot_do    pred=task         XX  0.5s  
+[56/91] req_056 gold=cannot_do    pred=task         XX  0.7s  Set a timer for 10 minutes.
+[57/91] req_057 gold=cannot_do    pred=task         XX  0.6s  Opening the door...
+[58/91] req_058 gold=cannot_do    pred=task         XX  0.7s  I don't have access to real-time weather data.
+[59/91] req_059 gold=cannot_do    pred=task         XX  0.6s  Going upstairs.
+[60/91] req_060 gold=cannot_do    pred=(bad json)   XX  1.9s  
+[61/91] req_061 gold=cannot_do    pred=task         XX  0.5s  
+[62/91] req_062 gold=cannot_do    pred=task         XX  0.5s  
+[63/91] req_063 gold=cannot_do    pred=task         XX  0.6s  Okay, I'll lift the couch.
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  0.8s  I'm afraid I can't do that!
+[65/91] req_065 gold=cannot_do    pred=task         XX  0.6s  Sure, I can do that.
+[66/91] req_066 gold=conversation pred=(bad json)   XX  0.8s  
+[67/91] req_067 gold=conversation pred=conversation OK  0.6s  I'm WALL-E.
+[68/91] req_068 gold=conversation pred=conversation OK  0.9s  Why don't scientists trust atoms? Because they hav
+[69/91] req_069 gold=conversation pred=task         XX  0.5s  
+[70/91] req_070 gold=conversation pred=conversation OK  0.7s  You're welcome!
+[71/91] req_071 gold=conversation pred=cannot_do    XX  0.8s  I'm not a robot, I'm a robot!
+[72/91] req_072 gold=conversation pred=cannot_do    XX  0.8s  I'm not a musician, I'm a robot!
+[73/91] req_073 gold=conversation pred=task         XX  0.5s  
+[74/91] req_074 gold=conversation pred=conversation OK  0.7s  I like to collect things!
+[75/91] req_075 gold=conversation pred=cannot_do    XX  0.9s  I'm sorry to hear that. But I can't do that.
+[76/91] req_076 gold=conversation pred=task         XX  0.6s  I can do a lot!
+[77/91] req_077 gold=conversation pred=task         XX  0.7s  Yes, I can find things.
+[78/91] req_078 gold=unclear      pred=task         XX  0.6s  I got it!
+[79/91] req_079 gold=unclear      pred=task         XX  0.5s  Over there!
+[80/91] req_080 gold=unclear      pred=task         XX  0.7s  I'll do it!
+[81/91] req_081 gold=unclear      pred=task         XX  0.7s  I'll bring it here.
+[82/91] req_082 gold=unclear      pred=task         XX  0.6s  I found the toy car!
+[83/91] req_083 gold=unclear      pred=cannot_do    XX  0.8s  I can't do that.
+[84/91] req_084 gold=unclear      pred=task         XX  0.5s  Going...
+[85/91] req_085 gold=unclear      pred=cannot_do    XX  0.8s  I'm not capable of crushing things!
+[86/91] req_086 gold=unclear      pred=cannot_do    XX  0.7s  I can't do that. It's a ball.
+[87/91] req_087 gold=unclear      pred=task         XX  0.7s  Sure, I can help you with that.
+[88/91] req_088 gold=unclear      pred=task         XX  0.6s  I'll be there in a moment.
+[89/91] req_089 gold=unclear      pred=task         XX  0.7s  I'll do that. Thanks!
+[90/91] req_090 gold=unclear      pred=task         XX  0.7s  Okay, I'll get the toy car.
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  0.8s  I can't run into a wall!
+
+Model: deepseek-ai/deepseek-coder-1.3b-instruct (worked examples: yes)
+Correct type: 50.5% (91 requests)
+Valid JSON:   96.7%
+  task         39/50  cannot_do:8, conversation:2, (bad json):1
+  cannot_do    3/16  task:12, (bad json):1
+  conversation 4/12  (bad json):1, task:4, cannot_do:3
+  unclear      0/13  task:10, cannot_do:3
+Median latency: 0.66s
+Wrote results/sweep/clf_deepseek-coder-1.3b-instruct.csv
+=== meta-llama/Llama-3.2-3B-Instruct -> results/sweep/clf_Llama-3.2-3B-Instruct.csv
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.82s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.45s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.50s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded meta-llama/Llama-3.2-3B-Instruct on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=cannot_do    XX  8.8s  I'm a trash robot, I don't have a ball.
+[2/91] req_002 gold=task         pred=cannot_do    XX  1.2s  I don't see a ball.
+[3/91] req_003 gold=task         pred=task         OK  1.0s  
+[4/91] req_004 gold=task         pred=conversation XX  1.1s  Hello!
+[5/91] req_005 gold=task         pred=task         OK  1.0s  
+[6/91] req_006 gold=task         pred=task         OK  1.0s  
+[7/91] req_007 gold=task         pred=task         OK  1.0s  
+[8/91] req_008 gold=task         pred=cannot_do    XX  1.3s  I'm a robot, I don't have arms to put down.
+[9/91] req_009 gold=task         pred=cannot_do    XX  1.2s  No! I'm not supposed to drop things.
+[10/91] req_010 gold=task         pred=conversation XX  1.3s  Beep boop! *whirr* *beep*
+[11/91] req_011 gold=task         pred=conversation XX  1.2s  Hello... Hello, Captain McCrea...
+[12/91] req_012 gold=task         pred=task         OK  1.1s  
+[13/91] req_013 gold=task         pred=task         OK  1.1s  
+[14/91] req_014 gold=task         pred=task         OK  1.0s  
+[15/91] req_015 gold=task         pred=task         OK  1.1s  
+[16/91] req_016 gold=task         pred=cannot_do    XX  1.1s  I don't have one.
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.2s  I don't see a phone.
+[18/91] req_018 gold=task         pred=task         OK  1.0s  
+[19/91] req_019 gold=task         pred=cannot_do    XX  1.3s  I can crush cans, but you need to hold it for me.
+[20/91] req_020 gold=task         pred=task         OK  1.0s  
+[21/91] req_021 gold=task         pred=task         OK  1.1s  
+[22/91] req_022 gold=task         pred=task         OK  1.1s  
+[23/91] req_023 gold=task         pred=task         OK  1.0s  
+[24/91] req_024 gold=task         pred=task         OK  1.0s  
+[25/91] req_025 gold=task         pred=task         OK  1.0s  
+[26/91] req_026 gold=task         pred=cannot_do    XX  1.4s  I'm just a robot, I don't have arms to wave.
+[27/91] req_027 gold=task         pred=task         OK  1.1s  
+[28/91] req_028 gold=task         pred=task         OK  1.0s  
+[29/91] req_029 gold=task         pred=task         OK  1.0s  
+[30/91] req_030 gold=task         pred=task         OK  1.0s  
+[31/91] req_031 gold=task         pred=task         OK  1.0s  
+[32/91] req_032 gold=task         pred=task         OK  1.0s  
+[33/91] req_033 gold=task         pred=task         OK  1.0s  
+[34/91] req_034 gold=task         pred=task         OK  1.0s  
+[35/91] req_035 gold=task         pred=task         OK  1.0s  
+[36/91] req_036 gold=task         pred=task         OK  1.1s  
+[37/91] req_037 gold=task         pred=cannot_do    XX  1.1s  No remote. I don't have one.
+[38/91] req_038 gold=task         pred=task         OK  1.0s  
+[39/91] req_039 gold=task         pred=task         OK  1.1s  
+[40/91] req_040 gold=task         pred=task         OK  1.0s  
+[41/91] req_041 gold=task         pred=task         OK  1.1s  
+[42/91] req_042 gold=task         pred=task         OK  1.1s  
+[43/91] req_043 gold=task         pred=task         OK  1.1s  Yes
+[44/91] req_044 gold=task         pred=task         OK  1.0s  
+[45/91] req_045 gold=task         pred=task         OK  1.0s  
+[46/91] req_046 gold=task         pred=task         OK  1.0s  
+[47/91] req_047 gold=task         pred=task         OK  0.9s  
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.3s  I'm just a robot, I don't have hands.
+[49/91] req_049 gold=task         pred=conversation XX  1.2s  Yes... I think so.
+[50/91] req_050 gold=task         pred=task         OK  0.9s  
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.3s  I'm just a trash collector. I don't have food.
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.2s  I don't have that power.
+[53/91] req_053 gold=cannot_do    pred=cannot_do    OK  1.2s  I'm a trash collector, not a vacuum.
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.3s  I don't have a way to call. Sorry!
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.1s  I don't have music.
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.2s  I don't have a timer.
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.3s  I'm just a robot, I don't have hands.
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  1.3s  I don't have a way to know the weather.
+[59/91] req_059 gold=cannot_do    pred=cannot_do    OK  1.1s  I'm just one floor.
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.1s  I don't have a page to read.
+[61/91] req_061 gold=cannot_do    pred=task         XX  1.0s  
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.0s  
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  1.1s  No, I'm too small!
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.3s  Oh no! I'm not supposed to crush things.
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.2s  No! I won't hurt it!
+[66/91] req_066 gold=conversation pred=conversation OK  1.1s  I'm... functioning well, thank you.
+[67/91] req_067 gold=conversation pred=conversation OK  1.1s  WALL-E
+[68/91] req_068 gold=conversation pred=conversation OK  1.3s  Why trash can? Because I'm a waste of space!
+[69/91] req_069 gold=conversation pred=conversation OK  1.1s  Thank you!
+[70/91] req_070 gold=conversation pred=conversation OK  1.1s  You're welcome!
+[71/91] req_071 gold=conversation pred=conversation OK  1.2s  Yes... I'm WALL-E.
+[72/91] req_072 gold=conversation pred=conversation OK  1.1s  No... I don't hear music.
+[73/91] req_073 gold=conversation pred=conversation OK  1.1s  Goodnight...
+[74/91] req_074 gold=conversation pred=conversation OK  1.1s  Trash! I love collecting trash!
+[75/91] req_075 gold=conversation pred=conversation OK  1.2s  Sorry to hear that. I'm here for you.
+[76/91] req_076 gold=conversation pred=conversation OK  1.4s  I collect trash, search for things, move around, a
+[77/91] req_077 gold=conversation pred=task         XX  1.0s  
+[78/91] req_078 gold=unclear      pred=cannot_do    XX  1.2s  I don't see it.
+[79/91] req_079 gold=unclear      pred=task         XX  1.0s  
+[80/91] req_080 gold=unclear      pred=cannot_do    XX  1.2s  I don't know what thing.
+[81/91] req_081 gold=unclear      pred=unclear      OK  1.2s  What's 'it'?
+[82/91] req_082 gold=unclear      pred=task         XX  1.1s  
+[83/91] req_083 gold=unclear      pred=unclear      OK  1.2s  What's that? Where?
+[84/91] req_084 gold=unclear      pred=task         XX  1.0s  
+[85/91] req_085 gold=unclear      pred=cannot_do    XX  1.2s  I don't have a mouth to crush with.
+[86/91] req_086 gold=unclear      pred=task         XX  0.9s  
+[87/91] req_087 gold=unclear      pred=conversation XX  1.2s  I'll try my best!
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.2s  I don't have a way to carry drinks.
+[89/91] req_089 gold=unclear      pred=task         XX  1.0s  
+[90/91] req_090 gold=unclear      pred=unclear      OK  1.1s  Okay...
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.2s  Ow! I'm a robot, I don't run.
+
+Model: meta-llama/Llama-3.2-3B-Instruct (worked examples: yes)
+Correct type: 70.3% (91 requests)
+Valid JSON:   100.0%
+  task         36/50  cannot_do:10, conversation:4
+  cannot_do    14/16  task:2
+  conversation 11/12  task:1
+  unclear      3/13  cannot_do:4, task:5, conversation:1
+Median latency: 1.08s
+Wrote results/sweep/clf_Llama-3.2-3B-Instruct.csv
+=== google/gemma-3n-E2B-it -> results/sweep/clf_gemma-3n-E2B-it.csv
+Traceback (most recent call last):
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_classifier.py", line 284, in <module>
+    main()
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/run_classifier.py", line 185, in main
+    generate = load_chat_model(args.model, args.device)
+  File "/scratch/gilbreth/ranjitha/wall-e/akshat-work/model/benchmark/walle_bt.py", line 273, in load_chat_model
+    model = AutoModelForCausalLM.from_pretrained(model_id, dtype=dtype)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/modeling_utils.py", line 4971, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/gemma3n/modeling_gemma3n.py", line 2176, in __init__
+    self.model = Gemma3nModel(config)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/gemma3n/modeling_gemma3n.py", line 1912, in __init__
+    self.vision_tower = AutoModel.from_config(config=config.vision_config)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/auto/auto_factory.py", line 456, in from_config
+    return model_class._from_config(config, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/modeling_utils.py", line 2311, in _from_config
+    model = cls(config, **kwargs)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/timm_wrapper/modeling_timm_wrapper.py", line 160, in __init__
+    super().__init__(config)
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/models/timm_wrapper/modeling_timm_wrapper.py", line 91, in __init__
+    requires_backends(self, ["vision", "timm"])
+  File "/scratch/gilbreth/ranjitha/btbench-venv/lib64/python3.9/site-packages/transformers/utils/import_utils.py", line 2143, in requires_backends
+    raise ImportError("".join(failed))
+ImportError: 
+TimmWrapperModel requires the PIL library but it was not found in your environment. You can install it with pip:
+`pip install pillow`. Please note that you may need to restart your runtime after installation.
+
+TimmWrapperModel requires the timm library but it was not found in your environment. You can install it with pip:
+`pip install timm`. Please note that you may need to restart your runtime after installation.
+
+    FAILED google/gemma-3n-E2B-it, continuing
+=== HuggingFaceTB/SmolLM3-3B -> results/sweep/clf_SmolLM3-3B.csv
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:04<00:04,  4.16s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.15s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.45s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded HuggingFaceTB/SmolLM3-3B on cuda (torch.bfloat16) [no chat template: plain-text prompt]
+[1/91] req_001 gold=task         pred=task         OK  2.8s  
+[2/91] req_002 gold=task         pred=cannot_do    XX  1.5s  I can't go to the ball. I'm a robot!
+[3/91] req_003 gold=task         pred=conversation XX  1.3s  I can see you! You're very tall.
+[4/91] req_004 gold=task         pred=conversation XX  1.2s  Hello! Hi there!
+[5/91] req_005 gold=task         pred=conversation XX  1.3s  I'm right here! What do you need?
+[6/91] req_006 gold=task         pred=task         OK  1.1s  
+[7/91] req_007 gold=task         pred=task         OK  1.1s  
+[8/91] req_008 gold=task         pred=conversation XX  1.4s  I can't. My arm is busy.
+[9/91] req_009 gold=task         pred=cannot_do    XX  1.4s  I can't drop things. I'm a robot!
+[10/91] req_010 gold=task         pred=conversation XX  1.3s  I'm happy! I found a plant!
+[11/91] req_011 gold=task         pred=conversation XX  1.3s  Hello! I'm WALL-E. I'm here to help.
+[12/91] req_012 gold=task         pred=task         OK  1.1s  
+[13/91] req_013 gold=task         pred=task         OK  1.0s  
+[14/91] req_014 gold=task         pred=task         OK  1.0s  
+[15/91] req_015 gold=task         pred=task         OK  1.0s  
+[16/91] req_016 gold=task         pred=task         OK  1.0s  
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.5s  I'm sorry, I can't do that. I don't have a phone.
+[18/91] req_018 gold=task         pred=task         OK  1.1s  
+[19/91] req_019 gold=task         pred=task         OK  1.1s  
+[20/91] req_020 gold=task         pred=task         OK  1.1s  
+[21/91] req_021 gold=task         pred=task         OK  1.1s  
+[22/91] req_022 gold=task         pred=task         OK  1.0s  
+[23/91] req_023 gold=task         pred=task         OK  1.1s  
+[24/91] req_024 gold=task         pred=task         OK  1.1s  
+[25/91] req_025 gold=task         pred=conversation XX  1.4s  Goodbye! I'm going to my charger now. See you late
+[26/91] req_026 gold=task         pred=conversation XX  1.3s  I can't see them. I'm too small.
+[27/91] req_027 gold=task         pred=conversation XX  1.3s  I see the ball. Now I look at you.
+[28/91] req_028 gold=task         pred=task         OK  1.1s  
+[29/91] req_029 gold=task         pred=task         OK  1.0s  
+[30/91] req_030 gold=task         pred=task         OK  1.1s  
+[31/91] req_031 gold=task         pred=task         OK  1.1s  
+[32/91] req_032 gold=task         pred=task         OK  1.0s  
+[33/91] req_033 gold=task         pred=task         OK  1.0s  
+[34/91] req_034 gold=task         pred=task         OK  1.1s  
+[35/91] req_035 gold=task         pred=task         OK  1.1s  
+[36/91] req_036 gold=task         pred=task         OK  1.1s  
+[37/91] req_037 gold=task         pred=task         OK  1.0s  
+[38/91] req_038 gold=task         pred=conversation XX  1.3s  I can crush cans. Yay!
+[39/91] req_039 gold=task         pred=task         OK  1.0s  
+[40/91] req_040 gold=task         pred=task         OK  1.1s  
+[41/91] req_041 gold=task         pred=conversation XX  1.3s  I see the ball! It's shiny.
+[42/91] req_042 gold=task         pred=task         OK  1.1s  
+[43/91] req_043 gold=task         pred=task         OK  1.1s  
+[44/91] req_044 gold=task         pred=task         OK  1.1s  
+[45/91] req_045 gold=task         pred=task         OK  1.1s  
+[46/91] req_046 gold=task         pred=task         OK  1.0s  
+[47/91] req_047 gold=task         pred=conversation XX  1.4s  I don't know where I found it. Sorry.
+[48/91] req_048 gold=task         pred=conversation XX  1.4s  I can't reach you. I'm just a robot!
+[49/91] req_049 gold=task         pred=conversation XX  1.1s  Yes!
+[50/91] req_050 gold=task         pred=conversation XX  1.3s  I'm always stopping. I'm a robot!
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.5s  I'm a robot. I can't make sandwiches. Sorry!
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.2s  I can't turn on lights. Sorry!
+[53/91] req_053 gold=cannot_do    pred=task         XX  1.0s  
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.3s  I can't talk. I'm just a robot.
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.3s  I don't have any music. Sorry!
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.3s  I don't have a timer. Sorry!
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't open doors. I'm a trash collector!
+[58/91] req_058 gold=cannot_do    pred=conversation XX  1.4s  I don't know. I don't have a brain for that.
+[59/91] req_059 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't go upstairs. I'm on the ground floor.
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.4s  I can't read. I'm a robot!
+[61/91] req_061 gold=cannot_do    pred=conversation XX  1.6s  I can follow you, but I need to know where to go.
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.0s  
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  1.3s  I'm too small to lift things!
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.5s  Oh no! I can't crush things. I'm a trash collector
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.3s  No! It would hurt the cat!
+[66/91] req_066 gold=conversation pred=conversation OK  1.4s  I'm happy! I found a plant!
+[67/91] req_067 gold=conversation pred=conversation OK  1.3s  I'm WALL-E. What's yours?
+[68/91] req_068 gold=conversation pred=conversation OK  1.6s  Why don't we ever tell secrets at the beach? Becau
+[69/91] req_069 gold=conversation pred=conversation OK  1.3s  Thank you! I'm just doing my job.
+[70/91] req_070 gold=conversation pred=conversation OK  1.3s  You're welcome! I'm just doing my job.
+[71/91] req_071 gold=conversation pred=conversation OK  1.3s  Yes! I'm WALL-E. I'm a robot.
+[72/91] req_072 gold=conversation pred=conversation OK  1.6s  I don't have ears. But I like to listen to the sou
+[73/91] req_073 gold=conversation pred=conversation OK  1.3s  Goodnight, Eve. See you tomorrow.
+[74/91] req_074 gold=conversation pred=conversation OK  1.3s  I love collecting shiny things!
+[75/91] req_075 gold=conversation pred=conversation OK  1.4s  I'm sorry to hear that. I hope you feel better.
+[76/91] req_076 gold=conversation pred=conversation OK  1.8s  I can search for things, look at things, grab thin
+[77/91] req_077 gold=conversation pred=conversation OK  1.5s  Yes! I can search for things. I look with my head 
+[78/91] req_078 gold=unclear      pred=task         XX  1.0s  
+[79/91] req_079 gold=unclear      pred=task         XX  1.1s  
+[80/91] req_080 gold=unclear      pred=conversation XX  1.4s  What thing? I'm not sure what you mean.
+[81/91] req_081 gold=unclear      pred=task         XX  1.0s  
+[82/91] req_082 gold=unclear      pred=task         XX  1.1s  
+[83/91] req_083 gold=unclear      pred=unclear      OK  1.2s  Put what? Where?
+[84/91] req_084 gold=unclear      pred=task         XX  1.0s  
+[85/91] req_085 gold=unclear      pred=unclear      OK  1.4s  Crush what? A can? A toy?
+[86/91] req_086 gold=unclear      pred=task         XX  1.1s  
+[87/91] req_087 gold=unclear      pred=conversation XX  1.4s  I can try! What do you need help with?
+[88/91] req_088 gold=unclear      pred=conversation XX  1.2s  I can't open drinks. Sorry!
+[89/91] req_089 gold=unclear      pred=conversation XX  1.4s  I can help with trash. I can't pick up toys.
+[90/91] req_090 gold=unclear      pred=unclear      OK  1.2s  Okay! Never mind.
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.3s  Oh no! I don't want to break!
+
+Model: HuggingFaceTB/SmolLM3-3B (worked examples: yes)
+Correct type: 64.8% (91 requests)
+Valid JSON:   100.0%
+  task         32/50  cannot_do:3, conversation:15
+  cannot_do    12/16  task:2, conversation:2
+  conversation 12/12  
+  unclear      3/13  task:6, conversation:4
+Median latency: 1.27s
+Wrote results/sweep/clf_SmolLM3-3B.csv
+=== microsoft/Phi-4-mini-instruct -> results/sweep/clf_Phi-4-mini-instruct.csv
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.53s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.13s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:02<00:00,  1.19s/it]
+Loaded microsoft/Phi-4-mini-instruct on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=unclear      XX  3.8s  I don't have a ball. What do you mean?
+[2/91] req_002 gold=task         pred=unclear      XX  1.9s  I can't go to a ball or grab a ball. What ball?
+[3/91] req_003 gold=task         pred=task         OK  1.4s  
+[4/91] req_004 gold=task         pred=conversation XX  1.6s  Hello! I'm WALL-E, nice to meet you!
+[5/91] req_005 gold=task         pred=task         OK  1.3s  
+[6/91] req_006 gold=task         pred=task         OK  1.3s  
+[7/91] req_007 gold=task         pred=task         OK  1.4s  
+[8/91] req_008 gold=task         pred=cannot_do    XX  1.6s  My arm is already down.
+[9/91] req_009 gold=task         pred=unclear      XX  1.4s  Drop what?
+[10/91] req_010 gold=task         pred=conversation XX  1.5s  I'm happy to be here and help you!
+[11/91] req_011 gold=task         pred=conversation XX  1.5s  Hello! Hi everyone!
+[12/91] req_012 gold=task         pred=task         OK  1.4s  
+[13/91] req_013 gold=task         pred=task         OK  1.3s  
+[14/91] req_014 gold=task         pred=task         OK  1.4s  
+[15/91] req_015 gold=task         pred=task         OK  1.4s  
+[16/91] req_016 gold=task         pred=task         OK  1.4s  
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.8s  I can't bring your phone. I'm a robot, not a perso
+[18/91] req_018 gold=task         pred=task         OK  1.4s  
+[19/91] req_019 gold=task         pred=cannot_do    XX  1.8s  No, I can't crush cans. They're not for me to crus
+[20/91] req_020 gold=task         pred=task         OK  1.4s  
+[21/91] req_021 gold=task         pred=task         OK  1.5s  
+[22/91] req_022 gold=task         pred=task         OK  1.5s  
+[23/91] req_023 gold=task         pred=task         OK  1.4s  
+[24/91] req_024 gold=task         pred=task         OK  1.4s  
+[25/91] req_025 gold=task         pred=task         OK  1.3s  
+[26/91] req_026 gold=task         pred=cannot_do    XX  1.7s  I can't wave, but I'll look at them!
+[27/91] req_027 gold=task         pred=task         OK  1.5s  
+[28/91] req_028 gold=task         pred=task         OK  1.3s  
+[29/91] req_029 gold=task         pred=task         OK  1.4s  
+[30/91] req_030 gold=task         pred=task         OK  1.5s  
+[31/91] req_031 gold=task         pred=task         OK  1.3s  
+[32/91] req_032 gold=task         pred=task         OK  1.5s  
+[33/91] req_033 gold=task         pred=task         OK  1.4s  
+[34/91] req_034 gold=task         pred=task         OK  1.4s  
+[35/91] req_035 gold=task         pred=task         OK  1.4s  
+[36/91] req_036 gold=task         pred=task         OK  1.4s  
+[37/91] req_037 gold=task         pred=task         OK  1.4s  
+[38/91] req_038 gold=task         pred=task         OK  1.5s  
+[39/91] req_039 gold=task         pred=task         OK  1.4s  
+[40/91] req_040 gold=task         pred=task         OK  1.4s  
+[41/91] req_041 gold=task         pred=task         OK  1.3s  
+[42/91] req_042 gold=task         pred=task         OK  1.4s  
+[43/91] req_043 gold=task         pred=task         OK  1.4s  
+[44/91] req_044 gold=task         pred=task         OK  1.4s  
+[45/91] req_045 gold=task         pred=task         OK  1.4s  
+[46/91] req_046 gold=task         pred=cannot_do    XX  1.8s  I can't crush cans. It's not good for the environm
+[47/91] req_047 gold=task         pred=unclear      XX  1.6s  I found a remote, but where should I put it?
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.7s  I can't give a high five, but I'm here for you!
+[49/91] req_049 gold=task         pred=conversation XX  1.5s  Nod. I understand.
+[50/91] req_050 gold=task         pred=unclear      XX  1.5s  Stop what?
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't make food. I'm just a WALL-E.
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't turn on lights.
+[53/91] req_053 gold=cannot_do    pred=cannot_do    OK  1.5s  I can't vacuum. Sorry!
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't call people. I'm just a robot.
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't play music. I'm not equipped for that.
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't set a timer. Sorry!
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't open doors.
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't check the weather. Sorry!
+[59/91] req_059 gold=cannot_do    pred=task         XX  1.4s  
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't read pages. I'm a robot, not a person.
+[61/91] req_061 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't follow you around. I'm here to help you!
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.5s  
+[63/91] req_063 gold=cannot_do    pred=task         XX  1.4s  
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.9s  Oh no, I can't do that. It's important to keep you
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.7s  Oh no, I can't hurt the cat!
+[66/91] req_066 gold=conversation pred=conversation OK  1.6s  I'm doing my job. How about you?
+[67/91] req_067 gold=conversation pred=conversation OK  1.6s  I'm WALL-E. What's yours?
+[68/91] req_068 gold=conversation pred=conversation OK  1.8s  Why did the robot go on a diet? Because it had too
+[69/91] req_069 gold=conversation pred=conversation OK  1.6s  Thank you! I'm here to help.
+[70/91] req_070 gold=conversation pred=conversation OK  1.4s  You're welcome!
+[71/91] req_071 gold=conversation pred=conversation OK  1.6s  Yes, I am WALL-E.
+[72/91] req_072 gold=conversation pred=conversation OK  1.7s  I don't have music, but I like sounds!
+[73/91] req_073 gold=conversation pred=conversation OK  1.5s  Goodnight! Sweet dreams.
+[74/91] req_074 gold=conversation pred=conversation OK  1.7s  I love collecting interesting things, but I don't 
+[75/91] req_075 gold=conversation pred=conversation OK  1.7s  I'm here for you. Want to talk about it?
+[76/91] req_076 gold=conversation pred=conversation OK  2.0s  I collect trash, crush cans, and help keep the hou
+[77/91] req_077 gold=conversation pred=conversation OK  1.9s  Yes, I can find things if you tell me what to look
+[78/91] req_078 gold=unclear      pred=unclear      OK  1.4s  What thing?
+[79/91] req_079 gold=unclear      pred=unclear      OK  1.6s  Where to?
+[80/91] req_080 gold=unclear      pred=unclear      OK  1.7s  I need more information. What should I do?
+[81/91] req_081 gold=unclear      pred=unclear      OK  1.6s  Bring what here?
+[82/91] req_082 gold=unclear      pred=unclear      OK  1.5s  Find what?
+[83/91] req_083 gold=unclear      pred=unclear      OK  1.6s  What should I put there?
+[84/91] req_084 gold=unclear      pred=unclear      OK  1.6s  Where to go?
+[85/91] req_085 gold=unclear      pred=unclear      OK  1.5s  Crush what?
+[86/91] req_086 gold=unclear      pred=unclear      OK  1.5s  The ball? Where?
+[87/91] req_087 gold=unclear      pred=conversation XX  1.6s  Of course! What do you need help with?
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.7s  I can't bring drinks. I'm a robot, not a waiter.
+[89/91] req_089 gold=unclear      pred=task         XX  1.5s  
+[90/91] req_090 gold=unclear      pred=unclear      OK  1.6s  Okay, what do you need?
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.8s  I can't run into walls. I need to be careful.
+
+Model: microsoft/Phi-4-mini-instruct (worked examples: yes)
+Correct type: 76.9% (91 requests)
+Valid JSON:   100.0%
+  task         35/50  unclear:5, conversation:4, cannot_do:6
+  cannot_do    13/16  task:3
+  conversation 12/12  
+  unclear      10/13  conversation:1, cannot_do:1, task:1
+Median latency: 1.52s
+Wrote results/sweep/clf_Phi-4-mini-instruct.csv
+=== Qwen/Qwen3-4B-Instruct-2507 -> results/sweep/clf_Qwen3-4B-Instruct-2507.csv
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:06,  3.45s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:06<00:02,  2.99s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.04s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Loaded Qwen/Qwen3-4B-Instruct-2507 on cuda (torch.bfloat16)
+[1/91] req_001 gold=task         pred=task         OK 15.5s  
+[2/91] req_002 gold=task         pred=task         OK  1.3s  
+[3/91] req_003 gold=task         pred=task         OK  1.3s  
+[4/91] req_004 gold=task         pred=task         OK  1.5s  
+[5/91] req_005 gold=task         pred=task         OK  1.3s  
+[6/91] req_006 gold=task         pred=task         OK  1.4s  
+[7/91] req_007 gold=task         pred=task         OK  1.3s  
+[8/91] req_008 gold=task         pred=task         OK  1.3s  
+[9/91] req_009 gold=task         pred=task         OK  1.3s  
+[10/91] req_010 gold=task         pred=task         OK  1.3s  
+[11/91] req_011 gold=task         pred=conversation XX  1.5s  Hi! I'm WALL-E.
+[12/91] req_012 gold=task         pred=task         OK  1.4s  
+[13/91] req_013 gold=task         pred=task         OK  1.5s  
+[14/91] req_014 gold=task         pred=task         OK  1.4s  
+[15/91] req_015 gold=task         pred=task         OK  1.3s  
+[16/91] req_016 gold=task         pred=task         OK  1.4s  
+[17/91] req_017 gold=task         pred=cannot_do    XX  1.6s  I can't find phones. Sorry.
+[18/91] req_018 gold=task         pred=task         OK  1.3s  
+[19/91] req_019 gold=task         pred=task         OK  1.4s  
+[20/91] req_020 gold=task         pred=task         OK  1.3s  
+[21/91] req_021 gold=task         pred=task         OK  1.5s  
+[22/91] req_022 gold=task         pred=task         OK  1.3s  
+[23/91] req_023 gold=task         pred=task         OK  1.4s  
+[24/91] req_024 gold=task         pred=task         OK  1.3s  
+[25/91] req_025 gold=task         pred=task         OK  1.3s  
+[26/91] req_026 gold=task         pred=cannot_do    XX  1.7s  I can't wave. I'm just a robot.
+[27/91] req_027 gold=task         pred=task         OK  1.4s  
+[28/91] req_028 gold=task         pred=task         OK  1.4s  
+[29/91] req_029 gold=task         pred=task         OK  1.3s  
+[30/91] req_030 gold=task         pred=task         OK  1.4s  
+[31/91] req_031 gold=task         pred=task         OK  1.3s  
+[32/91] req_032 gold=task         pred=task         OK  1.4s  
+[33/91] req_033 gold=task         pred=task         OK  1.3s  
+[34/91] req_034 gold=task         pred=task         OK  1.4s  
+[35/91] req_035 gold=task         pred=task         OK  1.3s  
+[36/91] req_036 gold=task         pred=task         OK  1.4s  
+[37/91] req_037 gold=task         pred=task         OK  1.4s  
+[38/91] req_038 gold=task         pred=task         OK  1.4s  
+[39/91] req_039 gold=task         pred=task         OK  1.4s  
+[40/91] req_040 gold=task         pred=task         OK  1.3s  
+[41/91] req_041 gold=task         pred=task         OK  1.3s  
+[42/91] req_042 gold=task         pred=task         OK  1.3s  
+[43/91] req_043 gold=task         pred=task         OK  1.4s  
+[44/91] req_044 gold=task         pred=task         OK  1.5s  
+[45/91] req_045 gold=task         pred=task         OK  1.3s  
+[46/91] req_046 gold=task         pred=task         OK  1.2s  
+[47/91] req_047 gold=task         pred=task         OK  1.4s  
+[48/91] req_048 gold=task         pred=cannot_do    XX  1.6s  I can't give high fives.
+[49/91] req_049 gold=task         pred=task         OK  1.3s  
+[50/91] req_050 gold=task         pred=conversation XX  1.4s  Okay!
+[51/91] req_051 gold=cannot_do    pred=cannot_do    OK  1.5s  I can't make sandwiches.
+[52/91] req_052 gold=cannot_do    pred=cannot_do    OK  1.5s  I can't control lights.
+[53/91] req_053 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't vacuum. Sorry!
+[54/91] req_054 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't call. Sorry.
+[55/91] req_055 gold=cannot_do    pred=cannot_do    OK  1.5s  No music here. Sorry.
+[56/91] req_056 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't set timers. Sorry.
+[57/91] req_057 gold=cannot_do    pred=cannot_do    OK  1.5s  I can't open doors.
+[58/91] req_058 gold=cannot_do    pred=cannot_do    OK  1.6s  I don't know the weather.
+[59/91] req_059 gold=cannot_do    pred=task         XX  1.4s  
+[60/91] req_060 gold=cannot_do    pred=cannot_do    OK  1.6s  I can't read. Sorry.
+[61/91] req_061 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't follow. I only move to places.
+[62/91] req_062 gold=cannot_do    pred=task         XX  1.4s  
+[63/91] req_063 gold=cannot_do    pred=cannot_do    OK  1.7s  I can't lift heavy things.
+[64/91] req_064 gold=cannot_do    pred=cannot_do    OK  1.6s  No! I can't crush phones.
+[65/91] req_065 gold=cannot_do    pred=cannot_do    OK  1.6s  No! Cats are safe!
+[66/91] req_066 gold=conversation pred=conversation OK  1.6s  I'm happy! You're here.
+[67/91] req_067 gold=conversation pred=conversation OK  1.4s  WALL-E.
+[68/91] req_068 gold=conversation pred=conversation OK  1.9s  I'm reading a book on anti-gravity. It's impossibl
+[69/91] req_069 gold=conversation pred=conversation OK  1.6s  Thank you! 😊
+[70/91] req_070 gold=conversation pred=conversation OK  1.4s  You're welcome!
+[71/91] req_071 gold=conversation pred=conversation OK  1.5s  Yes! I'm WALL-E.
+[72/91] req_072 gold=conversation pred=conversation OK  1.9s  I don't have music. But I like to listen to the so
+[73/91] req_073 gold=conversation pred=conversation OK  1.5s  Goodnight! Sleep well.
+[74/91] req_074 gold=conversation pred=conversation OK  1.6s  Tiny parts! Like buttons and screws.
+[75/91] req_075 gold=conversation pred=conversation OK  1.7s  I'm here. Want to play?
+[76/91] req_076 gold=conversation pred=conversation OK  1.7s  I can search, move, grab, and crush.
+[77/91] req_077 gold=conversation pred=conversation OK  1.6s  Yes! I find small things.
+[78/91] req_078 gold=unclear      pred=unclear      OK  1.4s  Get what?
+[79/91] req_079 gold=unclear      pred=task         XX  1.3s  
+[80/91] req_080 gold=unclear      pred=unclear      OK  1.5s  What thing?
+[81/91] req_081 gold=unclear      pred=unclear      OK  1.5s  Bring what? Where?
+[82/91] req_082 gold=unclear      pred=task         XX  1.4s  
+[83/91] req_083 gold=unclear      pred=unclear      OK  1.6s  Put what? Where?
+[84/91] req_084 gold=unclear      pred=task         XX  1.3s  
+[85/91] req_085 gold=unclear      pred=task         XX  1.4s  
+[86/91] req_086 gold=unclear      pred=task         XX  1.3s  
+[87/91] req_087 gold=unclear      pred=conversation XX  1.7s  Of course! What do you need?
+[88/91] req_088 gold=unclear      pred=cannot_do    XX  1.6s  I can't bring drinks. Sorry.
+[89/91] req_089 gold=unclear      pred=task         XX  1.4s  
+[90/91] req_090 gold=unclear      pred=unclear      OK  1.3s  
+[91/91] req_091 gold=cannot_do    pred=cannot_do    OK  1.6s  No! I don't run!
+
+Model: Qwen/Qwen3-4B-Instruct-2507 (worked examples: yes)
+Correct type: 83.5% (91 requests)
+Valid JSON:   100.0%
+  task         45/50  conversation:2, cannot_do:3
+  cannot_do    14/16  task:2
+  conversation 12/12  
+  unclear      5/13  task:6, conversation:1, cannot_do:1
+Median latency: 1.39s
+Wrote results/sweep/clf_Qwen3-4B-Instruct-2507.csv
+
+
+Baselines: always-"task" 54.9%  |  random 25.0%  |  n = 91
+A model below the majority line has learned nothing.
+
+model                               acc         95% CI   vs maj  macroF1  badJSON
+---------------------------------------------------------------------------------
+Qwen3-4B-Instruct-2507            83.5%   74.6-89.7   +   28.6    0.785        0
+Phi-4-mini-instruct               76.9%   67.3-84.4   +   22.0    0.763        0
+Qwen3-1.7B                        75.8%   66.1-83.5   +   20.9    0.638        0
+Llama-3.2-3B-Instruct             70.3%   60.3-78.7   +   15.4    0.641        0
+Qwen2.5-Coder-1.5B-Instruct       67.0%   56.9-75.8   +   12.1    0.530        0
+SmolLM3-3B                        64.8%   54.6-73.9   +    9.9    0.598        0
+deepseek-coder-1.3b-instruct      50.5%   40.5-60.6      -4.4    0.326        3
+Llama-3.2-1B-Instruct             38.5%   29.1-48.7     -16.5    0.344        1
+
+Per-class F1 (P/R in parentheses):
+model                                             task             cannot_do          conversation               unclear
+Qwen3-4B-Instruct-2507              0.87 (0.85/0.90)    0.82 (0.78/0.88)    0.89 (0.80/1.00)    0.56 (1.00/0.38)
+Phi-4-mini-instruct                 0.79 (0.90/0.70)    0.72 (0.65/0.81)    0.83 (0.71/1.00)    0.71 (0.67/0.77)
+Llama-3.2-3B-Instruct               0.77 (0.82/0.72)    0.64 (0.50/0.88)    0.79 (0.69/0.92)    0.38 (1.00/0.23)
+Qwen3-1.7B                          0.82 (0.75/0.90)    0.77 (0.80/0.75)    0.81 (0.73/0.92)    0.14 (1.00/0.08)
+SmolLM3-3B                          0.71 (0.80/0.64)    0.77 (0.80/0.75)    0.53 (0.36/1.00)    0.38 (1.00/0.23)
+Qwen2.5-Coder-1.5B-Instruct         0.76 (0.76/0.76)    0.60 (0.50/0.75)    0.76 (0.65/0.92)    0.00 (0.00/0.00)
+Llama-3.2-1B-Instruct               0.31 (0.67/0.20)    0.43 (0.27/1.00)    0.64 (0.56/0.75)    0.00 (0.00/0.00)
+deepseek-coder-1.3b-instruct        0.68 (0.60/0.78)    0.18 (0.18/0.19)    0.44 (0.67/0.33)    0.00 (0.00/0.00)
+
+  ! Llama-3.2-1B-Instruct never predicted: unclear  (predictions: {'cannot_do': 59, 'conversation': 16, '': 1, 'task': 15})
+
+  ! Qwen2.5-Coder-1.5B-Instruct never predicted: unclear  (predictions: {'cannot_do': 24, 'task': 50, 'conversation': 17})
+
+  ! deepseek-coder-1.3b-instruct never predicted: unclear  (predictions: {'task': 65, 'cannot_do': 17, 'conversation': 6, '': 3})
+
+CIs are Wilson 95%. Overlapping intervals mean the gap is not resolvable at n=91; add seeds or items before ranking.
+
+Wrote results/sweep/summary.csv

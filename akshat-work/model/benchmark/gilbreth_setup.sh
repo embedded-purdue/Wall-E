@@ -43,8 +43,10 @@ fi
 # shellcheck disable=SC1091
 source "$VENV/bin/activate"
 pip install --quiet --upgrade pip
-# Gemma 3n and Phi-4-mini need a recent transformers; pin one version for the whole sweep
-pip install --quiet torch "transformers>=4.53" accelerate pyyaml python-dotenv sentencepiece protobuf
+# Gemma 3n and Phi-4-mini need a recent transformers; pin one version for the whole sweep.
+# pillow+timm: Gemma 3n is multimodal and builds a timm vision tower at init even for
+# text-only use, so AutoModelForCausalLM.from_pretrained fails without them.
+pip install --quiet torch "transformers>=4.53" accelerate pyyaml python-dotenv sentencepiece protobuf pillow timm
 
 mkdir -p "$HF_HOME"
 
