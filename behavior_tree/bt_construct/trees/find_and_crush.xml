@@ -1,0 +1,14 @@
+<!-- Find a can (skip the search if it's already in view), go to it, pick it up, crush it. -->
+<root BTCPP_format="4" main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Sequence>
+      <Fallback>
+        <IsVisible object="can"/>
+        <SearchFor object="can"/>
+      </Fallback>
+      <NavigateTo target="can"/>
+      <Grab object="can"/>
+      <Crush object="can"/>
+    </Sequence>
+  </BehaviorTree>
+</root>

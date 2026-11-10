@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>bt_construct</name>
+  <version>0.0.1</version>
+  <description>Runs Wall-E behavior trees (BehaviorTree.CPP v4) whose leaves call the skills in wall_e_interfaces.</description>
+  <maintainer email="vatsal.sivaratri@gmail.com">Vatsal Sivaratri</maintainer>
+  <license>TODO: License declaration</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
+  <depend>behaviortree_cpp</depend>
+  <depend>geometry_msgs</depend>
+  <depend>wall_e_interfaces</depend>
+
+  <test_depend>skills</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>
