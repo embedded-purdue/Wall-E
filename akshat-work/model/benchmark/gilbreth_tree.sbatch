@@ -47,8 +47,10 @@ MODELS=(
   "Qwen/Qwen3-1.7B"                         # the likely Jetson Orin Nano pick
   "microsoft/Phi-4-mini-instruct"           # best `unclear` recall in the classifier sweep
   "Qwen/Qwen3-4B-Instruct-2507"             # classifier leader; ceiling if generation is offloaded
-  "Qwen/Qwen2.5-Coder-1.5B-Instruct"        # flopped at classification, but BT XML is structured
-  "deepseek-ai/deepseek-coder-1.3b-instruct"#   output -- worth testing where coder tuning helps
+  # Both coder models flopped at classification, but BT XML is structured output --
+  # worth testing where coder tuning actually helps.
+  "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+  "deepseek-ai/deepseek-coder-1.3b-instruct"
 )
 
 for m in "${MODELS[@]}"; do
