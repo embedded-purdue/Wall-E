@@ -40,10 +40,14 @@ Software limits on these (enforced in code, not by the hardware):
 - The mock crusher starts unsafe and refuses until its `mock_*` parameters are set true.
 - The global `/hardware/stop` only stops driving. Whether it should also stop the arm and crusher is open (see `docs/peripherals-open-questions.md`).
 
+Battery and distance (`sensors_node`): `/battery` (`sensor_msgs/BatteryState`) and `/ultrasonic/<name>` (`sensor_msgs/Range`).
+
+Robot model: `urdf/wall_e.urdf` (v0, placeholder sizes; frame and joint names match the topics above).
+
 Backends (`backend` parameter):
 
 - `mock`: pretend wheels, no hardware.
-- `esp32`: real treads through the ESP32-S3 over UART, using the draft message format in `docs/esp32-protocol.md`. Set `esp32_port` in the params file.
+- `esp32`: real hardware through the ESP32-S3 over UART, using the draft message format in `docs/esp32-protocol.md`: treads (`drive_node`), head and eye servos (`head_eyes_node`), gripper servo (`arm_node`; arm joints stay mock for now), battery and ultrasonics (`sensors_node`). There is one serial port, so run these together: `ros2 launch hardware_api esp32.launch.py` (settings and placeholder servo channels in `config/esp32.yaml`).
 
 Bench test the treads without ROS (spins each tread slowly and prints encoder counts):
 

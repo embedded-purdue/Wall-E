@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+<!--
+  Wall-E robot model, v0. ALL SIZES AND POSITIONS ARE PLACEHOLDERS (simple boxes),
+  to be replaced with numbers from mechanical's CAD.
+
+  What is already real: the frame and joint names. They match the hardware API
+  (docs/topics.md), so the sim, TF and the arm/head code can use them now:
+    base_link, camera_link, ultrasonic_front
+    head_pan, head_tilt, eye_left, eye_right            (/head/cmd, /eyes/expression)
+    shoulder_pan, shoulder_lift, elbow, wrist           (/arm/cmd, placeholders until mech decides the arm)
+  Joint limits match config/peripherals.yaml.
+
+  base_link sits on the ground between the treads, x forward, y left, z up.
+  View it: ros2 launch urdf_tutorial display.launch.py model:=$(pwd)/urdf/wall_e.urdf
+-->
+<robot name="wall_e">
+
+  <material name="body"><color rgba="0.85 0.65 0.2 1"/></material>
+  <material name="tread"><color rgba="0.2 0.2 0.2 1"/></material>
+  <material name="head"><color rgba="0.6 0.6 0.6 1"/></material>
+
+  <!-- Body -->
+  <link name="base_link"/>
+
+  <link name="body">
+    <visual>
+      <geometry><box size="0.40 0.30 0.35"/></geometry>
+      <material name="body"/>
+    </visual>
+    <collision><geometry><box size="0.40 0.30 0.35"/></geometry></collision>
+    <inertial>
+      <mass value="10.0"/>
+      <inertia ixx="0.18" ixy="0" ixz="0" iyy="0.24" iyz="0" izz="0.21"/>
+    </inertial>
+  </link>
+  <joint name="base_to_body" type="fixed">
+    <parent link="base_link"/>
+    <child link="body"/>
+    <origin xyz="0 0 0.275" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Treads (fixed boxes; the sim drives them from /cmd_vel). Track width 0.40 m matches config/drive.yaml -->
+  <link name="tread_left">
+    <visual>
+      <geometry><box size="0.45 0.10 0.20"/></geometry>
+      <material name="tread"/>
+    </visual>
+    <collision><geometry><box size="0.45 0.10 0.20"/></geometry></collision>
+    <inertial>
+      <mass value="2.0"/>
+      <inertia ixx="0.008" ixy="0" ixz="0" iyy="0.04" iyz="0" izz="0.035"/>
+    </inertial>
+  </link>
+  <joint name="base_to_tread_left" type="fixed">
+    <parent link="base_link"/>
+    <child link="tread_left"/>
+    <origin xyz="0 0.20 0.10" rpy="0 0 0"/>
+  </joint>
+
+  <link name="tread_right">
+    <visual>
+      <geometry><box size="0.45 0.10 0.20"/></geometry>
+      <material name="tread"/>
+    </visual>
+    <collision><geometry><box size="0.45 0.10 0.20"/></geometry></collision>
+    <inertial>
+      <mass value="2.0"/>
+      <inertia ixx="0.008" ixy="0" ixz="0" iyy="0.04" iyz="0" izz="0.035"/>
+    </inertial>
+  </link>
+  <joint name="base_to_tread_right" type="fixed">
+    <parent link="base_link"/>
+    <child link="tread_right"/>
+    <origin xyz="0 -0.20 0.10" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Ultrasonic (HC-SR04P), front of the body -->
+  <link name="ultrasonic_front"/>
+  <joint name="body_to_ultrasonic_front" type="fixed">
+    <parent link="body"/>
+    <child link="ultrasonic_front"/>
+    <origin xyz="0.20 0 -0.10" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Neck and head: pan (turn left/right), then tilt (nod up/down) -->
+  <link name="neck">
+    <visual>
+      <geometry><cylinder radius="0.02" length="0.15"/></geometry>
+      <material name="head"/>
+    </visual>
+    <inertial>
+      <mass value="0.2"/>
+      <inertia ixx="0.0004" ixy="0" ixz="0" iyy="0.0004" iyz="0" izz="0.00004"/>
+    </inertial>
+  </link>
+  <joint name="head_pan" type="revolute">
+    <parent link="body"/>
+    <child link="neck"/>
+    <origin xyz="0.05 0 0.25" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.2" upper="1.2" effort="2.0" velocity="2.0"/>
+  </joint>
+
+  <link name="head">
+    <visual>
+      <geometry><box size="0.10 0.24 0.10"/></geometry>
+      <material name="head"/>
+    </visual>
+    <collision><geometry><box size="0.10 0.24 0.10"/></geometry></collision>
+    <inertial>
+      <mass value="0.6"/>
+      <inertia ixx="0.0034" ixy="0" ixz="0" iyy="0.001" iyz="0" izz="0.0034"/>
+    </inertial>
+  </link>
+  <joint name="head_tilt" type="revolute">
+    <parent link="neck"/>
+    <child link="head"/>
+    <origin xyz="0 0 0.10" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="2.0" velocity="2.0"/>
+  </joint>
+
+  <!-- Eyes: each barrel tilts for expressions (expressions.py) -->
+  <link name="eye_left_link">
+    <visual>
+      <origin xyz="0.04 0 0" rpy="0 1.5708 0"/>
+      <geometry><cylinder radius="0.045" length="0.08"/></geometry>
+      <material name="head"/>
+    </visual>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="eye_left" type="revolute">
+    <parent link="head"/>
+    <child link="eye_left_link"/>
+    <origin xyz="0.05 0.06 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="1.0" velocity="6.0"/>
+  </joint>
+
+  <link name="eye_right_link">
+    <visual>
+      <origin xyz="0.04 0 0" rpy="0 1.5708 0"/>
+      <geometry><cylinder radius="0.045" length="0.08"/></geometry>
+      <material name="head"/>
+    </visual>
+    <inertial>
+      <mass value="0.1"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="eye_right" type="revolute">
+    <parent link="head"/>
+    <child link="eye_right_link"/>
+    <origin xyz="0.05 -0.06 0" rpy="0 0 0"/>
+    <axis xyz="0 1 0"/>
+    <limit lower="-0.5" upper="0.5" effort="1.0" velocity="6.0"/>
+  </joint>
+
+  <!-- RGB-D camera between the eyes, looking forward. Optical frame for image data. -->
+  <link name="camera_link"/>
+  <joint name="head_to_camera" type="fixed">
+    <parent link="head"/>
+    <child link="camera_link"/>
+    <origin xyz="0.06 0 0" rpy="0 0 0"/>
+  </joint>
+  <link name="camera_optical_frame"/>
+  <joint name="camera_to_optical" type="fixed">
+    <parent link="camera_link"/>
+    <child link="camera_optical_frame"/>
+    <origin xyz="0 0 0" rpy="-1.5708 0 -1.5708"/>
+  </joint>
+
+  <!-- Arm (right side). Joint names and limits match config/peripherals.yaml; shapes are placeholders. -->
+  <link name="arm_base">
+    <inertial>
+      <mass value="0.3"/>
+      <inertia ixx="0.0003" ixy="0" ixz="0" iyy="0.0003" iyz="0" izz="0.0003"/>
+    </inertial>
+  </link>
+  <joint name="shoulder_pan" type="revolute">
+    <parent link="body"/>
+    <child link="arm_base"/>
+    <origin xyz="0.05 -0.17 0.10" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.5" upper="1.5" effort="10.0" velocity="1.0"/>
+  </joint>
+
+  <link name="upper_arm">
+    <visual>
+      <origin xyz="0.10 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.20 0.04 0.04"/></geometry>
+      <material name="body"/>
+    </visual>
+    <inertial>
+      <origin xyz="0.10 0 0"/>
+      <mass value="0.5"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0017" iyz="0" izz="0.0017"/>
+    </inertial>
+  </link>
+  <joint name="shoulder_lift" type="revolute">
+    <parent link="arm_base"/>
+    <child link="upper_arm"/>
+    <origin xyz="0 -0.03 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-0.5" upper="1.5" effort="10.0" velocity="1.0"/>
+  </joint>
+
+  <link name="forearm">
+    <visual>
+      <origin xyz="0.09 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.18 0.035 0.035"/></geometry>
+      <material name="body"/>
+    </visual>
+    <inertial>
+      <origin xyz="0.09 0 0"/>
+      <mass value="0.4"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0011" iyz="0" izz="0.0011"/>
+    </inertial>
+  </link>
+  <joint name="elbow" type="revolute">
+    <parent link="upper_arm"/>
+    <child link="forearm"/>
+    <origin xyz="0.20 0 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="0.0" upper="2.5" effort="8.0" velocity="1.5"/>
+  </joint>
+
+  <link name="hand">
+    <visual>
+      <origin xyz="0.04 0 0" rpy="0 0 0"/>
+      <geometry><box size="0.08 0.06 0.03"/></geometry>
+      <material name="head"/>
+    </visual>
+    <inertial>
+      <origin xyz="0.04 0 0"/>
+      <mass value="0.2"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+  </link>
+  <joint name="wrist" type="revolute">
+    <parent link="forearm"/>
+    <child link="hand"/>
+    <origin xyz="0.18 0 0" rpy="0 0 0"/>
+    <axis xyz="0 -1 0"/>
+    <limit lower="-1.5" upper="1.5" effort="4.0" velocity="2.0"/>
+  </joint>
+
+</robot>

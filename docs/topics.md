@@ -60,16 +60,26 @@ Status: Nov 10, 2026, from `hardware_api` (all nodes on mock backends for now). 
 | `/crusher/running` | topic, out (latched) | `std_msgs/Bool` | |
 | `/crusher/result` | topic, out (latched) | `std_msgs/String` | |
 
+## Battery and distance (`sensors_node`)
+
+| Name | Kind | Type | Notes |
+| --- | --- | --- | --- |
+| `/battery` | topic, out | `sensor_msgs/BatteryState` | `voltage` in volts, `percentage` 0 to 1 (rough). 5 Hz. For BT's `battery_sufficient`. |
+| `/ultrasonic/front` | topic, out | `sensor_msgs/Range` | Meters, `+inf` = no echo. One topic per sensor (`ultrasonic_names`). For BT's `near`. |
+
 ## Frames
 
 | Frame | Meaning |
 | --- | --- |
 | `odom` | Where the robot started. Object locations on the blackboard are in this frame. |
 | `base_link` | Center of the robot. |
-| `camera_link` | The camera. |
+| `camera_link` | The camera. (`camera_optical_frame` for image data.) |
+| `ultrasonic_front` | The front ultrasonic sensor. |
+
+The full frame tree, joints and limits are in `hardware_api/urdf/wall_e.urdf` (v0: names are real, sizes are placeholders).
 
 ## Not decided yet
 
-- Battery voltage and ultrasonic distance topics (not written yet).
+- How many ultrasonic sensors and where (one `front` placeholder for now).
 - Real arm joint names and limits (waiting on mech).
-- The robot model file (URDF): sizes, joints, and where `camera_link` sits relative to `base_link`.
+- Real sizes and positions in the URDF, from mech's CAD.

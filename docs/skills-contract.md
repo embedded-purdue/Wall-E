@@ -51,8 +51,8 @@ BT asked for: `near`, `stop`, `is_quiet`, `battery_sufficient`, `snooze`. Propos
 | Node | Needs | Proposed owner |
 | --- | --- | --- |
 | `stop` | `/hardware/stop` | BT node calls the existing service |
-| `near` | ultrasonic distance topic (HC-SR04P via ESP32) | Integration adds the topic; BT writes the condition |
-| `battery_sufficient` | battery voltage topic (ESP32 `B` message) | Integration adds the topic; BT writes the condition |
+| `near` | `/ultrasonic/front` (`sensor_msgs/Range`, from `sensors_node`) | Integration publishes it (done, mock + ESP32); BT writes the condition |
+| `battery_sufficient` | `/battery` (`sensor_msgs/BatteryState`, from `sensors_node`) | Integration publishes it (done, mock + ESP32); BT writes the condition |
 | `is_quiet` | mic input `/audio/mic` | NLP (they own speech) |
 | `snooze` | `express(sleepy)` + stop driving | BT, built from existing skills |
 

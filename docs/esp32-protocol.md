@@ -20,6 +20,7 @@ The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over U
 | `H` | `OK H` | Heartbeat when there is nothing else to send. |
 | `E` | `E <left> <right>` | Cumulative encoder counts as the RoboClaw reports them (signed integers). |
 | `B` | `B <volts>` | Battery voltage, for example `B 19.85`. |
+| `U` | `U <m> [<m> ...]` | Ultrasonic distances in meters, one per HC-SR04P in a fixed order, `-1` = no echo. For example `U 0.42 1.80`. (draft, Nov 10) |
 | anything wrong | `ERR <reason>` | Command not understood or refused, for example `ERR bad_args`. |
 | (nothing) | `READY` | Sent once after the ESP32 boots, with motors stopped. |
 
@@ -61,7 +62,7 @@ Channel map (electrical to fill in):
 | ? | right eye | | | |
 | ? | gripper (if it is a servo) | | | |
 
-Our side: `move_head`, `set_eyes` and `set_gripper` in `hardware_api` turn angles and expressions into these `P` messages. That backend gets written once the channel map is filled in.
+Our side: `move_head`, `set_eyes` and `set_gripper` turn angles and expressions into these `P` messages (`hardware_api/servo.py`). The channel numbers and pulse widths in `config/esp32.yaml` are placeholders until this map is filled in.
 
 ## Safety rules we are asking the firmware to follow
 
@@ -85,7 +86,8 @@ Our side: `move_head`, `set_eyes` and `set_gripper` in `hardware_api` turn angle
 2. Is 115200 baud fine on the Jetson link?
 3. Encoder counts per wheel turn for the drive motors (the bench test script measures this).
 4. Is 500 ms the right stop-on-silence timeout?
-5. Fill in the servo channel map above, and confirm whether the gripper is a servo or a motor.
+5. Fill in the servo channel map above, and confirm whether the gripper is a servo or a motor. A plain servo can't tell us if it's holding something: can we add a sensor (servo current or a switch in the fingers)?
+8. How many ultrasonic sensors, in what order, and where are they mounted? Is `U` OK?
 6. Are the `P` / `Q` servo messages OK, or would you rather use a different format?
 7. What did the first drivetrain motor test show (speed reached, encoder counts per turn, any problems)?
 
@@ -94,3 +96,4 @@ Our side: `move_head`, `set_eyes` and `set_gripper` in `hardware_api` turn angle
 - No hardware: `python3 -m hardware_api.bench_drive --fake`
 - Real ESP32 from a laptop (USB-to-UART cable or the ESP32's USB port): `python3 -m hardware_api.bench_drive --port /dev/ttyUSB0`
 - Full ROS 2 node: `ros2 launch hardware_api drive.launch.py backend:=esp32` with `esp32_port` set in the params file.
+- Everything on the ESP32 (drive, head/eyes, gripper, battery, ultrasonics) sharing the one serial port: `ros2 launch hardware_api esp32.launch.py` (settings in `config/esp32.yaml`). These nodes must run in one process because there is only one UART.
