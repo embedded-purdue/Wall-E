@@ -33,15 +33,15 @@ UNCOMMENT THIS CODE IF YOU WANT TO USE MIC
 source = record_from_mic(3)
 if np.issubdtype(source.dtype, np.floating):
     source = (np.clip(source, -1, 1) * 32767).astype(np.int16)
-write("instructions.wav", 16000, source)
+write("assets/instructions.wav", 16000, source)
 """
 
 
 # change to instructions.wav for microphone
-enhanced = myClearVoice(input_path="test.MP3", online_write=False)
+enhanced = myClearVoice(input_path="assets/test.MP3", online_write=False)
 myClearVoice.write(enhanced, output_path="clear.wav")
 
-audio, sr = sf.read("noise.MP3", dtype="float32")  # float in [-1, 1]
+audio, sr = sf.read("assets/noise.MP3", dtype="float32")  # float in [-1, 1]
 if audio.ndim > 1:
     audio = audio.mean(axis=1)  # stereo -> mono
 
