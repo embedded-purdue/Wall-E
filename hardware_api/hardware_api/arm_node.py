@@ -19,7 +19,10 @@ from std_msgs.msg import Bool
 from std_srvs.srv import SetBool, Trigger
 
 from .arm import arm_specs
+from .esp32_backend import Esp32Link
+from .esp32_protocol import ProtocolError
 from .gripper import MockGripperBackend
+from .servo import Esp32ServoGripperBackend
 from .joints import JointController, MockJointBackend
 
 
@@ -41,10 +44,25 @@ class ArmNode(Node):
     self.declare_parameter('mock_object_present', False)
     close_time = self.declare_parameter('mock_gripper_close_time', 1.0).value
 
-    if backend_name != 'mock':
-      raise ValueError(f"unknown backend '{backend_name}'")
+    # The arm joints are DC motors on RoboClaws (no ESP32 messages for them yet), so they
+    # stay on the mock backend. With backend esp32 only the gripper servo is real.
     self._arm = JointController(MockJointBackend({s.name: s.home for s in specs}), specs)
-    self._gripper = MockGripperBackend(close_time=close_time)
+    if backend_name == 'mock':
+      self._gripper = MockGripperBackend(close_time=close_time)
+    elif backend_name == 'esp32':
+      port = self.declare_parameter('esp32_port', '').value
+      if not port:
+        raise ValueError('backend esp32 needs esp32_port')
+      baud = self.declare_parameter('esp32_baud', 115200).value
+      # PLACEHOLDERS until electrical fills in the channel map.
+      self._gripper = Esp32ServoGripperBackend(
+        Esp32Link.shared(port, baud),
+        self.declare_parameter('gripper_channel', 4).value,
+        self.declare_parameter('gripper_open_us', 1000.0).value,
+        self.declare_parameter('gripper_closed_us', 2000.0).value,
+      )
+    else:
+      raise ValueError(f"unknown backend '{backend_name}'")
 
     self._arm_pub = self.create_publisher(JointState, 'arm/state', 10)
     self._gripper_pub = self.create_publisher(JointState, 'gripper/state', 10)
@@ -71,7 +89,12 @@ class ArmNode(Node):
     return response
 
   def _on_gripper(self, request, response):
-    self._gripper.set_closed(request.data)
+    try:
+      self._gripper.set_closed(request.data)
+    except ProtocolError as exc:
+      response.success = False
+      response.message = f'ESP32 link error: {exc}'
+      return response
     response.success = True
     response.message = 'closing' if request.data else 'opening'
     return response
@@ -85,8 +108,13 @@ class ArmNode(Node):
     arm_msg.position = [positions[name] for name in arm_msg.name]
     self._arm_pub.publish(arm_msg)
 
-    self._gripper.object_present = self.get_parameter('mock_object_present').value
-    state = self._gripper.read_state()
+    if isinstance(self._gripper, MockGripperBackend):
+      self._gripper.object_present = self.get_parameter('mock_object_present').value
+    try:
+      state = self._gripper.read_state()
+    except ProtocolError as exc:
+      self.get_logger().error(f'ESP32 link error: {exc}', throttle_duration_sec=1.0)
+      return
     gripper_msg = JointState()
     gripper_msg.header.stamp = stamp
     gripper_msg.name = ['gripper']

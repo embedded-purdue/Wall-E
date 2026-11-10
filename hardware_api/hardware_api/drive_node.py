@@ -72,7 +72,7 @@ class DriveNode(Node):
     if name == 'esp32':
       if not self._esp32_port:
         raise ValueError('backend esp32 needs esp32_port (e.g. /dev/ttyTHS1 or /dev/ttyUSB0)')
-      return Esp32DriveBackend(self._params, Esp32Link.open(self._esp32_port, self._esp32_baud))
+      return Esp32DriveBackend(self._params, Esp32Link.shared(self._esp32_port, self._esp32_baud))
     raise ValueError(f"unknown backend '{name}'")
 
   def _now(self) -> float:

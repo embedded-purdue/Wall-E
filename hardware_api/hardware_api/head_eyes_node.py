@@ -13,7 +13,10 @@ from sensor_msgs.msg import JointState
 from std_msgs.msg import String
 
 from .expressions import LEFT_EYE, RIGHT_EYE, eye_targets
+from .esp32_backend import Esp32Link
+from .esp32_protocol import ProtocolError
 from .joints import JointController, JointSpec, MockJointBackend
+from .servo import Esp32ServoJointBackend, ServoChannel
 
 HEAD_JOINTS = ('head_pan', 'head_tilt')
 
@@ -60,6 +63,21 @@ class HeadEyesNode(Node):
   def _make_backend(self, name: str, specs: list[JointSpec]):
     if name == 'mock':
       return MockJointBackend({spec.name: spec.home for spec in specs})
+    if name == 'esp32':
+      port = self.declare_parameter('esp32_port', '').value
+      if not port:
+        raise ValueError('backend esp32 needs esp32_port')
+      baud = self.declare_parameter('esp32_baud', 115200).value
+      # One Maestro channel and pulse range per joint, e.g. head_pan_channel, head_pan_min_us,
+      # head_pan_max_us. PLACEHOLDERS until electrical fills in the channel map.
+      channels = {}
+      for index, spec in enumerate(specs):
+        channels[spec.name] = ServoChannel(
+          self.declare_parameter(f'{spec.name}_channel', index).value,
+          self.declare_parameter(f'{spec.name}_min_us', 1000.0).value,
+          self.declare_parameter(f'{spec.name}_max_us', 2000.0).value,
+        )
+      return Esp32ServoJointBackend(Esp32Link.shared(port, baud), specs, channels)
     raise ValueError(f"unknown backend '{name}'")
 
   def _on_head_cmd(self, msg: JointState) -> None:
@@ -83,7 +101,11 @@ class HeadEyesNode(Node):
     self._eyes_pub.publish(String(data=self._expression))
 
   def _on_timer(self) -> None:
-    positions = self._controller.step()
+    try:
+      positions = self._controller.step()
+    except ProtocolError as exc:
+      self.get_logger().error(f'ESP32 link error: {exc}', throttle_duration_sec=1.0)
+      return
     msg = JointState()
     msg.header.stamp = self.get_clock().now().to_msg()
     msg.name = list(HEAD_JOINTS)

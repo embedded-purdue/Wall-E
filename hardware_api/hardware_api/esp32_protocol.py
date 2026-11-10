@@ -9,6 +9,9 @@ answers with exactly one line.
   H                          OK H           heartbeat, nothing else to say
   E                          E <left> <right>   cumulative encoder counts
   B                          B <volts>      battery voltage
+  U                          U <m> [<m> ...]  ultrasonic distances in meters (-1 = no echo)
+  P <channel> <us>           OK P           move Maestro servo channel to a pulse width (us)
+  Q <channel>                Q <channel> <us>   Maestro's current pulse width for that channel
   (any)                      ERR <reason>   command refused or not understood
   (on boot)                  READY          sent once, motors stopped
 """
@@ -51,6 +54,22 @@ def encode_read_battery() -> bytes:
   return b'B\n'
 
 
+def encode_read_ultrasonic() -> bytes:
+  return b'U\n'
+
+
+def encode_servo(channel: int, pulse_us: float) -> bytes:
+  if channel < 0 or not math.isfinite(pulse_us) or pulse_us <= 0:
+    raise ValueError(f'bad servo command: channel {channel}, {pulse_us} us')
+  return f'P {int(channel)} {round(pulse_us)}\n'.encode('ascii')
+
+
+def encode_read_servo(channel: int) -> bytes:
+  if channel < 0:
+    raise ValueError(f'bad servo channel {channel}')
+  return f'Q {int(channel)}\n'.encode('ascii')
+
+
 def parse_reply(line: bytes) -> Reply:
   """Split one line from the ESP32 into a Reply. Raises ProtocolError on junk."""
   try:
@@ -60,7 +79,7 @@ def parse_reply(line: bytes) -> Reply:
   if not text:
     raise ProtocolError('empty reply (timed out?)')
   kind, *args = text.split()
-  if kind not in ('OK', 'E', 'B', 'ERR', READY):
+  if kind not in ('OK', 'E', 'B', 'U', 'Q', 'ERR', READY):
     raise ProtocolError(f'unknown reply: {text!r}')
   return Reply(kind, tuple(args))
 
@@ -81,6 +100,29 @@ def parse_battery(reply: Reply) -> float:
     return float(reply.args[0])
   except ValueError as exc:
     raise ProtocolError(f'bad battery voltage: {reply.args}') from exc
+
+
+def parse_ultrasonic(reply: Reply) -> list[float | None]:
+  """Distances in meters, one per sensor; None where the sensor got no echo (-1)."""
+  if reply.kind != 'U' or not reply.args:
+    raise ProtocolError(f'expected "U <m> ...", got {reply}')
+  try:
+    values = [float(arg) for arg in reply.args]
+  except ValueError as exc:
+    raise ProtocolError(f'bad ultrasonic distances: {reply.args}') from exc
+  return [None if v < 0 else v for v in values]
+
+
+def parse_servo(reply: Reply, channel: int) -> float:
+  if reply.kind != 'Q' or len(reply.args) != 2:
+    raise ProtocolError(f'expected "Q <channel> <us>", got {reply}')
+  try:
+    got_channel, pulse = int(reply.args[0]), float(reply.args[1])
+  except ValueError as exc:
+    raise ProtocolError(f'bad servo reply: {reply.args}') from exc
+  if got_channel != channel:
+    raise ProtocolError(f'asked for servo {channel}, got {got_channel}')
+  return pulse
 
 
 def mps_to_rpm(speed: float, wheel_radius: float) -> float:
