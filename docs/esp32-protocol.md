@@ -2,7 +2,7 @@
 
 Status: **draft for electrical to review**, Nov 1, 2026. Nothing here is final until electrical agrees.
 
-The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over UART. The ESP32 turns these messages into RoboClaw and Maestro commands. This file covers driving only; servos, the arm and the crusher get added the same way once driving works.
+The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over UART. The ESP32 turns these messages into RoboClaw and Maestro commands. This file covers driving and (draft, Nov 10) the servos on the Maestro. The arm and crusher motors get added the same way later.
 
 ## Link
 
@@ -35,6 +35,34 @@ Jetson -> S
 ESP32 -> OK S
 ```
 
+## Servos (draft, Nov 10)
+
+Electrical has servo control working on the Maestro (Nov 8). These messages let our code move a servo through the ESP32.
+
+| Jetson sends | ESP32 replies | Meaning |
+| --- | --- | --- |
+| `P <channel> <us>` | `OK P` | Move the servo on Maestro channel `<channel>` to pulse width `<us>` microseconds (for example `P 0 1500` = center). The ESP32 sends the Maestro "set target" command (the Maestro counts in quarter-microseconds, so target = us x 4). |
+| `Q <channel>` | `Q <channel> <us>` | Where the Maestro says that servo is right now (Maestro "get position"), in microseconds. |
+| `P` out of range | `ERR out_of_range` | The pulse width is outside that channel's safe min/max (see below). Nothing moves. |
+
+Rules:
+
+1. **Safe limits live in the firmware too.** Each channel gets a min and max pulse width so a servo can never be driven into its hard stop, even if our code sends a bad number. We clamp in our code as well.
+2. **Servos hold their position** when messages stop. Stop-on-silence applies to the drive motors only (a head servo going limp could drop the head).
+3. **Speed and acceleration** limits are set once in the Maestro's settings (Maestro Control Center), not sent every time.
+
+Channel map (electrical to fill in):
+
+| Channel | Servo | Min us | Center us | Max us |
+| --- | --- | --- | --- | --- |
+| ? | head pan | | | |
+| ? | head tilt | | | |
+| ? | left eye | | | |
+| ? | right eye | | | |
+| ? | gripper (if it is a servo) | | | |
+
+Our side: `move_head`, `set_eyes` and `set_gripper` in `hardware_api` turn angles and expressions into these `P` messages. That backend gets written once the channel map is filled in.
+
 ## Safety rules we are asking the firmware to follow
 
 1. **Boot stopped.** Motors stay off until the first `D`.
@@ -57,6 +85,9 @@ ESP32 -> OK S
 2. Is 115200 baud fine on the Jetson link?
 3. Encoder counts per wheel turn for the drive motors (the bench test script measures this).
 4. Is 500 ms the right stop-on-silence timeout?
+5. Fill in the servo channel map above, and confirm whether the gripper is a servo or a motor.
+6. Are the `P` / `Q` servo messages OK, or would you rather use a different format?
+7. What did the first drivetrain motor test show (speed reached, encoder counts per turn, any problems)?
 
 ## Trying it
 
