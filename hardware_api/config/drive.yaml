@@ -1,0 +1,26 @@
+# drive_node parameters.
+/**:
+  ros__parameters:
+    # TODO(electrical): PLACEHOLDER values. Replace with measured numbers
+    # for the real drivetrain before running on hardware.
+    wheel_radius: 0.05       # m
+    track_width: 0.40        # m
+    ticks_per_rev: 2000      # encoder ticks per wheel revolution
+    max_wheel_speed: 1.0     # m/s, hardware maximum at the wheel rim
+
+    # Safety (software-enforced; do not rely on hardware limits).
+    speed_cap_fraction: 0.6  # fraction of max_wheel_speed allowed
+    watchdog_timeout: 0.5    # s; stop if no /cmd_vel arrives within this
+
+    backend: mock            # mock (no hardware)
+    control_rate_hz: 50.0    # backend command + /odom publish rate
+    odom_frame: odom
+    base_frame: base_link
+    # publish_tf: set via the launch argument publish_tf:=true|false
+
+    # RoboClaw backend. PLACEHOLDERS: the backend is a stub and drive_node
+    # does not read these yet. TODO(electrical): confirm the port once the
+    # Jetson/ESP32 link is decided.
+    roboclaw_port: ""
+    roboclaw_address: 128    # 0x80, packet serial
+    roboclaw_baud: 38400

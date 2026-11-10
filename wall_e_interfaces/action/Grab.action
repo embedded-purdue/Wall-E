@@ -1,0 +1,9 @@
+# grab(object): pick up an object within reach.
+string object
+geometry_msgs/PointStamped location    # optional <object>.location; empty frame_id = known spot in front of Wall-E
+float32 timeout_s
+---
+bool success
+string reason
+---
+string stage                           # reaching, closing, checking

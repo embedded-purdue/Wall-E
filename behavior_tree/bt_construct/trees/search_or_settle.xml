@@ -1,0 +1,15 @@
+<!-- Look for a ball; if the search fails, look for a can instead. -->
+<root BTCPP_format="4" main_tree_to_execute="MainTree">
+  <BehaviorTree ID="MainTree">
+    <Fallback>
+      <Sequence>
+        <SearchFor object="ball"/>
+        <NavigateTo target="ball"/>
+      </Sequence>
+      <Sequence>
+        <SearchFor object="can"/>
+        <NavigateTo target="can"/>
+      </Sequence>
+    </Fallback>
+  </BehaviorTree>
+</root>

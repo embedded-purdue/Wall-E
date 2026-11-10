@@ -1,0 +1,11 @@
+# search_for(object, hint?): find an object. Simple version: rotate in place,
+# run the detector on each frame, stop when the object is seen.
+string object                          # detector class, e.g. "can", "ball"
+string hint                            # optional, e.g. "behind the table"; "" = none (ignored this semester)
+float32 timeout_s                      # 0 = default from config
+---
+bool success
+string reason                          # "" on success; see docs/skills-contract.md
+geometry_msgs/PointStamped location    # where the object is, odom frame. BT writes <object>.location
+---
+float32 rotated                        # rad turned so far

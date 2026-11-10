@@ -1,0 +1,8 @@
+# move_arm(pose): move the hand to a named pose or to a point in space.
+string pose_name                       # named pose (rest, wave, grab_front, crush_drop); "" = use target
+geometry_msgs/PointStamped target      # used when pose_name is ""; e.g. <object>.location
+float32 timeout_s
+---
+bool success
+string reason
+---

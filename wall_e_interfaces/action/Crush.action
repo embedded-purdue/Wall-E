@@ -1,0 +1,8 @@
+# crush(object): put the held item in the can crusher and crush it.
+string object
+float32 timeout_s
+---
+bool success
+string reason
+---
+string stage                           # dropping, crushing

@@ -1,0 +1,5 @@
+# is_visible(object): is the object in view right now?
+string object
+---
+bool visible
+geometry_msgs/PointStamped location    # odom frame; only meaningful when visible
