@@ -10,8 +10,8 @@ Default models:
     python run_tree_baseline.py --dry-run --limit 2      # print prompts only, no model
     python run_tree_baseline.py --resume                 # continue an interrupted run
 
-Each output row is one (model, request, condition). Invalid trees and exact matches with the
-reference are graded automatically; fill in `does_what_was_asked` (y/n) for the rest, then run
+Each output row is one (model, request, condition). Invalid trees are failures; all valid
+trees require human grading in `does_what_was_asked` (y/n), then run
 summarize.py.
 """
 
@@ -19,17 +19,23 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
+import hashlib
 import sys
 import time
+from xml.etree import ElementTree as ET
 from pathlib import Path
 
 HERE = Path(__file__).parent
-sys.path.insert(0, str(HERE))
+sys.path.insert(0, str(HERE.parent))
+from run_metadata import config_for, prepare_run
 from bt_validator import BehaviorTreeValidator, BTValidationError  # noqa: E402
 from walle_bt import (
+    SCHEMA,
     BTGENBOT2,
     DEFAULT_MAIN_LLM,
     ExampleLibrary,
+    user_message,
     action_list,  # noqa: E402
     build_messages,
     clean_output,
@@ -73,8 +79,7 @@ def mock_generator(reference_by_request):
     """Smoke test without a model: returns the reference tree."""
 
     def generate(messages, max_new_tokens=0, sample=False, stop=None):
-        request = messages[-1]["content"].split('"')[1]
-        return reference_by_request.get(request, "<root/>"), 0
+        return reference_by_request.get(messages[-1]["content"], "<root/>"), 0
 
     generate.unload = lambda: None
     return generate
@@ -86,15 +91,18 @@ def main():
     )
     ap.add_argument("--test-set", default=HERE / "test_set.csv")
     ap.add_argument(
-        "--yaml", default=HERE / "wall_e.yaml", help="BT team's shared skill YAML"
+        "--yaml", default=SCHEMA, help="BT team's shared skill YAML"
     )
     ap.add_argument("--library", default=HERE / "example_library.json")
-    ap.add_argument("--retriever", default="auto", choices=["auto", "embed", "tfidf"])
+    ap.add_argument("--retriever", default="tfidf", choices=["embed", "tfidf"])
     ap.add_argument(
         "--models",
         default="btgenbot2,llama",
         help="comma-separated Hugging Face ids, or the aliases btgenbot2 / llama",
     )
+    ap.add_argument("--revision", default="main", help="HF commit/tag; resolved commit recorded per model")
+    ap.add_argument("--base-revision", help="base model commit when loading an adapter")
+    ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--device", default="auto", choices=["auto", "cuda", "mps", "cpu"])
     ap.add_argument("--conditions", default="no_example,one_example")
     ap.add_argument(
@@ -107,32 +115,39 @@ def main():
     ap.add_argument(
         "--limit", type=int, help="only the first N tasks (for a quick check)"
     )
-    ap.add_argument("--out", default=HERE / "results" / "tree_results.csv")
+    ap.add_argument("--out", default=HERE / "results" / "runs" / "tree_results.csv")
     ap.add_argument("--resume", action="store_true")
     ap.add_argument(
         "--dry-run", action="store_true", help="print prompts, don't load a model"
     )
     ap.add_argument("--mock", action="store_true", help=argparse.SUPPRESS)
     args = ap.parse_args()
+    if args.attempts < 1:
+        ap.error("--attempts must be positive")
+    if set(args.conditions.split(",")) - {"no_example", "one_example"}:
+        ap.error("unknown condition")
     load_env()
     # get models, validator, and possible action from yaml file
     models = [ALIASES.get(m.strip(), m.strip()) for m in args.models.split(",")]
     validator = BehaviorTreeValidator.from_yaml(args.yaml)
     actions = action_list(args.yaml)
     library = ExampleLibrary(args.library, args.retriever)
-    # tfidf: used for attention
-    # read more here:
-    # https://www.geeksforgeeks.org/machine-learning/understanding-tf-idf-term-frequency-inverse-document-frequency/
     print(f"Example retrieval: {library.retriever}")
     for ex in library.items:  # every example must itself be valid
         validator.validate(ex["tree_xml"])
 
-    # cut off test set at certain point
+    # Stop/cancel has no skill in the 11-skill proposal; report the exclusion explicitly.
+    with open(args.test_set, newline="") as stream:
+        all_rows = list(csv.DictReader(stream))
+    excluded = [r["id"] for r in all_rows if r["type"] == "task" and not r["expected_tree_xml"].strip()]
+    print(f"Tasks excluded (no reference tree): {excluded}")
     rows = [
         r
-        for r in csv.DictReader(open(args.test_set, newline=""))
+        for r in all_rows
         if r["type"] == "task" and r["expected_tree_xml"].strip()
     ]
+    for row in rows:
+        validator.validate(row["expected_tree_xml"])
     if args.limit:
         rows = rows[: args.limit]
     conditions = args.conditions.split(",")
@@ -157,13 +172,21 @@ def main():
 
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
+    config = config_for(args, [args.test_set, args.yaml, args.library])
+    config["retriever"] = library.retriever
+    meta_path, metadata = prepare_run(out, config, args.resume)
     done = set()
     if args.resume and out.exists():
+        with out.open(newline="") as stream:
+            previous = list(csv.DictReader(stream))
         done = {
-            (r["model"], r["id"], r["condition"])
-            for r in csv.DictReader(open(out, newline=""))
+            (r["model"].removeprefix("mock:"), r["id"], r["condition"])
+            for r in previous
         }
     mode = "a" if done else "w"
+    if not args.mock:
+        from transformers import set_seed
+        set_seed(args.seed)
 
     with open(out, mode, newline="") as f:
         w = csv.DictWriter(f, fieldnames=FIELDS)
@@ -179,10 +202,13 @@ def main():
             if not todo:
                 continue
             generate = (
-                mock_generator({r["request"]: r["expected_tree_xml"] for r in rows})
+                mock_generator({user_message(r["request"], actions): r["expected_tree_xml"] for r in rows})
                 if args.mock
-                else load_chat_model(model_id, args.device)
+                else load_chat_model(model_id, args.device, metadata["models"].get(model_id, {}).get("revision", args.revision),
+                                     metadata["models"].get(model_id, {}).get("base_revision", args.base_revision))
             )
+            metadata["models"][model_id] = getattr(generate, "metadata", {"mock": True})
+            meta_path.write_text(json.dumps(metadata, indent=2) + "\n")
             for i, (r, cond) in enumerate(todo, 1):
                 ex, score = (
                     library.retrieve(r["request"])
@@ -200,6 +226,10 @@ def main():
                     "",
                     False,
                 )
+                if not args.mock:
+                    # Stable across interrupted/resumed runs, including sampled retries.
+                    case_seed = int.from_bytes(hashlib.sha256(f"{args.seed}:{model_id}:{r['id']}:{cond}".encode()).digest()[:4], "big")
+                    set_seed(case_seed)
                 t0 = time.perf_counter()
                 for attempts in range(1, args.attempts + 1):
                     raw, n = generate(
@@ -219,10 +249,10 @@ def main():
                 latency = time.perf_counter() - t0
 
                 gen_steps = steps_from_xml(xml)
-                match = valid and gen_steps == r["expected_steps"]
+                match = valid and ET.canonicalize(xml, strip_text=True) == ET.canonicalize(r["expected_tree_xml"], strip_text=True)
                 w.writerow(
                     dict(
-                        model=model_id,
+                        model=("mock:" + model_id) if args.mock else model_id,
                         id=r["id"],
                         request=r["request"],
                         difficulty=r["difficulty"],
@@ -235,11 +265,11 @@ def main():
                         validator_error=error,
                         matches_reference="y" if match else "n",
                         does_what_was_asked=(
-                            "y" if match else ("n" if not valid else "")
+                            "" if valid else "n"
                         ),
                         grader_comment="",
                         generated_steps=gen_steps,
-                        expected_steps=r["expected_steps"],
+                        expected_steps=steps_from_xml(r["expected_tree_xml"]),
                         notes=r["notes"],
                         generated_xml=xml,
                         expected_tree_xml=r["expected_tree_xml"],
