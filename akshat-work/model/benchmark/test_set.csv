@@ -16,13 +16,12 @@ req_002,Go to the ball and grab it,task,medium,"<root BTCPP_format=""4"" main_tr
         <Sequence>
             <Fallback>
                 <IsVisible object=""ball"" />
-                <SearchFor object=""ball"" />
+                <SearchFor object=""ball"" hint=""behind the table"" />
             </Fallback>
             <NavigateTo target=""ball"" />
-            <Grab object=""ball"" />
         </Sequence>
     </BehaviorTree>
-</root>",[is_visible(ball) | search_for(ball)] -> navigate_to(ball) -> grab(ball),,,No hint: the request gives none
+</root>","[is_visible(ball) | search_for(ball, ""behind the table"")] -> navigate_to(ball)",,,Hint must be passed to SearchFor
 req_003,Look at me,task,easy,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
     <BehaviorTree ID=""MainTree"">
         <LookAt target=""user"" />
@@ -136,11 +135,15 @@ req_016,Bring me the remote,task,medium,"<root BTCPP_format=""4"" main_tree_to_e
             </Fallback>
             <NavigateTo target=""remote"" />
             <Grab object=""remote"" />
+            <Fallback>
+                <IsVisible object=""user"" />
+                <SearchFor object=""user"" hint=""start_position"" />
+            </Fallback>
             <NavigateTo target=""user"" />
             <Release target=""user"" />
         </Sequence>
     </BehaviorTree>
-</root>",[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> release(user),,,
+</root>","[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> [is_visible(remote) | search_for(remote, ""start_position"")] -> navigate_to(user) -> release(user)",,,
 req_017,Bring me my phone,task,medium,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
     <BehaviorTree ID=""MainTree"">
         <Sequence>
@@ -170,11 +173,7 @@ req_018,Pick up the can and crush it,task,medium,"<root BTCPP_format=""4"" main_
 </root>",[is_visible(can) | search_for(can)] -> navigate_to(can) -> grab(can) -> crush(can),,,
 req_019,Crush the can I'm holding,task,medium,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
     <BehaviorTree ID=""MainTree"">
-        <Sequence>
-            <NavigateTo target=""user"" />
-            <Grab object=""can"" />
-            <Crush object=""can"" />
-        </Sequence>
+        <Crush object=""can"" />
     </BehaviorTree>
 </root>",navigate_to(user) -> grab(can) -> crush(can),,,"Can is in the user's hand, so no search"
 req_020,Can you find the red ball under the chair?,task,medium,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
@@ -414,11 +413,15 @@ req_037,Find the remote and show it to me,task,hard,"<root BTCPP_format=""4"" ma
             </Fallback>
             <NavigateTo target=""remote"" />
             <Grab object=""remote"" />
-            <NavigateTo target=""user"" />
-            <MoveArm pose=""grab_front"" />
+            <Fallback>
+                 <IsVisible object=""user"" />
+                 <SearchFor object=""user"" hint=""starting position"" />
+             </Fallback>
+            <NavigateTo target=""user""  />
+            <MoveArm pose=""user"" />
         </Sequence>
     </BehaviorTree>
-</root>",[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(grab_front),,,"'Show' = bring and hold out (grab_front), not release"
+</root>",[is_visible(remote) | search_for(remote)] -> navigate_to(remote) -> grab(remote) -> navigate_to(user) -> move_arm(user),,,"Show' = bring and hold out, not release"
 req_038,"If you see a can, crush it",task,tricky,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
     <BehaviorTree ID=""MainTree"">
         <Fallback>
@@ -530,7 +533,14 @@ req_046,Crush every can you find,task,tricky,"<root BTCPP_format=""4"" main_tree
         </Sequence>
     </BehaviorTree>
 </root>","ForceSuccess(){ KeepRunningUntilFailure(){ search_for(can) -> navigate_to(can) -> grab(can) -> crush(can) } } -> say(""All clean!"", happy)",,,Loops until SearchFor fails. SearchFor must not return a can already crushed
-req_047,Put the remote back where you found it,unclear,tricky,,,Asks where it found the remote,confused,No blackboard key for an old location; ask instead of using an unbound placeholder
+req_047,Put the remote back where you found it,task,tricky,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
+    <BehaviorTree ID=""MainTree"">
+        <Sequence>
+            <NavigateTo target=""{remote.original_location}"" />
+            <Release target=""{remote.original_location}"" />
+        </Sequence>
+    </BehaviorTree>
+</root>",navigate_to({remote.original_location}) -> release({remote.original_location}),,,Needs a blackboard key for the old location (BT team to define). A clarifying question is also acceptable
 req_048,Give me a high five,task,tricky,"<root BTCPP_format=""4"" main_tree_to_execute=""MainTree"">
     <BehaviorTree ID=""MainTree"">
         <MoveArm pose=""high_five"" />
