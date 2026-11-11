@@ -32,3 +32,4 @@ managed_components/
 .idea/
 *.swp
 .DS_Store
+*.env

@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ex_01",
+    "request": "Drive over to the toy car",
+    "description": "find an object and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"toy car\" />\n                <SearchFor object=\"toy car\" />\n            </Fallback>\n            <NavigateTo target=\"toy car\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_02",
+    "request": "Look for the sock under the bed and go to it",
+    "description": "find an object using a location hint and go to it",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"sock\" />\n                <SearchFor object=\"sock\" hint=\"under the bed\" />\n            </Fallback>\n            <NavigateTo target=\"sock\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_03",
+    "request": "Fetch the book and hand it to the user",
+    "description": "find an object, pick it up, and deliver it to the user",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"book\" />\n                <SearchFor object=\"book\" />\n            </Fallback>\n            <NavigateTo target=\"book\" />\n            <Grab object=\"book\" />\n            <NavigateTo target=\"user\" />\n            <Release target=\"user\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_04",
+    "request": "Pick up the empty juice box and crush it",
+    "description": "find an object, pick it up, and crush it in the can crusher",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"juice box\" />\n                <SearchFor object=\"juice box\" />\n            </Fallback>\n            <NavigateTo target=\"juice box\" />\n            <Grab object=\"juice box\" />\n            <Crush object=\"juice box\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_05",
+    "request": "Move the marker onto the shelf",
+    "description": "pick up one object and put it down at another object",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"marker\" />\n                <SearchFor object=\"marker\" />\n            </Fallback>\n            <NavigateTo target=\"marker\" />\n            <Grab object=\"marker\" />\n            <Fallback>\n                <IsVisible object=\"shelf\" />\n                <SearchFor object=\"shelf\" />\n            </Fallback>\n            <NavigateTo target=\"shelf\" />\n            <Release target=\"shelf\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_06",
+    "request": "Greet the visitor near the hallway",
+    "description": "find a person, look at them, wave, and speak",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"person\" />\n                <SearchFor object=\"person\" hint=\"near the hallway\" />\n            </Fallback>\n            <LookAt target=\"person\" />\n            <MoveArm pose=\"wave\" />\n            <Say text=\"Hello!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_07",
+    "request": "If the plant is in front of you, look at it",
+    "description": "act only if an object is already visible, without searching or moving",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsVisible object=\"plant\" />\n                <LookAt target=\"plant\" />\n            </Sequence>\n            <Say text=\"I don't see a plant.\" emotion=\"confused\" />\n        </Fallback>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_08",
+    "request": "Try to find the pen, and say so if you can't",
+    "description": "try a task and speak if it fails",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <Fallback>\n                    <IsVisible object=\"pen\" />\n                    <SearchFor object=\"pen\" />\n                </Fallback>\n                <NavigateTo target=\"pen\" />\n            </Sequence>\n            <Say text=\"I couldn't find the pen.\" emotion=\"sad\" />\n        </Fallback>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_09",
+    "request": "Keep collecting bottle caps until there are none left",
+    "description": "repeat a find-and-pick-up loop until nothing is left, then report",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <ForceSuccess>\n                <KeepRunningUntilFailure>\n                    <Sequence>\n                        <SearchFor object=\"bottle cap\" />\n                        <NavigateTo target=\"bottle cap\" />\n                        <Grab object=\"bottle cap\" />\n                        <NavigateTo target=\"bin\" />\n                        <Release target=\"bin\" />\n                    </Sequence>\n                </KeepRunningUntilFailure>\n            </ForceSuccess>\n            <Say text=\"All collected!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_10",
+    "request": "Drive to the window and then to the hallway",
+    "description": "visit several places in order",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <NavigateTo target=\"window\" />\n            <NavigateTo target=\"hallway\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_11",
+    "request": "Show the user you're excited",
+    "description": "react with an emotion and a short spoken line",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Express emotion=\"happy\" />\n            <Say text=\"Yay!\" emotion=\"happy\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_12",
+    "request": "Are you next to the shelf?",
+    "description": "answer a yes/no question about the robot's own state with a condition",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Fallback>\n            <Sequence>\n                <IsAt target=\"shelf\" />\n                <Say text=\"Yes, I'm here!\" emotion=\"happy\" />\n            </Sequence>\n            <Say text=\"Not yet.\" emotion=\"curious\" />\n        </Fallback>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_13",
+    "request": "Hold the book out so the user can see it",
+    "description": "find an object, bring it to the user, and hold it out without letting go",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <Sequence>\n            <Fallback>\n                <IsVisible object=\"book\" />\n                <SearchFor object=\"book\" />\n            </Fallback>\n            <NavigateTo target=\"book\" />\n            <Grab object=\"book\" />\n            <NavigateTo target=\"user\" />\n            <MoveArm pose=\"user\" />\n        </Sequence>\n    </BehaviorTree>\n</root>"
+  },
+  {
+    "id": "ex_14",
+    "request": "Raise your arm",
+    "description": "move the arm to a named pose",
+    "tree_xml": "<root BTCPP_format=\"4\" main_tree_to_execute=\"MainTree\">\n    <BehaviorTree ID=\"MainTree\">\n        <MoveArm pose=\"raised\" />\n    </BehaviorTree>\n</root>"
+  }
+]

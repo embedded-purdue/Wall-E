@@ -1,0 +1,23 @@
+<root main_tree_to_execute="WallE">
+  <BehaviorTree ID="WallE">
+    <DecoratorNode ID="RecoveryNode">
+      <Fallback name="RecoveryFallback">
+        <Sequence name="FindTheBall">
+          <Inverter>
+            <Condition ID="IsVisible" name="IsBallVisible"/>
+          </Inverter>
+          <Action ID="SearchFor" object="ball" optional="hint"/>
+          <ForceSuccess>
+            <Action ID="NavigateTo" target="ball"/>
+          </ForceSuccess>
+        </Sequence>
+        <Parallel name="RecoveryParallel">
+          <RetryUntilSuccessful number_of_retries="3">
+            <Action ID="RetryUntilSuccessful" name="RetrySearch" object="ball"/>
+          </RetryUntilSuccessful>
+          <Action ID="Delay" delay_msec="1000"/>
+        </Parallel>
+      </Fallback>
+    </DecoratorNode>
+  </BehaviorTree>
+</root>
