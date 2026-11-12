@@ -33,3 +33,5 @@ managed_components/
 *.swp
 .DS_Store
 *.env
+
+/training/walle/generated/xml/
