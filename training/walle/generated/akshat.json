@@ -3128,7 +3128,7 @@
     "request": "Please staple these papers together.",
     "description": "Out of scope: Wall-E has no stapling skill and can't handle loose papers.",
     "tree_xml": "",
-    "reply": "Staple? Wall-E only got one claw... sorry!",
+    "reply": "Staple? Wall-E doesn't know how!",
     "emotion": "sad",
     "primary": "refuse",
     "archetype": "cannot_do",
