@@ -198,6 +198,9 @@ def check(files):
                           errs.append(f"{tag}: bad emotion {a['emotion']}")
                       if nd.tag == "MoveArm" and a.get("pose") not in POSES:
                           errs.append(f"{tag}: bad pose {a.get('pose')}")
+                      # the mock crushes anything held; the BT contract is empty aluminum cans only
+                      if nd.tag == "Crush" and not re.search(r"\bcans?\b", a.get("object", "").lower()):
+                          errs.append(f"{tag}: Crush only takes empty aluminum cans, not '{a.get('object')}'")
                   trace = []
                   if not simulate(root, MockWorld(), trace):
                       errs.append(f"{tag}: fails on mocks: {' > '.join(trace)}")
