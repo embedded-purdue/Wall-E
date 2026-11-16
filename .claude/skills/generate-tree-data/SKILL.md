@@ -39,6 +39,13 @@ Python needs `pyyaml` (`pip install pyyaml`). `T=.claude/skills/generate-tree-da
 - **Item fields** (all required): `id` (= `cell`), `request`, `description`, `tree_xml`, `primary`, `archetype`, `object`, `register`, `source: "claude-generated via generate-tree-data"`, `review_status: "needs_human_review"`.
 - Any whitespace in `tree_xml` is fine. `check` rewrites it to the canonical layout and stamps `split`.
 
+## Refusals (`primary: "refuse"`, `archetype: "cannot_do"`)
+Requests Wall-E can't or shouldn't do (too big, unsafe, no matching skill), matching the test set's `cannot_do` type.
+`plan` never emits these, so write them by hand. They count on top of the 300 quota.
+- `tree_xml` is `""`. There is **no tree**, same as the benchmark.
+- Add `reply` (a short in-character decline, e.g. "Glass? Nope! Wall-E only crush cans.") and `emotion` (from `EMOTIONS`).
+- Don't copy the test set's examples (couch, phone, lights, door...). `check` rejects near-copies.
+
 ## Hard rules (check enforces most of these)
 - **Never train on the test set.** That's `akshat-work/model/benchmark/test_set.csv`, which is also the Google Sheet with req_001..091. It's the held-out benchmark, and `check` rejects near-copies of it.
 - **Vocabulary is `akshat-work/model/wall_e.yaml` (Akshat's; matches `skills/README.md`).**

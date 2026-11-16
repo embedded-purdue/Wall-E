@@ -34,6 +34,9 @@ ARCH = {
     "say": ["say_if_visible", "find_go_then_say", "come_to_user_then_say"],
     "express": ["express_only", "express_if_visible", "express_then_say"],
     "query": ["report_if_visible", "report_if_at"],
+    # Out-of-scope / unsafe requests (like test-set type=cannot_do): NO tree, just an in-character
+    # `reply` + `emotion`. Extra to QUOTA, so `plan` never emits these; write them by hand.
+    "refuse": ["cannot_do"],
 }
 NO_OBJECT = {"go_to_user_or_home", "look_at_user", "pose_only", "pose_then_say", "pose_then_express",
              "come_to_user_then_say", "express_only", "express_then_say"}
@@ -167,33 +170,41 @@ def check(files):
         before = json.dumps(items, indent=2) + "\n"
         for it in items:
             tag = f"{path.stem}/{it.get('id')}"
-            missing = [k for k in REQUIRED if not it.get(k)]
+            refuse = it.get("primary") == "refuse"
+            need = [k for k in REQUIRED if k != "tree_xml"] + ["reply", "emotion"] if refuse else REQUIRED
+            missing = [k for k in need if not it.get(k)]
             if missing:
                 errs.append(f"{tag}: missing {missing}")
                 continue
             if it["id"] in ids:
                 errs.append(f"{tag}: duplicate id")
             ids.add(it["id"])
-            try:
-                root = v.validate(it["tree_xml"])
-                canon = ET.fromstring(it["tree_xml"])  # one whitespace layout for every target, same as the seeds
-                ET.indent(canon, "    ")
-                it["tree_xml"] = ET.tostring(canon, encoding="unicode")
-                for nd in root.iter():
-                    a = nd.attrib
-                    if any(c in x for x in a.values() for c in "{}"):
-                        errs.append(f"{tag}: unbound placeholder")
-                    if "emotion" in a and a["emotion"] not in EMOTIONS:
-                        errs.append(f"{tag}: bad emotion {a['emotion']}")
-                    if nd.tag == "MoveArm" and a.get("pose") not in POSES:
-                        errs.append(f"{tag}: bad pose {a.get('pose')}")
-                trace = []
-                if not simulate(root, MockWorld(), trace):
-                    errs.append(f"{tag}: fails on mocks: {' > '.join(trace)}")
-                shapes[re.sub(r'="[^"]*"', "", re.sub(r"\s+", "", it["tree_xml"]))] += 1
-            except Exception as e:
-                errs.append(f"{tag}: invalid tree: {e}")
-            if it["primary"] not in QUOTA or it["archetype"] not in ARCH[it["primary"]]:
+            if refuse:
+                if it.get("tree_xml"):
+                    errs.append(f"{tag}: refusals must have an empty tree_xml")
+                if it["emotion"] not in EMOTIONS:
+                    errs.append(f"{tag}: bad emotion {it['emotion']}")
+            else:
+              try:
+                  root = v.validate(it["tree_xml"])
+                  canon = ET.fromstring(it["tree_xml"])  # one whitespace layout for every target, same as the seeds
+                  ET.indent(canon, "    ")
+                  it["tree_xml"] = ET.tostring(canon, encoding="unicode")
+                  for nd in root.iter():
+                      a = nd.attrib
+                      if any(c in x for x in a.values() for c in "{}"):
+                          errs.append(f"{tag}: unbound placeholder")
+                      if "emotion" in a and a["emotion"] not in EMOTIONS:
+                          errs.append(f"{tag}: bad emotion {a['emotion']}")
+                      if nd.tag == "MoveArm" and a.get("pose") not in POSES:
+                          errs.append(f"{tag}: bad pose {a.get('pose')}")
+                  trace = []
+                  if not simulate(root, MockWorld(), trace):
+                      errs.append(f"{tag}: fails on mocks: {' > '.join(trace)}")
+                  shapes[re.sub(r'="[^"]*"', "", re.sub(r"\s+", "", it["tree_xml"]))] += 1
+              except Exception as e:
+                  errs.append(f"{tag}: invalid tree: {e}")
+            if it["primary"] not in ARCH or it["archetype"] not in ARCH[it["primary"]]:
                 errs.append(f"{tag}: primary/archetype not in plan vocabulary")
             t = toks(it["request"])
             for r, src in ref + seen:
@@ -208,7 +219,8 @@ def check(files):
     print(f"{'person':8}" + "".join(f"{k[:6]:>8}" for k in QUOTA) + "   total")
     for path, items in data.items():
         c = Counter(i.get("primary") for i in items)
-        print(f"{path.stem:8}" + "".join(f"{c[k]:>4}/{QUOTA[k]:<3}" for k in QUOTA) + f"  {len(items)}/{TARGET}")
+        print(f"{path.stem:8}" + "".join(f"{c[k]:>4}/{QUOTA[k]:<3}" for k in QUOTA)
+              + f"  {len(items) - c['refuse']}/{TARGET}" + (f"  +{c['refuse']} refusals" if c["refuse"] else ""))
     tot = sum(map(len, data.values()))
     for s, n in shapes.most_common(5):
         if tot >= 20 and n / tot > .15:
