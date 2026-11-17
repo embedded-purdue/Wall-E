@@ -22,6 +22,7 @@ from .esp32_protocol import (
   encode_read_encoders,
   encode_read_servo,
   encode_read_ultrasonic,
+  encode_rotate,
   encode_servo,
   encode_stop,
   mps_to_rpm,
@@ -78,6 +79,11 @@ class Esp32Link:
 
   def drive(self, left_rpm: float, right_rpm: float) -> None:
     self._expect_ok(self.request(encode_drive(left_rpm, right_rpm)), 'D')
+
+  def rotate(self, left_revs: float, right_revs: float) -> None:
+    """Turn each sprocket this many revolutions (positive = forward). Returns right away;
+    watch read_encoders() to see when the move is done."""
+    self._expect_ok(self.request(encode_rotate(left_revs, right_revs)), 'R')
 
   def stop(self) -> None:
     self._expect_ok(self.request(encode_stop()), 'S')

@@ -6,6 +6,7 @@ from hardware_api.esp32_protocol import (
   ProtocolError,
   Reply,
   encode_drive,
+  encode_rotate,
   mps_to_rpm,
   parse_battery,
   parse_encoders,
@@ -20,6 +21,15 @@ def test_encode_drive_formats_two_decimals():
 def test_encode_drive_rejects_non_finite():
   with pytest.raises(ValueError):
     encode_drive(math.nan, 0.0)
+
+
+def test_encode_rotate_formats_three_decimals():
+  assert encode_rotate(1.5, -0.25) == b'R 1.500 -0.250\n'
+
+
+def test_encode_rotate_rejects_non_finite():
+  with pytest.raises(ValueError):
+    encode_rotate(math.inf, 0.0)
 
 
 def test_parse_reply_splits_kind_and_args():

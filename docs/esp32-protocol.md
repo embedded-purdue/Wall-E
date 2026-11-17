@@ -1,12 +1,12 @@
 # Jetson to ESP32 message format (draft v0)
 
-Status: **draft for electrical to review**, Nov 1, 2026. Nothing here is final until electrical agrees.
+Status: **draft for electrical to review**, Nov 1, 2026. Nothing here is final until electrical agrees. Electrical's answers from Nov 15 are recorded under "Answers from electrical" below.
 
 The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over UART. The ESP32 turns these messages into RoboClaw and Maestro commands. This file covers driving and (draft, Nov 10) the servos on the Maestro. The arm and crusher motors get added the same way later.
 
 ## Link
 
-- UART, 115200 baud, 8N1, 3.3 V logic on both sides. Ground shared between Jetson and ESP32.
+- UART, 115200 baud (OK'd by electrical, Nov 15), 8N1, 3.3 V logic on both sides. Ground shared between Jetson and ESP32.
 - One ASCII line per message, ending in `\n` (the ESP32 should also accept `\r\n`).
 - The Jetson sends one command and waits for exactly one reply line before sending the next (up to 50 ms).
 - Plain text so anyone can test it by typing into a serial monitor.
@@ -16,6 +16,7 @@ The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over U
 | Jetson sends | ESP32 replies | Meaning |
 | --- | --- | --- |
 | `D <left_rpm> <right_rpm>` | `OK D` | Set tread speeds with RoboClaw closed-loop speed control. Wheel RPM, 2 decimals, positive = forward for both sides. |
+| `R <left_revs> <right_revs>` | `OK R` | Turn each tread sprocket this many output-shaft revolutions from where it is now, then stop (proposed by electrical, Nov 15). Decimals allowed, 3 places; positive = forward. See below. |
 | `S` | `OK S` | Stop all drive motors now. |
 | `H` | `OK H` | Heartbeat when there is nothing else to send. |
 | `E` | `E <left> <right>` | Cumulative encoder counts as the RoboClaw reports them (signed integers). |
@@ -35,6 +36,17 @@ ESP32 -> E 1365 1362
 Jetson -> S
 ESP32 -> OK S
 ```
+
+## Drive a set distance: `R` (electrical, Nov 15)
+
+Electrical (John) proposed this. `R 2.5 2.5` turns both sprockets 2.5 revolutions forward and then stops; `R 0.5 -0.5` spins in place.
+
+- The firmware uses the encoders and the RoboClaw's velocity PID to get there. There are **5281.1 encoder counts per sprocket revolution**, so the firmware's target is `revs x 5281.1` counts from the current position.
+- The ESP32 answers `OK R` right away, when the move starts, not when it ends. The Jetson watches `E` (encoder counts) to see when both sides have arrived.
+- A new `D`, `R` or `S` replaces a move that is still running.
+- Stop-on-silence still applies during a long move, so the Jetson keeps sending `H` (or `E`) while it waits.
+
+Open questions for electrical: what speed does `R` use, and can the Jetson set it? Is there an accuracy window where the firmware counts a move as done?
 
 ## Servos (draft, Nov 10)
 
@@ -76,20 +88,27 @@ Our side: `move_head`, `set_eyes` and `set_gripper` turn angles and expressions 
 | Message | RoboClaw function it should call |
 | --- | --- |
 | `D` | "command a specific motor RPM" on M1 (left) and M2 (right), converted to encoder units |
+| `R` | RoboClaw position/distance command for M1 and M2, target = revs x 5281.1 counts |
 | `S` | stop, both motors |
 | `E` | "read quadrature encoder counts for M1 and M2" |
 | `B` | RoboClaw main battery voltage read (or the power team's monitor) |
 
-## Questions for electrical
+## Answers from electrical (John, Nov 15)
 
-1. Which RoboClaw channel is the left tread and which is the right, and does one side need its direction flipped? (We'd like the ESP32 to hide that, so positive is always forward.)
-2. Is 115200 baud fine on the Jetson link?
-3. Encoder counts per wheel turn for the drive motors (the bench test script measures this).
-4. Is 500 ms the right stop-on-silence timeout?
-5. Fill in the servo channel map above, and confirm whether the gripper is a servo or a motor. A plain servo can't tell us if it's holding something: can we add a sensor (servo current or a switch in the fingers)?
-8. How many ultrasonic sensors, in what order, and where are they mounted? Is `U` OK?
-6. Are the `P` / `Q` servo messages OK, or would you rather use a different format?
-7. What did the first drivetrain motor test show (speed reached, encoder counts per turn, any problems)?
+- **Baud:** 115200 is fine.
+- **Stop-on-silence:** 500 ms agreed, and the RoboClaw serial timeout will be turned on as well.
+- **Servo messages:** `P <channel> <position>` is OK, with the position in microseconds.
+- **Encoders:** 5281.1 counts per sprocket revolution.
+- **New message:** `R <left_revs> <right_revs>` (see above).
+
+## Still open
+
+1. Which RoboClaw channel is the left tread and which is the right, and does one side need its direction flipped? (We'd like the ESP32 to hide that, so positive is always forward.) Still TBD as of Nov 15.
+2. What speed does `R` use, and when does it count a move as done?
+3. Fill in the servo channel map above, and confirm whether the gripper is a servo or a motor. A plain servo can't tell us if it's holding something: can we add a sensor (servo current or a switch in the fingers)?
+4. Is `Q` (read a servo's position) OK too?
+5. How many ultrasonic sensors, in what order, and where are they mounted? Is `U` OK?
+6. What did the first drivetrain motor test show (speed reached, any problems)?
 
 ## Trying it
 

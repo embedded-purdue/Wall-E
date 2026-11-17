@@ -54,6 +54,36 @@ def test_firmware_timeout_stops_motors(esp, clock):
   assert left == round(0.5 * 8192)  # ran only until the 0.5 s timeout
 
 
+def test_rotate_turns_each_sprocket_then_stops(esp, clock):
+  link = Esp32Link(esp)
+  link.rotate(1.5, -0.5)  # fake turns at 60 RPM = 1 rev/s
+  assert esp.log[-1] == 'R 1.500 -0.500'
+  clock.t = 0.4
+  link.heartbeat()        # keeps the stop-on-silence timer happy during a long move
+  clock.t = 0.8
+  link.heartbeat()
+  clock.t = 1.2
+  left, right = link.read_encoders()
+  assert esp.moving       # right side is done, left still has 0.3 rev to go
+  assert (left, right) == (round(1.2 * 8192), round(-0.5 * 8192))
+  clock.t = 1.6
+  assert link.read_encoders() == (round(1.5 * 8192), round(-0.5 * 8192))
+  assert not esp.moving
+
+
+def test_rotate_is_cancelled_by_stop_and_by_silence(esp, clock):
+  link = Esp32Link(esp)
+  link.rotate(5.0, 5.0)
+  clock.t = 0.25
+  link.stop()
+  clock.t = 1.0
+  assert link.read_encoders() == (round(0.25 * 8192),) * 2
+  link.rotate(5.0, 5.0)
+  clock.t = 3.0           # no message for 2 s: firmware gives up after 0.5 s
+  assert link.read_encoders() == (round(0.75 * 8192),) * 2
+  assert esp.timed_out and not esp.moving
+
+
 def test_err_reply_raises(esp):
   link = Esp32Link(esp)
   with pytest.raises(ProtocolError):

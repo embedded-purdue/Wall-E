@@ -5,6 +5,7 @@ answers with exactly one line.
 
   Jetson -> ESP32            ESP32 -> Jetson
   D <left_rpm> <right_rpm>   OK D           set tread speeds (closed loop), wheel RPM
+  R <left_revs> <right_revs> OK R           turn each sprocket this many revolutions from now
   S                          OK S           stop all motors
   H                          OK H           heartbeat, nothing else to say
   E                          E <left> <right>   cumulative encoder counts
@@ -36,6 +37,13 @@ def encode_drive(left_rpm: float, right_rpm: float) -> bytes:
   if not (math.isfinite(left_rpm) and math.isfinite(right_rpm)):
     raise ValueError('drive RPM must be finite')
   return f'D {left_rpm:.2f} {right_rpm:.2f}\n'.encode('ascii')
+
+
+def encode_rotate(left_revs: float, right_revs: float) -> bytes:
+  """Turn each tread sprocket this many output-shaft revolutions from where it is now."""
+  if not (math.isfinite(left_revs) and math.isfinite(right_revs)):
+    raise ValueError('rotate revolutions must be finite')
+  return f'R {left_revs:.3f} {right_revs:.3f}\n'.encode('ascii')
 
 
 def encode_stop() -> bytes:
