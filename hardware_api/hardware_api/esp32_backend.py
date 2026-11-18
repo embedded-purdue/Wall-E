@@ -1,7 +1,8 @@
 """Drive backend that talks to the ESP32-S3 over UART (draft v0 message format).
 
 The ESP32 runs electrical's firmware and drives the RoboClaws and the Maestro. We send
-tread speeds and servo targets, and read encoders, battery and ultrasonics; see
+tread speeds, servo targets, arm motor targets and crusher on/off, and read encoders,
+battery, ultrasonics and switch inputs; see
 docs/esp32-protocol.md.
 
 There is one serial port, so every node that talks to the ESP32 must share one
@@ -13,21 +14,28 @@ import threading
 
 from .drive_backend import DriveBackend
 from .esp32_protocol import (
+  INPUTS,
   READY,
   ProtocolError,
   Reply,
+  encode_arm,
+  encode_crusher,
   encode_drive,
   encode_heartbeat,
+  encode_read_arm,
   encode_read_battery,
   encode_read_encoders,
+  encode_read_inputs,
   encode_read_servo,
   encode_read_ultrasonic,
   encode_rotate,
   encode_servo,
   encode_stop,
   mps_to_rpm,
+  parse_arm,
   parse_battery,
   parse_encoders,
+  parse_inputs,
   parse_reply,
   parse_servo,
   parse_ultrasonic,
@@ -105,6 +113,25 @@ class Esp32Link:
 
   def read_servo(self, channel: int) -> float:
     return parse_servo(self.request(encode_read_servo(channel)), channel)
+
+  def set_arm(self, counts: list[int]) -> None:
+    """Absolute encoder targets for every arm motor, in the firmware's motor order."""
+    self._expect_ok(self.request(encode_arm(counts)), 'A')
+
+  def read_arm(self) -> list[int]:
+    return parse_arm(self.request(encode_read_arm()))
+
+  def set_crusher(self, percent: float) -> None:
+    """Crusher motor duty in percent; 0 stops it. The firmware refuses (ERR interlock)
+    to start it unless its own safety switches are closed."""
+    self._expect_ok(self.request(encode_crusher(percent)), 'C')
+
+  def read_inputs(self) -> dict[str, bool]:
+    """Switch inputs by name (INPUTS order); raises ProtocolError if one is missing."""
+    values = parse_inputs(self.request(encode_read_inputs()))
+    if len(values) < len(INPUTS):
+      raise ProtocolError(f'ESP32 sent {len(values)} inputs, expected {len(INPUTS)} ({", ".join(INPUTS)})')
+    return dict(zip(INPUTS, values))
 
   def close(self) -> None:
     self._port.close()

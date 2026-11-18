@@ -8,7 +8,9 @@
                    publish /crusher/result (std_msgs/String, latched): the outcome of the
                    last request or cycle (refused: ..., running, complete, aborted: ...)
 
-The cycle is aborted if a safety input goes false while it runs.
+The cycle is aborted if a safety input goes false while it runs. With backend esp32 the
+crusher motor and its switches are on the ESP32, so this node must run in the same
+process as the other ESP32 nodes (esp32_hardware).
 """
 
 import rclpy
@@ -18,6 +20,9 @@ from std_msgs.msg import Bool, String
 from std_srvs.srv import Trigger
 
 from .crusher import CrusherController, MockCrusherBackend
+from .esp32_backend import Esp32Link
+from .esp32_motors import Esp32CrusherBackend
+from .esp32_protocol import ProtocolError
 
 
 class CrusherNode(Node):
@@ -31,9 +36,17 @@ class CrusherNode(Node):
     for name in ('mock_chamber_closed', 'mock_lock_engaged', 'mock_contents_ok'):
       self.declare_parameter(name, False)
 
-    if backend_name != 'mock':
+    if backend_name == 'mock':
+      self._backend = MockCrusherBackend()
+    elif backend_name == 'esp32':
+      port = self.declare_parameter('esp32_port', '').value
+      if not port:
+        raise ValueError('backend esp32 needs esp32_port')
+      baud = self.declare_parameter('esp32_baud', 115200).value
+      duty = self.declare_parameter('crusher_duty_percent', 60.0).value
+      self._backend = Esp32CrusherBackend(Esp32Link.shared(port, baud), duty)
+    else:
       raise ValueError(f"unknown backend '{backend_name}'")
-    self._backend = MockCrusherBackend()
     self._controller = CrusherController(self._backend, cycle_time)
 
     latched = QoSProfile(depth=1, durability=DurabilityPolicy.TRANSIENT_LOCAL)
@@ -48,6 +61,8 @@ class CrusherNode(Node):
     self.get_logger().info(f'crusher_node up with {backend_name} backend (refuses unless safe)')
 
   def _sync_mock_inputs(self) -> None:
+    if not isinstance(self._backend, MockCrusherBackend):
+      return
     self._backend.chamber_closed = self.get_parameter('mock_chamber_closed').value
     self._backend.hardware_lock_engaged = self.get_parameter('mock_lock_engaged').value
     self._backend.contents_ok = self.get_parameter('mock_contents_ok').value
@@ -63,14 +78,22 @@ class CrusherNode(Node):
 
   def _on_run(self, request, response):
     self._sync_mock_inputs()
-    response.success, response.message = self._controller.run()
+    try:
+      response.success, response.message = self._controller.run()
+    except ProtocolError as exc:  # e.g. the firmware's own interlock said no (ERR interlock)
+      response.success, response.message = False, f'refused by ESP32: {exc}'
     if not response.success:
       self.get_logger().warn(f'run_crusher: {response.message}')
     self._publish_state()
     return response
 
   def _on_stop(self, request, response):
-    self._controller.stop()
+    try:
+      self._controller.stop()
+    except ProtocolError as exc:
+      response.success = False
+      response.message = f'stop failed: {exc}'
+      return response
     response.success = True
     response.message = 'stopped'
     self._publish_state()
@@ -78,8 +101,15 @@ class CrusherNode(Node):
 
   def _on_timer(self) -> None:
     self._sync_mock_inputs()
-    self._controller.step()
+    try:
+      self._controller.step()
+    except ProtocolError as exc:  # stop did not get through; the next tick tries again
+      self.get_logger().error(f'ESP32 link error (crusher): {exc}', throttle_duration_sec=1.0)
     self._publish_state()
+
+
+  def shutdown(self) -> None:
+    self._controller.stop()
 
 
 def main(args=None):
@@ -90,7 +120,7 @@ def main(args=None):
   except KeyboardInterrupt:
     pass
   finally:
-    node._controller.stop()
+    node.shutdown()
     node.destroy_node()
     rclpy.try_shutdown()
 

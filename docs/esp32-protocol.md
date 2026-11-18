@@ -2,7 +2,7 @@
 
 Status: **draft for electrical to review**, Nov 1, 2026. Nothing here is final until electrical agrees. Electrical's answers from Nov 15 are recorded under "Answers from electrical" below.
 
-The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over UART. The ESP32 turns these messages into RoboClaw and Maestro commands. This file covers driving and (draft, Nov 10) the servos on the Maestro. The arm and crusher motors get added the same way later.
+The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over UART. The ESP32 turns these messages into RoboClaw and Maestro commands. This file covers driving, (draft, Nov 10) the servos on the Maestro, and (draft, Nov 18) the arm motors, the crusher motor and the switch inputs.
 
 ## Link
 
@@ -22,6 +22,10 @@ The Jetson (our ROS 2 code) talks to the ESP32-S3 (electrical's firmware) over U
 | `E` | `E <left> <right>` | Cumulative encoder counts as the RoboClaw reports them (signed integers). |
 | `B` | `B <volts>` | Battery voltage, for example `B 19.85`. |
 | `U` | `U <m> [<m> ...]` | Ultrasonic distances in meters, one per HC-SR04P in a fixed order, `-1` = no echo. For example `U 0.42 1.80`. (draft, Nov 10) |
+| `A <counts> [<counts> ...]` | `OK A` | Move each arm motor to an absolute encoder count (draft, Nov 18, see "Arm and crusher"). |
+| `J` | `J <counts> [<counts> ...]` | Arm motor encoder counts, same order as `A`. |
+| `C <percent>` | `OK C` | Run the crusher motor at this duty, 0 to 100 (`C 0` = stop). `ERR interlock` if a crusher switch is open. |
+| `I` | `I <0/1> <0/1> <0/1> <0/1>` | Switch inputs: chamber closed, lock engaged, contents OK, gripper finger switch (1 = closed/pressed). |
 | anything wrong | `ERR <reason>` | Command not understood or refused, for example `ERR bad_args`. |
 | (nothing) | `READY` | Sent once after the ESP32 boots, with motors stopped. |
 
@@ -76,6 +80,26 @@ Channel map (electrical to fill in):
 
 Our side: `move_head`, `set_eyes` and `set_gripper` turn angles and expressions into these `P` messages (`hardware_api/servo.py`). The channel numbers and pulse widths in `config/esp32.yaml` are placeholders until this map is filled in.
 
+## Arm and crusher (draft, Nov 18)
+
+The arm joints and the crusher are DC motors on RoboClaws, like the treads. The arm's motion is planned on the Jetson (Shrey's decision): our code moves each joint a small step at a time at a safe speed, so the ESP32 only ever gets "go to this position" commands and never plans a path itself.
+
+| Jetson sends | ESP32 replies | Meaning |
+| --- | --- | --- |
+| `A 0 -120 840 0` | `OK A` | Hold each arm motor at this absolute encoder count, using the RoboClaw's position PID. One value per arm motor, always all of them, integers. |
+| `J` | `J 0 -118 836 0` | Where the arm encoders are now. |
+| `C 60` | `OK C` | Crusher motor at 60% duty, one direction. `C 0` stops it. |
+| `I` | `I 1 1 1 0` | The four switch inputs, in this fixed order: chamber closed, lock engaged, contents OK, gripper finger switch. |
+
+Rules:
+
+1. **Arm encoders read 0 at boot.** The firmware zeroes them on power-up, so the arm must be at its home pose then. Our code turns counts into joint angles (`arm_counts_per_rad` in `config/esp32.yaml`).
+2. **The arm holds on silence.** Stop-on-silence stops the treads and the crusher, not the arm: an arm motor going limp could drop the arm. `S` also stops the crusher but leaves the arm holding.
+3. **Crusher interlock in the firmware too.** `C` with a duty above 0 is refused with `ERR interlock` unless chamber closed, lock engaged and contents OK all read 1, and the crusher stops at once if any of them opens while it runs. Our code checks the same switches first.
+4. Our code caps the crusher at 60% duty for now; the firmware should cap it too.
+
+Open questions for electrical: which RoboClaw and channel is each arm motor and the crusher, and in what order should `A` list the arm motors? How many counts per joint revolution (gearing after the motor)? Should the arm be homed with limit switches instead of "power up at home"? Which ESP32 pins are the four switches, and are they active-low? Is the gripper finger switch going in?
+
 ## Safety rules we are asking the firmware to follow
 
 1. **Boot stopped.** Motors stay off until the first `D`.
@@ -92,6 +116,9 @@ Our side: `move_head`, `set_eyes` and `set_gripper` turn angles and expressions 
 | `S` | stop, both motors |
 | `E` | "read quadrature encoder counts for M1 and M2" |
 | `B` | RoboClaw main battery voltage read (or the power team's monitor) |
+| `A` | RoboClaw position command for each arm motor (absolute encoder target) |
+| `J` | "read quadrature encoder counts" for the arm motors |
+| `C` | RoboClaw duty command for the crusher motor (0 = stop) |
 
 ## Answers from electrical (John, Nov 15)
 
@@ -115,4 +142,5 @@ Our side: `move_head`, `set_eyes` and `set_gripper` turn angles and expressions 
 - No hardware: `python3 -m hardware_api.bench_drive --fake`
 - Real ESP32 from a laptop (USB-to-UART cable or the ESP32's USB port): `python3 -m hardware_api.bench_drive --port /dev/ttyUSB0`
 - Full ROS 2 node: `ros2 launch hardware_api drive.launch.py backend:=esp32` with `esp32_port` set in the params file.
-- Everything on the ESP32 (drive, head/eyes, gripper, battery, ultrasonics) sharing the one serial port: `ros2 launch hardware_api esp32.launch.py` (settings in `config/esp32.yaml`). These nodes must run in one process because there is only one UART.
+- Arm, crusher, a servo or the switches, one command at a time: `python3 -m hardware_api.bench_esp32 --port /dev/ttyUSB0 inputs` (or `--fake`; run with `--help` for the rest).
+- Everything on the ESP32 (drive, head/eyes, arm, gripper, crusher, battery, ultrasonics) sharing the one serial port: `ros2 launch hardware_api esp32.launch.py` (settings in `config/esp32.yaml`). These nodes must run in one process because there is only one UART.

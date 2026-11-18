@@ -20,6 +20,7 @@ from std_srvs.srv import SetBool, Trigger
 
 from .arm import arm_specs
 from .esp32_backend import Esp32Link
+from .esp32_motors import Esp32ArmJointBackend
 from .esp32_protocol import ProtocolError
 from .gripper import MockGripperBackend
 from .servo import Esp32ServoGripperBackend
@@ -44,22 +45,27 @@ class ArmNode(Node):
     self.declare_parameter('mock_object_present', False)
     close_time = self.declare_parameter('mock_gripper_close_time', 1.0).value
 
-    # The arm joints are DC motors on RoboClaws (no ESP32 messages for them yet), so they
-    # stay on the mock backend. With backend esp32 only the gripper servo is real.
-    self._arm = JointController(MockJointBackend({s.name: s.home for s in specs}), specs)
+    # The arm joints are DC motors on RoboClaws behind the ESP32. Motion is planned here
+    # (JointController slews toward the target); the ESP32 only gets per-step encoder
+    # targets (`A`). The gripper is a Maestro servo (`P`).
     if backend_name == 'mock':
+      self._arm = JointController(MockJointBackend({s.name: s.home for s in specs}), specs)
       self._gripper = MockGripperBackend(close_time=close_time)
     elif backend_name == 'esp32':
       port = self.declare_parameter('esp32_port', '').value
       if not port:
         raise ValueError('backend esp32 needs esp32_port')
       baud = self.declare_parameter('esp32_baud', 115200).value
-      # PLACEHOLDERS until electrical fills in the channel map.
+      link = Esp32Link.shared(port, baud)
+      # PLACEHOLDERS until electrical/mechanical confirm gearing and the channel map.
+      counts_per_rad = list(self.declare_parameter('arm_counts_per_rad', [0.0]).value)
+      self._arm = JointController(Esp32ArmJointBackend(link, specs, counts_per_rad), specs)
       self._gripper = Esp32ServoGripperBackend(
-        Esp32Link.shared(port, baud),
+        link,
         self.declare_parameter('gripper_channel', 4).value,
         self.declare_parameter('gripper_open_us', 1000.0).value,
         self.declare_parameter('gripper_closed_us', 2000.0).value,
+        use_contact=self.declare_parameter('gripper_use_contact', False).value,
       )
     else:
       raise ValueError(f"unknown backend '{backend_name}'")
@@ -101,7 +107,11 @@ class ArmNode(Node):
 
   def _on_timer(self) -> None:
     stamp = self.get_clock().now().to_msg()
-    positions = self._arm.step()
+    try:
+      positions = self._arm.step()
+    except ProtocolError as exc:
+      self.get_logger().error(f'ESP32 link error (arm): {exc}', throttle_duration_sec=1.0)
+      return
     arm_msg = JointState()
     arm_msg.header.stamp = stamp
     arm_msg.name = self._arm.names
@@ -124,6 +134,10 @@ class ArmNode(Node):
       self._holding = state.holding
       self._holding_pub.publish(Bool(data=state.holding))
 
+  def shutdown(self) -> None:
+    """Stop the arm where it is (the RoboClaws keep holding that position)."""
+    self._arm.hold()
+
 
 def main(args=None):
   rclpy.init(args=args)
@@ -133,7 +147,7 @@ def main(args=None):
   except KeyboardInterrupt:
     pass
   finally:
-    node._arm.hold()
+    node.shutdown()
     node.destroy_node()
     rclpy.try_shutdown()
 

@@ -76,13 +76,16 @@ class Esp32ServoJointBackend(JointBackend):
 class Esp32ServoGripperBackend(GripperBackend):
   """Gripper on one Maestro servo: open_us and closed_us pulse widths.
 
-  A plain servo cannot tell us whether it closed on something, so `holding` is
-  always False here. TODO(electrical): add a sensor (servo current, a switch in the
-  fingers, or a feedback servo) so grab() can check it is holding something.
+  A plain servo cannot tell us whether it closed on something. With use_contact=True,
+  `holding` is "commanded closed and the finger switch (gripper_contact in the `I`
+  reply) is pressed"; without it, holding is always False. TODO(electrical): confirm
+  the finger switch exists.
   """
 
-  def __init__(self, link: Esp32Link, channel: int, open_us: float, closed_us: float):
+  def __init__(self, link: Esp32Link, channel: int, open_us: float, closed_us: float,
+               use_contact: bool = False):
     self._link = link
+    self._use_contact = use_contact
     self._channel = ServoChannel(channel, open_us, closed_us)
     self._spec = JointSpec('gripper', 0.0, 1.0, 1.0)  # 0 open .. 1 closed
     self._closed = False
@@ -93,4 +96,5 @@ class Esp32ServoGripperBackend(GripperBackend):
 
   def read_state(self) -> GripperState:
     position = self._channel.to_angle(self._link.read_servo(self._channel.channel), self._spec)
-    return GripperState(self._closed, position, holding=False)
+    holding = self._closed and self._use_contact and self._link.read_inputs()['gripper_contact']
+    return GripperState(self._closed, position, holding)

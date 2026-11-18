@@ -47,13 +47,22 @@ Robot model: `urdf/wall_e.urdf` (v0, placeholder sizes; frame and joint names ma
 Backends (`backend` parameter):
 
 - `mock`: pretend wheels, no hardware.
-- `esp32`: real hardware through the ESP32-S3 over UART, using the draft message format in `docs/esp32-protocol.md`: treads (`drive_node`), head and eye servos (`head_eyes_node`), gripper servo (`arm_node`; arm joints stay mock for now), battery and ultrasonics (`sensors_node`). There is one serial port, so run these together: `ros2 launch hardware_api esp32.launch.py` (settings and placeholder servo channels in `config/esp32.yaml`).
+- `esp32`: real hardware through the ESP32-S3 over UART, using the draft message format in `docs/esp32-protocol.md`: treads (`drive_node`), head and eye servos (`head_eyes_node`), arm motors and gripper servo (`arm_node`), crusher motor and its safety switches (`crusher_node`), battery and ultrasonics (`sensors_node`). There is one serial port, so run these together: `ros2 launch hardware_api esp32.launch.py` (settings and placeholder channels, arm gearing and crusher speed in `config/esp32.yaml`).
 
 Bench test the treads without ROS (spins each tread slowly and prints encoder counts):
 
 ```bash
 python3 -m hardware_api.bench_drive --fake                 # dry run
 python3 -m hardware_api.bench_drive --port /dev/ttyUSB0    # real ESP32
+```
+
+Bench test one arm, crusher, servo or switch-input command at a time (raw values, no ROS):
+
+```bash
+python3 -m hardware_api.bench_esp32 --fake inputs                           # dry run
+python3 -m hardware_api.bench_esp32 --port /dev/ttyUSB0 servo 4 1500        # Maestro channel 4 to center
+python3 -m hardware_api.bench_esp32 --port /dev/ttyUSB0 arm 0 0 200 0       # arm encoder targets
+python3 -m hardware_api.bench_esp32 --port /dev/ttyUSB0 crusher 30 --seconds 1
 ```
 
 Build and run with the mock backend (no hardware needed):

@@ -1,4 +1,4 @@
-"""Real robot: drive, head/eyes, gripper and sensors through the ESP32, in one process.
+"""Real robot: drive, head/eyes, arm/gripper, crusher and sensors through the ESP32, in one process.
 
   ros2 launch hardware_api esp32.launch.py
   ros2 launch hardware_api esp32.launch.py params_file:=/path/to/my_esp32.yaml

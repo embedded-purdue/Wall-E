@@ -1,14 +1,16 @@
-"""Pretend ESP32 that speaks the draft v0 message format (drive, servos, sensors). For tests and dry runs.
+"""Pretend ESP32 that speaks the draft v0 message format (drive, servos, arm, crusher, sensors). For tests and dry runs.
 
 Behaves like a serial port: write() a command line, readline() the reply.
 Mirrors the firmware rules we are asking electrical for: boot stopped, stop when no
-command arrives within timeout, ideal encoders.
+command arrives within timeout (treads and crusher; the arm holds), ideal encoders,
+arm motors that reach their target at once, and a crusher that refuses to start
+unless chamber_closed, lock_engaged and contents_ok are all set.
 """
 
 import math
 import time
 
-from .esp32_protocol import READY
+from .esp32_protocol import INPUTS, READY
 
 
 class FakeEsp32:
@@ -16,7 +18,7 @@ class FakeEsp32:
   def __init__(self, counts_per_rev: int = 8192, timeout: float = 0.5,
                battery_volts: float = 20.0, clock=time.monotonic, send_ready: bool = True,
                ultrasonic: tuple = (1.5,), servo_limits: dict | None = None,
-               rotate_rpm: float = 60.0):
+               rotate_rpm: float = 60.0, arm_motors: int = 4):
     self.counts_per_rev = counts_per_rev
     self.timeout = timeout
     self.battery_volts = battery_volts
@@ -34,6 +36,9 @@ class FakeEsp32:
     self.servos: dict[int, float] = {}  # channel -> pulse width us
     # channel -> (min_us, max_us) the firmware refuses outside of; default 500..2500 for any channel
     self.servo_limits = servo_limits or {}
+    self.arm = [0] * arm_motors  # arm encoder counts (ideal: at the target as soon as it is sent)
+    self.crusher = 0  # crusher duty %, 0 = stopped
+    self.inputs = {name: False for name in INPUTS}  # switch inputs; set them in tests
 
   def _advance(self) -> None:
     now = self._clock()
@@ -50,10 +55,14 @@ class FakeEsp32:
           self._counts[i], self.targets[i] = self.targets[i], None
         else:
           self._counts[i] += math.copysign(step, gap)
-    if now - self._last_command > self.timeout and (self.rpm != [0.0, 0.0] or self.moving):
+    if now - self._last_command > self.timeout and (self.rpm != [0.0, 0.0] or self.moving or self.crusher):
       self.rpm = [0.0, 0.0]
       self.targets = [None, None]
+      self.crusher = 0
       self.timed_out = True
+    # The firmware's own interlock: a switch opening stops the crusher at once.
+    if self.crusher and not self._crusher_safe():
+      self.crusher = 0
     self._last = now
 
   def write(self, data: bytes) -> int:
@@ -81,6 +90,7 @@ class FakeEsp32:
     elif kind == 'S' and not args:
       self.rpm = [0.0, 0.0]
       self.targets = [None, None]
+      self.crusher = 0
       self._replies.append('OK S')
     elif kind == 'H' and not args:
       self._replies.append('OK H')
@@ -109,9 +119,41 @@ class FakeEsp32:
         self._replies.append('ERR bad_args')
       else:
         self._replies.append(f'Q {channel} {round(self.servos.get(channel, 0.0))}')
+    elif kind == 'A' and args:
+      try:
+        counts = [int(arg) for arg in args]
+      except ValueError:
+        self._replies.append('ERR bad_args')
+      else:
+        if len(counts) != len(self.arm):
+          self._replies.append('ERR bad_args')
+        else:
+          self.arm = counts
+          self._replies.append('OK A')
+    elif kind == 'J' and not args:
+      self._replies.append('J ' + ' '.join(str(c) for c in self.arm))
+    elif kind == 'C' and len(args) == 1:
+      try:
+        duty = int(args[0])
+      except ValueError:
+        self._replies.append('ERR bad_args')
+      else:
+        if not 0 <= duty <= 100:
+          self._replies.append('ERR out_of_range')
+        elif duty and not self._crusher_safe():
+          self.crusher = 0
+          self._replies.append('ERR interlock')
+        else:
+          self.crusher = duty
+          self._replies.append('OK C')
+    elif kind == 'I' and not args:
+      self._replies.append('I ' + ' '.join('1' if self.inputs[name] else '0' for name in INPUTS))
     else:
       self._replies.append('ERR unknown_command')
     return len(data)
+
+  def _crusher_safe(self) -> bool:
+    return all(self.inputs[name] for name in ('chamber_closed', 'lock_engaged', 'contents_ok'))
 
   @property
   def moving(self) -> bool:

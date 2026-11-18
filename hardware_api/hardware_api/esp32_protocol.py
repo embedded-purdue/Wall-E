@@ -13,6 +13,10 @@ answers with exactly one line.
   U                          U <m> [<m> ...]  ultrasonic distances in meters (-1 = no echo)
   P <channel> <us>           OK P           move Maestro servo channel to a pulse width (us)
   Q <channel>                Q <channel> <us>   Maestro's current pulse width for that channel
+  A <counts> [<counts> ...]  OK A           move each arm motor to an absolute encoder count
+  J                          J <counts> [<counts> ...]  arm motor encoder counts
+  C <percent>                OK C           run the crusher motor at this % duty (0 = stop)
+  I                          I <0|1> [<0|1> ...]  switch inputs (chamber, lock, contents, gripper)
   (any)                      ERR <reason>   command refused or not understood
   (on boot)                  READY          sent once, motors stopped
 """
@@ -21,6 +25,9 @@ import math
 from dataclasses import dataclass
 
 READY = 'READY'
+
+# Order of the switch inputs in an `I` reply (fixed in the firmware, see docs/esp32-protocol.md).
+INPUTS = ('chamber_closed', 'lock_engaged', 'contents_ok', 'gripper_contact')
 
 
 class ProtocolError(Exception):
@@ -78,6 +85,27 @@ def encode_read_servo(channel: int) -> bytes:
   return f'Q {int(channel)}\n'.encode('ascii')
 
 
+def encode_arm(counts: list[int]) -> bytes:
+  """Absolute encoder targets for the arm motors, in the firmware's fixed motor order."""
+  if not counts:
+    raise ValueError('arm command needs at least one motor')
+  return ('A ' + ' '.join(str(int(round(c))) for c in counts) + '\n').encode('ascii')
+
+
+def encode_read_arm() -> bytes:
+  return b'J\n'
+
+
+def encode_crusher(percent: float) -> bytes:
+  if not math.isfinite(percent) or not 0.0 <= percent <= 100.0:
+    raise ValueError(f'crusher duty must be 0..100 %, got {percent}')
+  return f'C {round(percent)}\n'.encode('ascii')
+
+
+def encode_read_inputs() -> bytes:
+  return b'I\n'
+
+
 def parse_reply(line: bytes) -> Reply:
   """Split one line from the ESP32 into a Reply. Raises ProtocolError on junk."""
   try:
@@ -87,7 +115,7 @@ def parse_reply(line: bytes) -> Reply:
   if not text:
     raise ProtocolError('empty reply (timed out?)')
   kind, *args = text.split()
-  if kind not in ('OK', 'E', 'B', 'U', 'Q', 'ERR', READY):
+  if kind not in ('OK', 'E', 'B', 'U', 'Q', 'J', 'I', 'ERR', READY):
     raise ProtocolError(f'unknown reply: {text!r}')
   return Reply(kind, tuple(args))
 
@@ -131,6 +159,21 @@ def parse_servo(reply: Reply, channel: int) -> float:
   if got_channel != channel:
     raise ProtocolError(f'asked for servo {channel}, got {got_channel}')
   return pulse
+
+
+def parse_arm(reply: Reply) -> list[int]:
+  if reply.kind != 'J' or not reply.args:
+    raise ProtocolError(f'expected "J <counts> ...", got {reply}')
+  try:
+    return [int(arg) for arg in reply.args]
+  except ValueError as exc:
+    raise ProtocolError(f'bad arm encoder counts: {reply.args}') from exc
+
+
+def parse_inputs(reply: Reply) -> list[bool]:
+  if reply.kind != 'I' or not reply.args or any(arg not in ('0', '1') for arg in reply.args):
+    raise ProtocolError(f'expected "I <0|1> ...", got {reply}')
+  return [arg == '1' for arg in reply.args]
 
 
 def mps_to_rpm(speed: float, wheel_radius: float) -> float:

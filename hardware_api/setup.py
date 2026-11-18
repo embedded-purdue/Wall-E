@@ -33,6 +33,7 @@ setup(
       'sensors_node = hardware_api.sensors_node:main',
       'esp32_hardware = hardware_api.esp32_hardware:main',
       'bench_drive = hardware_api.bench_drive:main',
+      'bench_esp32 = hardware_api.bench_esp32:main',
     ],
   },
 )
